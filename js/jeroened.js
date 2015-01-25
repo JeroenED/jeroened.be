@@ -18,6 +18,10 @@ $(document).ready(function() {
 	$(document).on("click", '.closebtn', function() {
 		$(".page").css("display", "none");
 	});
+	
+	$(window).resize( function() {
+		$(".page").css("display", "none");
+	});
 });
 
 function OpenPage(page) {
@@ -32,9 +36,5 @@ function OpenPage(page) {
 		element.append('<img src="images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
 		element.mCustomScrollbar();
 		var closebutton = $(".closebtn");
-		var position = closebutton.offset();
-		closebutton.css("top", position.top);
-		closebutton.css("left", position.left);
-		closebutton.css("position", "fixed");
 	}
 }
