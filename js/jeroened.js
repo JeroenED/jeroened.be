@@ -14,11 +14,9 @@ $(document).ready(function() {
 		var page = $(this).data("page");
 		OpenPage(page);
 	});
-	$('body').click(function(event) {
-		if($('.page span.closeable')[0]) {
-			$(".page").css("display", "none");
-			$("span.closeable").remove();
-		}
+	
+	$(document).on("click", '.closebtn', function() {
+		$(".page").css("display", "none");
 	});
 });
 
@@ -30,7 +28,13 @@ function OpenPage(page) {
 	element.css("max-width", $(window).innerWidth() - 100 + "px");
 	element.css("top", ($(window).innerHeight() - element.innerHeight()) / 2 + $(window).scrollTop() + "px");
 	element.css("left", ($(window).innerWidth() - element.innerWidth()) / 2 + $(window).scrollLeft() + "px");
-	$(element).mCustomScrollbar();
-	
-	setTimeout(function(){ element.append('<span class="closeable" style="display:none;">I am closable</span>') }, 500);
+	if(!element.hasClass("mCustomScrollbar")) {
+		element.append('<img src="images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
+		element.mCustomScrollbar();
+		var closebutton = $(".closebtn");
+		var position = closebutton.offset();
+		closebutton.css("top", position.top);
+		closebutton.css("left", position.left);
+		closebutton.css("position", "fixed");
+	}
 }
