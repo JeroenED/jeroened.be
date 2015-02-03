@@ -1,1 +1,5 @@
-Thumbs.db
+*.db
+composer.phar
+vendor/
+nbproject
+config.php
