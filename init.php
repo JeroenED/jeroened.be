@@ -34,12 +34,16 @@ class init {
 		$this->method = $this->get_method();
 		$this->id = $this->get_id();
                 
-                // Hit that monster
-		$monster = new $this->controller();
+                echo "Working Dir: " . $this->working_dir . '<br>'; 
+                echo "Controller: " . $this->controller . '<br>'; 
+                echo "Method: " . $this->method . '<br>'; 
+                echo "id: " . $this->id . '<br>'; 
+		// Hit that monster
+		/*$monster = new $this->controller();
 		$monster->controller = $this->controller;
 		$monster->method = $this->method;
 		$monster->id = $this->id;
-		$monster->{$this->method}();
+		$monster->{$this->method}();*/
 	}
         
         public function get_controller() {

@@ -4,7 +4,9 @@
 Options -Indexes
 
 RewriteEngine On
+
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^([^/]*)$ /index.php?ctrl=page&id=$1 [QSA]
 RewriteRule ^([^/]*)/([^/]*)/([^/]*)$ /index.php?ctrl=$1&func=$2&id=$3 [QSA]
