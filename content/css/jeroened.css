@@ -129,7 +129,8 @@ nav ul li a {
 	background-color:#d1d1d1;
 	color:#1d1d1d;
 	font-family:'Open Sans',sans-serif;
-	appearance:none
+	appearance:none;
+	box-sizing: border-box;
 }
 
 .page form input[type="submit"] {
@@ -146,7 +147,8 @@ nav ul li a {
 	color:#a4a4a4;
 	font-family:'Open Sans',sans-serif;
 	appearance:none;
-	height:50px
+	height:50px;
+	box-sizing: border-box;
 }
 
 .page form textarea {

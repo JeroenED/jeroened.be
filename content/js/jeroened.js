@@ -33,7 +33,7 @@ function OpenPage(page) {
 	element.css("top", ($(window).innerHeight() - element.innerHeight()) / 2 + $(window).scrollTop() + "px");
 	element.css("left", ($(window).innerWidth() - element.innerWidth()) / 2 + $(window).scrollLeft() + "px");
 	if(!element.hasClass("mCustomScrollbar")) {
-		element.append('<img src="images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
+		element.append('<img src="/content/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
 		element.mCustomScrollbar();
 		var closebutton = $(".closebtn");
 	}
