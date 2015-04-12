@@ -1,5 +1,19 @@
-*.db
-composer.phar
-vendor/
-nbproject
-config.php
+## Delete Windows
+desktop.ini
+thumbs.db
+
+## Delete netbeans Shizzle
+/nbproject/
+
+## Symfony shizzle
+/app/bootstrap.php.cache
+/app/cache/*
+!app/cache/.gitkeep
+/app/config/parameters.yml
+/app/logs/*
+!app/logs/.gitkeep
+/app/phpunit.xml
+/bin/
+/composer.phar
+/vendor/
+/web/bundles/
