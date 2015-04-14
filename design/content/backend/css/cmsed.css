@@ -1,0 +1,262 @@
+/*
+The MIT License
+
+Copyright 2015 Jeroen De Meerleer <me@jeroened.be>.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+/* 
+    Created on : 14-apr-2015, 11:08:40
+    Author     : Jeroen De Meerleer <me@jeroened.be>
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #efefef;
+    color: #252525;
+    height: 100%;
+}
+
+a {
+   color: #303552;
+   text-decoration: underline;
+}
+
+#container {
+    height: 100%;
+    min-height: 100%;
+}
+/* ---------- */
+/* --HEADER-- */
+/* ---------- */
+
+header {
+    text-align: center;
+    background-image: url('/content/backend/images/header.png');
+    background-position: center;
+}
+
+header #logo {
+    height: 150px;
+}
+
+#meta {
+    position: absolute;
+    right: 0px;
+    top: 150px;
+    background-color: #a6a6a6;
+    color: #252525;
+    padding: 5px;
+    border-radius: 0px 0px 0px 5px;
+    -webkit-border-radius: 0px 0px 0px 5px;
+    -moz-border-radius: 0px 0px 0px 5px; 
+}
+
+/* ---------- */
+/* NAVIGATION */
+/* ---------- */
+
+nav {
+    height: calc(100% - 155px);
+    width: 250px;
+    text-align: center;
+    background-color: #a6a6a6;
+    float: left;
+}
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    margin: 15px;
+}
+
+nav ul li a {
+    color: #252525;
+    text-decoration: none;
+}
+
+/* -------------- */
+/* --CONTENTNAV-- */
+/* -------------- */
+#content {
+    float: left;
+    width: calc(100% - 250px);
+}
+
+#contentnav {
+    height: 25px;
+}
+
+#contentnav ul {
+    list-style: none;
+}
+#contentnav ul li {
+    width: 140px;
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhZmFmYWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(175,175,175,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(175,175,175,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#afafaf',GradientType=0 ); /* IE6-8 */
+    float: left;
+    text-align: center;
+    border: 1px solid #afafaf;
+    padding: 5px;
+}
+
+#contentnav ul li a {
+    color: #252525;
+    text-decoration: none;
+}
+
+#contentnav ul li.active {
+    box-shadow: 2px 3px 2px #252525;
+    -webkit-box-shadow: 2px 3px 2px #252525;
+    -moz-box-shadow: 2px 3px 2px #252525; 
+}
+
+#contentitems {
+    padding: 25px;
+}
+
+#contentitems p {
+    margin: 15px;
+}
+#contentitems select{
+   width: 250px;
+}
+
+#contentitems label {
+    display: inline-block;
+    width: 250px;
+}
+
+select {
+    padding:0px;
+    margin: -4px;
+    -webkit-box-shadow: 1px 1px 1px #252525;
+    -moz-box-shadow: 1px 1px 1px #252525;
+    box-shadow: 1px 1px 1px #252525;
+    background: #dcdcdc;
+    font-family:'roboto', sans-serif;
+    font-size:16px;
+    color:#252525;
+    border:1px solid #252525;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}
+
+.select-arrow {position:relative}
+.select-arrow:after {
+    content:'<>';
+    font:14px "roboto", monospace;
+    color:#252525;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:2px; top:0px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+    
+}
+.select-arrow:before {
+    content:'';
+    right:3px; top:0px;
+    width:20px; height:20px;
+    background:#dcdcdc;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+
+#contentitems input[type=text],
+#contentitems input[type=url],
+#contentitems input[type=tel],
+#contentitems input[type=number],
+#contentitems input[type=color],
+#contentitems input[type=email],
+#contentitems textarea {
+	margin:0;
+	font-family:'roboto', sans-serif;
+	font-size:16px;
+	appearance:none;
+	box-shadow:1px 1px 1px #252525;
+	border:1px solid #252525;
+	width:250px;
+	background-color:#dcdcdc;
+	color:#1d1d1d;
+	appearance:none;
+	box-sizing: border-box;
+}
+
+#contentitems input[type="checkbox"], #contentitems input[type="radio"] {
+    appearance: none;
+    background-color: #dcdcdc;
+    border: 1px solid #252525;
+    box-shadow: 1px 1px 1px #252525;
+    width: 16px;
+}
+
+
+#contentitems input[type="checkbox"]:checked:after, #contentitems input[type="radio"]:checked:after {
+	content: '\2714';
+	font-size: 14px;
+}
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}
