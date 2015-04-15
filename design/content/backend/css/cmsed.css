@@ -187,22 +187,24 @@ select {
 .select-arrow {position:relative}
 .select-arrow:after {
     content:'<>';
-    font:14px "roboto", monospace;
+    font:14px "consolas", monospace;
     color:#252525;
     -webkit-transform:rotate(90deg);
     -moz-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
-    right:2px; top:0px;
-    padding:0 0 2px;
+    right:0px; top:0px;
+    padding:0 0 3px;
     border-bottom:1px solid #ddd;
     position:absolute;
     pointer-events:none;
+    width: 15px;
+    height: 15px;
     
 }
 .select-arrow:before {
     content:'';
-    right:3px; top:0px;
+    right:-2px; top:-1px;
     width:20px; height:20px;
     background:#dcdcdc;
     position:absolute;
@@ -226,7 +228,6 @@ select {
 	width:250px;
 	background-color:#dcdcdc;
 	color:#1d1d1d;
-	appearance:none;
 	box-sizing: border-box;
 }
 
@@ -238,18 +239,17 @@ select {
     width: 16px;
 }
 
-
-#contentitems input[type="checkbox"]:checked:after, #contentitems input[type="radio"]:checked:after {
-	content: '\2714';
-	font-size: 14px;
+#contentitems label {
+    vertical-align: top;
 }
-.cf:before,
-.cf:after {
+
+.clearfix:before,
+.clearfix:after {
     content: " "; /* 1 */
     display: table; /* 2 */
 }
 
-.cf:after {
+.clearfix:after {
     clear: both;
 }
 
@@ -257,6 +257,6 @@ select {
  * For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats.
  */
-.cf {
+.clearfix {
     *zoom: 1;
 }
