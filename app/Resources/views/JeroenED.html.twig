@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+The MIT License
+
+Copyright 2015 Jeroen De Meerleer <me@jeroened.be>.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta content="Jeroen De Meerleer" name="author">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <title>Jeroen De Meerleer :: Developer-Operator</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+        <link href="/content/reveal.js/css/reveal.min.css" rel="stylesheet">
+        <link href="/content/reveal.js/css/print/pdf.css" media="print" rel="stylesheet">
+        <link href="/content/css/jquery.mCustomScrollbar.css" rel="stylesheet">
+        <link href="/content/css/reveal.css" rel="stylesheet">
+        <link href="/content/css/jeroened.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="/content/reveal.js/lib/js/head.min.js"></script>
+        <script src="/content/reveal.js/js/reveal.min.js"></script>
+        <script src="/content/js/reveal.js"></script>
+        <script src="/content/js/jeroened.js"></script>
+        <script src="/content/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="/content/js/analytics.js"></script>
+	
+        <!--[if lt IE 9]>
+            <script src="reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
