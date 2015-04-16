@@ -1,3 +1,8 @@
+jeroen_ed_portfolio:
+    resource: "@JeroenEDPortfolioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

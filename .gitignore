@@ -5,6 +5,9 @@ thumbs.db
 ## Delete netbeans Shizzle
 /nbproject/
 
+## Delete SyncCrap
+sync.ffs_db
+
 ## Symfony shizzle
 /app/bootstrap.php.cache
 /app/cache/*
