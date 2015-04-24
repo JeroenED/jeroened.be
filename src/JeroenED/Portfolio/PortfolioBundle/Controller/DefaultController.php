@@ -1,6 +1,6 @@
 <?php
 
-namespace JeroenED\Bundle\PortfolioBundle\Controller;
+namespace JeroenED\Portfolio\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

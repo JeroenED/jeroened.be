@@ -1,6 +1,6 @@
 <?php
 
-namespace JeroenED\Bundle\PortfolioBundle\DependencyInjection;
+namespace JeroenED\Portfolio\PortfolioBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
