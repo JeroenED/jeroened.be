@@ -39,7 +39,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="portfolio")
  */
 
-class Portfolio {
+class PortfolioItem {
     
     /**
      * @ORM\Column(type="integer")
@@ -60,6 +60,11 @@ class Portfolio {
      */
     protected $pages;
     
+    /**
+     * 
+     * @ORM\Column(type="integer")
+     */
+    protected $rank;
 
     /**
      * Get id
@@ -115,5 +120,30 @@ class Portfolio {
     public function getPages()
     {
         return $this->pages;
+    }
+
+
+ 
+    /**
+     * Set rank
+     *
+     * @param integer $rank
+     * @return PortfolioItem
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    /**
+     * Get rank
+     *
+     * @return integer 
+     */
+    public function getRank()
+    {
+        return $this->rank;
     }
 }
