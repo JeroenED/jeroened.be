@@ -122,49 +122,28 @@ class PortfolioItem {
         return $this->pages;
     }
 
+
+ 
     /**
-     * Set order
+     * Set rank
      *
-     * @param integer $order
+     * @param integer $rank
      * @return PortfolioItem
      */
-    public function setOrder($order)
+    public function setRank($rank)
     {
-        $this->order = $order;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get order
+     * Get rank
      *
      * @return integer 
      */
-    public function getOrder()
+    public function getRank()
     {
-        return $this->order;
-    }
-
-    /**
-     * Set index
-     *
-     * @param integer $index
-     * @return PortfolioItem
-     */
-    public function setIndex($index)
-    {
-        $this->index = $index;
-
-        return $this;
-    }
-
-    /**
-     * Get index
-     *
-     * @return integer 
-     */
-    public function getIndex()
-    {
-        return $this->index;
+        return $this->rank;
     }
 }

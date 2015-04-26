@@ -1,0 +1,15 @@
+{% extends 'JeroenEDPortfolioBundle::JeroenED.html.twig' %}
+
+{% block body %}
+    <div class="reveal">
+        <div class="slides">
+            {% for item in portfolio %}
+                <section>
+                    {% for page in item.pages %}
+                        <section{% if 'Slug' in page|keys %} id="{{page.Slug}}"{% endif %}{% if 'Background' in page|keys  %} data-background="{{page.Background}}"{% endif %}>{{ page.Html | raw }}</section>
+                    {% endfor %}
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

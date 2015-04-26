@@ -9,11 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        $allItems = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->findAll();
+        $i=0;
+        foreach ($allItems as $item) {
+            $portfolio[$i]['title'] = $item->getTitle();
+            $portfolio[$i]['rank'] = $item->getRank();
+            $portfolio[$i]['pages'] = unserialize($item->getPages());
+            $i++;
+        }
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio));
     }
+    
+
 }
