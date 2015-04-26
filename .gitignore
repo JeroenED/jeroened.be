@@ -6,7 +6,10 @@ thumbs.db
 /nbproject/
 
 ## Delete SyncCrap
-sync.ffs_db
+sync.*
+
+## Remove backups
+*.php~
 
 ## Symfony shizzle
 /app/bootstrap.php.cache
