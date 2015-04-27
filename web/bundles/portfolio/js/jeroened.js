@@ -21,7 +21,17 @@ $(document).ready(function() {
 	});
 	
 	$(window).resize( function() {
-		$(".page").remove();
+            if ($(window).innerWidth() <= 480) {
+		$('.cv-infomatics tr').each(function() {
+			
+		var head = $(':nth-child(3)', this).clone().wrap('<p>').parent().html();
+		var body = $(':nth-child(4)', this).clone().wrap('<p>').parent().html();
+		$(':nth-child(4)', this).remove();
+		$(':nth-child(3)', this).remove();
+		$('<tr>' + head + body + '</tr>').insertAfter(this);
+		});
+            }
+            $(".page").remove();
 	});
 });
 
@@ -45,5 +55,6 @@ function OpenPage(page) {
         $('#' + page).mCustomScrollbar();
         $('.loading').remove();
     });
+    history.pushState(null, "", "/page/" + page);
 	 
 }
