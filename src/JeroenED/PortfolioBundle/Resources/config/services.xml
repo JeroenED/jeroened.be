@@ -6,7 +6,7 @@
 
     <!--
     <services>
-        <service id="jeroen_ed_portfolio.example" class="JeroenED\Portfolio\PortfolioBundle\Example">
+        <service id="jeroen_ed_portfolio.example" class="JeroenED\PortfolioBundle\Example">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

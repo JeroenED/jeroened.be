@@ -24,10 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\Portfolio\PortfolioBundle\Entity;
+namespace JeroenED\PortfolioBundle\Entity;
 
 /**
- * This is the database-layout for the pages-table
+ * Description of Portfolio
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
@@ -36,10 +36,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="pages")
+ * @ORM\Table(name="portfolio")
  */
 
-class Page {
+class PortfolioItem {
     
     /**
      * @ORM\Column(type="integer")
@@ -58,15 +58,13 @@ class Page {
      *
      * @ORM\Column(type="text") 
      */
-    protected $html;
+    protected $pages;
     
     /**
      * 
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="integer")
      */
-    protected $slug;
-
-    
+    protected $rank;
 
     /**
      * Get id
@@ -82,7 +80,7 @@ class Page {
      * Set title
      *
      * @param string $title
-     * @return Page
+     * @return Portfolio
      */
     public function setTitle($title)
     {
@@ -102,48 +100,50 @@ class Page {
     }
 
     /**
-     * Set html
+     * Set pages
      *
-     * @param string $html
-     * @return Page
+     * @param string $pages
+     * @return Portfolio
      */
-    public function setHtml($html)
+    public function setPages($pages)
     {
-        $this->html = $html;
+        $this->pages = $pages;
 
         return $this;
     }
 
     /**
-     * Get html
+     * Get pages
      *
      * @return string 
      */
-    public function getHtml()
+    public function getPages()
     {
-        return $this->html;
+        return $this->pages;
     }
 
+
+ 
     /**
-     * Set slug
+     * Set rank
      *
-     * @param string $slug
-     * @return Page
+     * @param integer $rank
+     * @return PortfolioItem
      */
-    public function setSlug($slug)
+    public function setRank($rank)
     {
-        $this->slug = $slug;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get slug
+     * Get rank
      *
-     * @return string 
+     * @return integer 
      */
-    public function getSlug()
+    public function getRank()
     {
-        return $this->slug;
+        return $this->rank;
     }
 }

@@ -24,10 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\Portfolio\PortfolioBundle\Entity;
+namespace JeroenED\PortfolioBundle\Entity;
 
 /**
- * Description of Portfolio
+ * This is the database-layout for the pages-table
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
@@ -36,10 +36,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="portfolio")
+ * @ORM\Table(name="menu")
  */
 
-class PortfolioItem {
+class MenuItem {
     
     /**
      * @ORM\Column(type="integer")
@@ -52,19 +52,18 @@ class PortfolioItem {
      *
      * @ORM\Column(type="string", length=50)
      */
-    protected $title;
+    protected $label;
     
     /**
      *
-     * @ORM\Column(type="text") 
+     * @ORM\Column(type="string", length=100) 
      */
-    protected $pages;
-    
+    protected $destination;
+
     /**
-     * 
      * @ORM\Column(type="integer")
      */
-    protected $rank;
+    protected $rank;    
 
     /**
      * Get id
@@ -77,58 +76,56 @@ class PortfolioItem {
     }
 
     /**
-     * Set title
+     * Set label
      *
-     * @param string $title
-     * @return Portfolio
+     * @param string $label
+     * @return MenuItem
      */
-    public function setTitle($title)
+    public function setLabel($label)
     {
-        $this->title = $title;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get label
      *
      * @return string 
      */
-    public function getTitle()
+    public function getLabel()
     {
-        return $this->title;
+        return $this->label;
     }
 
     /**
-     * Set pages
+     * Set destination
      *
-     * @param string $pages
-     * @return Portfolio
+     * @param string $destination
+     * @return MenuItem
      */
-    public function setPages($pages)
+    public function setDestination($destination)
     {
-        $this->pages = $pages;
+        $this->destination = $destination;
 
         return $this;
     }
 
     /**
-     * Get pages
+     * Get destination
      *
      * @return string 
      */
-    public function getPages()
+    public function getDestination()
     {
-        return $this->pages;
+        return $this->destination;
     }
 
-
- 
     /**
      * Set rank
      *
      * @param integer $rank
-     * @return PortfolioItem
+     * @return MenuItem
      */
     public function setRank($rank)
     {

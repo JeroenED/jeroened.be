@@ -1,6 +1,6 @@
 <?php
 
-namespace JeroenED\Portfolio\PortfolioBundle;
+namespace JeroenED\PortfolioBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

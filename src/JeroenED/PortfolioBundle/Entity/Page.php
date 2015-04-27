@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\Portfolio\PortfolioBundle\Entity;
+namespace JeroenED\PortfolioBundle\Entity;
 
 /**
  * This is the database-layout for the pages-table
@@ -36,10 +36,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="menu")
+ * @ORM\Table(name="pages")
  */
 
-class MenuItem {
+class Page {
     
     /**
      * @ORM\Column(type="integer")
@@ -52,18 +52,21 @@ class MenuItem {
      *
      * @ORM\Column(type="string", length=50)
      */
-    protected $label;
+    protected $title;
     
     /**
      *
-     * @ORM\Column(type="string", length=100) 
+     * @ORM\Column(type="text") 
      */
-    protected $destination;
-
+    protected $html;
+    
     /**
-     * @ORM\Column(type="integer")
+     * 
+     * @ORM\Column(type="string", length=50)
      */
-    protected $rank;    
+    protected $slug;
+
+    
 
     /**
      * Get id
@@ -76,71 +79,71 @@ class MenuItem {
     }
 
     /**
-     * Set label
+     * Set title
      *
-     * @param string $label
-     * @return MenuItem
+     * @param string $title
+     * @return Page
      */
-    public function setLabel($label)
+    public function setTitle($title)
     {
-        $this->label = $label;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get title
      *
      * @return string 
      */
-    public function getLabel()
+    public function getTitle()
     {
-        return $this->label;
+        return $this->title;
     }
 
     /**
-     * Set destination
+     * Set html
      *
-     * @param string $destination
-     * @return MenuItem
+     * @param string $html
+     * @return Page
      */
-    public function setDestination($destination)
+    public function setHtml($html)
     {
-        $this->destination = $destination;
+        $this->html = $html;
 
         return $this;
     }
 
     /**
-     * Get destination
+     * Get html
      *
      * @return string 
      */
-    public function getDestination()
+    public function getHtml()
     {
-        return $this->destination;
+        return $this->html;
     }
 
     /**
-     * Set rank
+     * Set slug
      *
-     * @param integer $rank
-     * @return MenuItem
+     * @param string $slug
+     * @return Page
      */
-    public function setRank($rank)
+    public function setSlug($slug)
     {
-        $this->rank = $rank;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get rank
+     * Get slug
      *
-     * @return integer 
+     * @return string 
      */
-    public function getRank()
+    public function getSlug()
     {
-        return $this->rank;
+        return $this->slug;
     }
 }

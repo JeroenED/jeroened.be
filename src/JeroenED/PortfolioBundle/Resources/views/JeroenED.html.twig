@@ -53,6 +53,37 @@ THE SOFTWARE.
     </head>
 
     <body>
+        <div class="reveal">
+            <div class="slides">
+                {% for item in portfolio %}
+                    <section>
+                        {% for page in item.pages %}
+                            <section{% if 'Slug' in page|keys %} id="{{page.Slug}}"{% endif %}{% if 'Background' in page|keys  %} data-background="{{page.Background}}"{% endif %}>{% if page.ShowTitle == true %}<h1>{{ item.title }}</h1>{% endif %}{{ page.Html | raw }}</section>
+                        {% endfor %}
+                    </section>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="logo">
+        JeroenED
+        </div>    
+        <nav>
+        <div class="navholder clearfix">
+            <div class="navlabel">
+                <p>Menu</p>
+            </div>
+
+            <div class="navicon"><img alt="navicon" src="{{ asset('bundles/portfolio/images/navicon.png') }}"></div>
+        </div>
+        <ul>
+            {% for item in menu %}
+                <li><a {% if item.external == true %}href="{{ item.destination }}" target="_blank"{% else %}data-page="{{ item.destination }}" href="#"{% endif %}>{{ item.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+        <div class="copyright">
+        <p>&copy; copyright 2015 Jeroen De Meerleer | v0.5</p>
+    </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
