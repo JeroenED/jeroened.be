@@ -9,18 +9,18 @@ $(document).ready(function() {
         transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
         // Optional libraries used to extend on reveal.js
         dependencies: [{
-                src: 'reveal.js/lib/js/classList.js',
+                src: '/bundles/portfolio/reveal.js/lib/js/classList.js',
                 condition: function() {
                     return !document.body.classList;
                 }
             }, {
-                src: 'reveal.js/plugin/zoom-js/zoom.js',
+                src: '/bundles/portfolio/reveal.js/plugin/zoom-js/zoom.js',
                 async: true,
                 condition: function() {
                     return !!document.body.classList;
                 }
             }, {
-                src: 'reveal.js/plugin/notes/notes.js',
+                src: '/bundles/portfolio/reveal.js/plugin/notes/notes.js',
                 async: true,
                 condition: function() {
                     return !!document.body.classList;
