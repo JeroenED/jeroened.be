@@ -4,7 +4,7 @@ $(document).ready(function() {
 		if (cur == "0px") {
                     cur = "200px"
 		} else {
-                    $(".page").remove();
+                    closePage();
                     cur = "0px"
 		}
 		$("nav ul li").animate({
@@ -17,11 +17,11 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", '.closebtn', function() {
-		$(".page").remove();
+		closePage();
 	});
 	
 	$(window).resize( function() {
-        $(".page").remove();
+        closePage();
 	});
 });
 
@@ -41,8 +41,11 @@ function OpenPage(page) {
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
-		$('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
-        $('#' + page).mCustomScrollbar();
+		if(!$('#' + page).hasClass("mCustomScrollbar")) {
+			$('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
+			$('#' + page).mCustomScrollbar();
+			var closebutton = $(".closebtn");
+		}
         $('.loading').remove();
 		
 		if ($(window).innerWidth() <= 480) {
@@ -57,4 +60,9 @@ function OpenPage(page) {
     });
     history.pushState(null, "", "/page/" + page);
 	 
+}
+
+function closePage() {
+	$(".page").css("display", "none");
+	history.pushState(null, "", "/");
 }
