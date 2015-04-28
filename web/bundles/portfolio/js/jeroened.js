@@ -12,8 +12,10 @@ $(document).ready(function() {
 		});
 	});
 	$("a").click(function() {
-		var page = $(this).data("page");
-		OpenPage(page);
+		if ($(this).attr("href") == "#") {
+			var page = $(this).data("page");
+			OpenPage(page);
+		}
 	});
 	
 	$(document).on("click", '.closebtn', function() {
