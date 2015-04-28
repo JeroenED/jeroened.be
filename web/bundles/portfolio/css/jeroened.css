@@ -154,7 +154,9 @@ nav ul li a {
 .page form textarea {
 	height:150px;
 }
+.cv-informatics { width: 100%; }
 
+.mobile { display: none; }
 .clearfix:after {
 	content:".";
 	display:block;
@@ -174,4 +176,42 @@ html[xmlns] .clearfix {
 
 * html .clearfix {
 	height:1%
+}
+
+@media 
+only screen and (max-width: 480px)  {
+	
+	.mobile { display: block; }
+	.nomobile { display: none; }
+	#languages table, #languages thead, #languages tbody, #languages th, #languages td, #languages tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#languages thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+		
+	#languages td { 
+		/* Behave  like a "row" */
+		position: relative;
+		padding-left: 100%; 
+	}
+	
+	#languages td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	#languages td:nth-of-type(1):before { content: "Spreken"; }
+	#languages td:nth-of-type(2):before { content: "Begrijpen"; }
+	#languages td:nth-of-type(3):before { content: "Lezen"; }
+	#languages td:nth-of-type(4):before { content: "Schrijven"; }
 }

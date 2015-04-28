@@ -21,17 +21,7 @@ $(document).ready(function() {
 	});
 	
 	$(window).resize( function() {
-            if ($(window).innerWidth() <= 480) {
-		$('.cv-infomatics tr').each(function() {
-			
-		var head = $(':nth-child(3)', this).clone().wrap('<p>').parent().html();
-		var body = $(':nth-child(4)', this).clone().wrap('<p>').parent().html();
-		$(':nth-child(4)', this).remove();
-		$(':nth-child(3)', this).remove();
-		$('<tr>' + head + body + '</tr>').insertAfter(this);
-		});
-            }
-            $(".page").remove();
+        $(".page").remove();
 	});
 });
 
@@ -51,9 +41,19 @@ function OpenPage(page) {
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
-        $('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
+		$('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
         $('#' + page).mCustomScrollbar();
         $('.loading').remove();
+		
+		if ($(window).innerWidth() <= 480) {
+			$('.cv-informatics tr').each(function() {
+				var head = $(':nth-child(3)', this).clone().wrap('<p>').parent().html();
+				var body = $(':nth-child(4)', this).clone().wrap('<p>').parent().html();
+				$(':nth-child(4)', this).remove();
+				$(':nth-child(3)', this).remove();
+				$('<tr>' + head + body + '</tr>').insertAfter(this);
+			});
+        }
     });
     history.pushState(null, "", "/page/" + page);
 	 
