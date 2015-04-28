@@ -154,7 +154,11 @@ nav ul li a {
 .page form textarea {
 	height:150px;
 }
+
 .cv-informatics { width: 100%; }
+.cv-informatics th,.cv-informatics td  { width: 25%;}
+.cv-informatics th  { text-align: left; }
+.cv-informatics td  { text-align: right; }
 
 .mobile { display: none; }
 .clearfix:after {
