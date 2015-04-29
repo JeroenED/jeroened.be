@@ -3,6 +3,3 @@ jeroen_ed_portfolio:
     type:     annotation
     prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
