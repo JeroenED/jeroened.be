@@ -114,7 +114,6 @@ nav ul li a {
 
 .page table caption {
 	font-size:24px;
-	text-align:left
 }
 
 .page table th {
@@ -198,6 +197,16 @@ html[xmlns] .clearfix {
 }
 
 @media only screen and (max-width: 480px) {
+
+    .page table caption, .page h1 {
+        font-size: 20px;
+    }
+    
+    
+    .page h1 {
+        font-size: 20px;
+    }
+
 .mobile {
 	display:block
 }
@@ -206,6 +215,7 @@ html[xmlns] .clearfix {
 	display:none
 }
 
+#personalia { display: none; }
 #languages table,#languages thead,#languages tbody,#languages th,#languages td,#languages tr {
 	display:block
 }
@@ -220,7 +230,7 @@ html[xmlns] .clearfix {
 #languages td {
 /* Behave  like a "row" */
 	position:relative;
-	padding-left:100%
+	padding-left:100px
 }
 
 #languages td:before {
