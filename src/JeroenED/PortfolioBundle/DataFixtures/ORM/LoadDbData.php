@@ -51,7 +51,7 @@ class LoadUserData implements FixtureInterface{
         
         $i = 0;
         $portPages[$i]['ShowTitle'] = false;
-        $portPages[$i]['Html'] = '<h1 class="title">Jeroen De Meerleer</h1><h2 class="author">Developer-Operator</h2><p class="small" style="margin-top: 50px;">Gebruik de pijltjes om mijn portfolio weer te geven.</p>';
+        $portPages[$i]['Html'] = '<h1 class="title">Jeroen De Meerleer</h1><h2 class="author">Developer-Operator</h2><p class="small nomobile" style="margin-top: 50px;">Gebruik de pijltjes om mijn portfolio weer te geven.</p><p class="mobile" style="margin-top: 50px;">Swipe om mijn portfolio weer te geven.</p>';
         
         $dbItems[$it]->setPages(serialize($portPages));
                 

@@ -40,7 +40,7 @@ nav {
 	font-size:0
 }
 
-nav div.navicon {
+nav .navicon {
 	float:left;
 	background-color:rgba(0,0,0,0.2);
 	margin-left:1px;
@@ -48,7 +48,7 @@ nav div.navicon {
 	height:24px
 }
 
-nav div.navlabel {
+nav .navlabel {
 	background-color:rgba(0,0,0,0.2);
 	float:left;
 	width:150px;
@@ -62,13 +62,14 @@ nav ul li {
 	margin-left:200px
 }
 
-nav div.navlabel p,nav ul li {
+nav .navlabel p,nav ul li {
 	font-family:'Open Sans',sans-serif;
 	font-size:24px;
 	line-height:24px;
 	color:#d1d1d1;
 	font-weight:300;
-	text-align:right
+	text-align:right;
+	cursor:pointer
 }
 
 nav ul {
@@ -92,6 +93,10 @@ nav ul li a {
 	color:#d1d1d1;
 	width:100%;
 	text-align:center
+}
+
+.loading {
+	cursor:wait
 }
 
 .page {
@@ -119,9 +124,7 @@ nav ul li a {
 .page form input[type="text"],.page form textarea {
 	display:block;
 	margin:0;
-	font-family:sans-serif;
 	font-size:18px;
-	appearance:none;
 	box-shadow:none;
 	border:2px solid #4a4a4a;
 	border-radius:2px;
@@ -130,15 +133,13 @@ nav ul li a {
 	color:#1d1d1d;
 	font-family:'Open Sans',sans-serif;
 	appearance:none;
-	box-sizing: border-box;
+	box-sizing:border-box
 }
 
 .page form input[type="submit"] {
 	display:block;
 	margin:0;
-	font-family:sans-serif;
 	font-size:18px;
-	appearance:none;
 	box-shadow:none;
 	border:0;
 	border-radius:2px;
@@ -148,19 +149,33 @@ nav ul li a {
 	font-family:'Open Sans',sans-serif;
 	appearance:none;
 	height:50px;
-	box-sizing: border-box;
+	box-sizing:border-box
 }
 
 .page form textarea {
-	height:150px;
+	height:150px
 }
 
-.cv-informatics { width: 100%; }
-.cv-informatics th,.cv-informatics td  { width: 25%;}
-.cv-informatics th  { text-align: left; }
-.cv-informatics td  { text-align: right; }
+.cv-informatics {
+	width:100%
+}
 
-.mobile { display: none; }
+.cv-informatics th,.cv-informatics td {
+	width:25%
+}
+
+.cv-informatics th {
+	text-align:left
+}
+
+.cv-informatics td {
+	text-align:right
+}
+
+.mobile {
+	display:none
+}
+
 .clearfix:after {
 	content:".";
 	display:block;
@@ -182,40 +197,55 @@ html[xmlns] .clearfix {
 	height:1%
 }
 
-@media 
-only screen and (max-width: 480px)  {
-	
-	.mobile { display: block; }
-	.nomobile { display: none; }
-	#languages table, #languages thead, #languages tbody, #languages th, #languages td, #languages tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	#languages thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-		
-	#languages td { 
-		/* Behave  like a "row" */
-		position: relative;
-		padding-left: 100%; 
-	}
-	
-	#languages td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	
-	#languages td:nth-of-type(1):before { content: "Spreken"; }
-	#languages td:nth-of-type(2):before { content: "Begrijpen"; }
-	#languages td:nth-of-type(3):before { content: "Lezen"; }
-	#languages td:nth-of-type(4):before { content: "Schrijven"; }
+@media only screen and (max-width: 480px) {
+.mobile {
+	display:block
+}
+
+.nomobile {
+	display:none
+}
+
+#languages table,#languages thead,#languages tbody,#languages th,#languages td,#languages tr {
+	display:block
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+#languages thead tr {
+	position:absolute;
+	top:-9999px;
+	left:-9999px
+}
+
+#languages td {
+/* Behave  like a "row" */
+	position:relative;
+	padding-left:100%
+}
+
+#languages td:before {
+/* Now like a table header */
+	position:absolute;
+/* Top/left values mimic padding */
+	left:6px;
+	width:45%;
+	padding-right:10px;
+	white-space:nowrap
+}
+
+#languages td:nth-of-type(1):before {
+	content:"Spreken"
+}
+
+#languages td:nth-of-type(2):before {
+	content:"Begrijpen"
+}
+
+#languages td:nth-of-type(3):before {
+	content:"Lezen"
+}
+
+#languages td:nth-of-type(4):before {
+	content:"Schrijven"
+}
 }
