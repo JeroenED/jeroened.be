@@ -1,7 +1,7 @@
 jeroen_ed_cms_ed:
     resource: "@JeroenEDCmsEDBundle/Controller/"
     type:     annotation
-    prefix:   /admin
+    prefix:   /
 
 jeroen_ed_portfolio:
     resource: "@JeroenEDPortfolioBundle/Controller/"

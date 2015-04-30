@@ -4,16 +4,15 @@ namespace JeroenED\CmsEDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
-     * @Template()
+     * @Route("/admin")
      */
-    public function indexAction($name)
+    public function adminAction()
     {
-        return array('name' => $name);
+        return new Response('Admin page!');
     }
 }
