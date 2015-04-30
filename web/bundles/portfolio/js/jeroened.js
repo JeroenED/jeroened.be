@@ -44,7 +44,7 @@ function OpenPage(page) {
 		$('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
 		$('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
 		if (!$('#' + page).hasClass("mCustomScrollbar")) {
-			$('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 18px; height: 18px; position: absolute; top: 1px; right: 1px;">');
+			$('#' + page).append('<img src="/bundles/portfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
 			$('#' + page).mCustomScrollbar();
 			var closebutton = $(".closebtn");
 		}

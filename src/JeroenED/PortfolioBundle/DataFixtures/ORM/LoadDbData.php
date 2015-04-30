@@ -70,17 +70,17 @@ class LoadUserData implements FixtureInterface{
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "instantbugfix/doel";
+        $portPages[$i]['Slug'] = "instantbugfix-doel";
         $portPages[$i]['Html'] = '<h2>Wat was het doel?</h2><p>Maak een project om door te sturen naar potenti&euml;le werkgevers.</p>';
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "instantbugfix/geleerd";
+        $portPages[$i]['Slug'] = "instantbugfix-geleerd";
         $portPages[$i]['Html'] = '<h2>Wat heb ik geleerd?</h2><ul><li>Responsive design</li><li>Spoon library</li><li>Git</li></ul>';
        
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "instantbugfix/live";
+        $portPages[$i]['Slug'] = "instantbugfix-live";
         $portPages[$i]['Html'] = '<h2>Bekijk het zelf!</h2><p><a href="http://instantbugfix.jeroened.be/" target="_blank">instantbugfix.jeroened.be</a></p><p><a href="http://git.jeroened.be/JeroenED/instant-bugfix" target="_blank">Git-project</a></p>';
        
         $dbItems[$it]->setPages(serialize($portPages));
@@ -99,17 +99,17 @@ class LoadUserData implements FixtureInterface{
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "tuinhier/doel";
+        $portPages[$i]['Slug'] = "tuinhier-doel";
         $portPages[$i]['Html'] = '<h2>Wat was het doel?</h2><p>Maak een nieuwe website voor onze vereniging, waarbij een lid zonder veel kennis de website kan bewerken</p>';
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "tuinhier/geleerd";
+        $portPages[$i]['Slug'] = "tuinhier-geleerd";
         $portPages[$i]['Html'] = '<h2>Wat heb ik geleerd?</h2><ul><li>Zelf een CMS maken</li><li>CKeditor</li></ul>';
        
         $i++;
         $portPages[$i]['ShowTitle'] = true;
-        $portPages[$i]['Slug'] = "tuinhier/live";
+        $portPages[$i]['Slug'] = "tuinhier-live";
         $portPages[$i]['Html'] = '<h2>Bekijk het zelf!</h2><p><a href="http://www.tuinhierwaregem.be/" target="_blank">tuinhierwaregem.be</a></p>';
        
         $dbItems[$it]->setPages(serialize($portPages));
