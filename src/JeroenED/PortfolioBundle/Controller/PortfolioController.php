@@ -27,12 +27,11 @@ namespace JeroenED\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use JeroenED\PortfolioBundle\Model\InitializableControllerInterface;
+use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 
-class DefaultController extends Controller implements InitializableControllerInterface
+class PortfolioController extends Controller implements InitializableControllerInterface
 {
     private $portfolio;
     private $menu;

@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\PortfolioBundle\Model;
+namespace JeroenED\CmsEDBundle\Model;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
