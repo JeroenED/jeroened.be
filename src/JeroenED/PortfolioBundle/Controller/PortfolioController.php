@@ -29,7 +29,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
+use JeroenED\PortfolioBundle\Model\InitializableControllerInterface;
 
 class PortfolioController extends Controller implements InitializableControllerInterface
 {

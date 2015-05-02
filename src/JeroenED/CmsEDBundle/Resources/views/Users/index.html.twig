@@ -1,0 +1,23 @@
+<h1>Users Module</h1>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name (e-mail)</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }} ({{ user.email }})</td>
+                <td>
+                    <a href="{{ path('users_edit', { 'id': user.id }) }}">edit</a> |
+                    <a href="{{ path('users_details', { 'id': user.id }) }}">details</a> |
+                    <a href="{{ path('users_delete', { 'id': user.id }) }}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+<p><a href="{{ path('users_create') }}">Create new user</a></p>

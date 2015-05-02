@@ -24,15 +24,36 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\PortfolioBundle\Model;
+namespace JeroenED\CmsEDBundle\Form\Type;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * @author Matt Drollette <matt@drollette.com>
+ * Description of UserType
+ *
+ * @author Jeroen De Meerleer <me@jeroened.be>
  */
-interface InitializableControllerInterface
-{
-    public function initialize(Request $request, SecurityContextInterface $security_context);
+class UserType extends AbstractType {
+    
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('UserName');
+        $builder->add('Email');
+        $builder->add('password', 'repeated', array('first_name' => 'password', 'second_name' => 'confirm', 'type' => 'password'));
+        $builder->add('Register', 'submit');
+    }
+    
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+        $resolver->setDefaults(array(
+            'data_class' => 'JeroenED\CmsEDBundle\Entity\User',
+            'error_bubbling' => true
+        ));
+    }
+
+    public function getName() {
+        return 'user';
+    }
+    
 }

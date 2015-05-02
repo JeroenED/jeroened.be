@@ -28,9 +28,7 @@ namespace JeroenED\CmsEDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-
 /**
  * Description of SecurityController
  *
@@ -53,7 +51,7 @@ class SecurityController extends Controller
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
-            'JeroenEDCmsEDBundle:security:login.html.twig',
+            'JeroenEDCmsEDBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
@@ -61,7 +59,7 @@ class SecurityController extends Controller
             )
         );
     }
-
+    
     /**
      * @Route("/login_check", name="login_check")
      */
@@ -69,48 +67,5 @@ class SecurityController extends Controller
     {
         // this controller will not be executed,
         // as the route is handled by the Security system
-    }
-    
-    /**
-     * @Route("/admin/register/create")
-     */
-    public function createAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(new RegistrationType(), new Registration());
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $registration = $form->getData();
-
-            $em->persist($registration->getUser());
-            $em->flush();
-
-            return $this->redirectToRoute('/admin');
-        }
-
-        return $this->render(
-            'JeroenEDCmsEDBundle:Account:register.html.twig',
-            array('form' => $form->createView())
-        );
-    }
-    
-    
-    /**
-     * @Route("/admin/register")
-     */    
-    public function registerAction()
-    {
-        $registration = new Registration();
-        $form = $this->createForm(new RegistrationType(), $registration, array(
-            'action' => $this->generateUrl('account_create'),
-        ));
-
-        return $this->render(
-            'JeroenEDCmsEDBundle:Account:register.html.twig',
-            array('form' => $form->createView())
-        );
     }
 }
