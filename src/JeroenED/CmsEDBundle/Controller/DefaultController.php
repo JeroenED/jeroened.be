@@ -14,4 +14,15 @@ class DefaultController extends Controller
     {
         return $this->render('JeroenEDCmsEDBundle:Default:index.html.twig');
     }
+    /**
+     * @Route("/admin/phpinfo"), name="phpinfo"
+     */
+    public function phpinfoAction()
+    {
+        ob_start();
+        phpinfo();
+        $theinfo = ob_get_contents();
+        ob_get_clean();
+        return $this->render('JeroenEDCmsEDBundle:Default:phpinfo.html.twig', array('info' => $theinfo));
+    }
 }
