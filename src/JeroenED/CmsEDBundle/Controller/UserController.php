@@ -44,9 +44,11 @@ class UserController extends Controller {
      * @Route("/admin/users", name="users_index")
      */
     public function indexAction() {
+        $request = $this->getRequest();
+        $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDCmsEDBundle:User');
         $users = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users));
+        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users, 'message' => $message));
     }
     
     /**
@@ -66,8 +68,12 @@ class UserController extends Controller {
     /**
      * @Route("/admin/users/delete/{id}", name="users_delete")
      */
-    public function deleeteAction($id) {
-        return new Response('Sorry, Not yet implemented');
+    public function deleteAction($id) {
+        $db = $this->getDoctrine()->getManager();
+        $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
+        $db->remove($user);
+        $db->flush();
+        return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been deleted'));
     }
     
     /**
