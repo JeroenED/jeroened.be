@@ -96,7 +96,7 @@ class UserController extends Controller {
             $db->persist($user);
             $db->flush();
             
-            return $this->redirectToRoute('users_index' array('message' => 'User ' . $user->getUsername() . ' has been created'));
+            return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been created'));
             
         } else {
             return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView()));
