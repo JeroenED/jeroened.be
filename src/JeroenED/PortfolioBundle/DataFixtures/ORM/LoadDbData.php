@@ -66,7 +66,7 @@ class LoadUserData implements FixtureInterface{
         $portPages[$i]['ShowTitle'] = false;
         $portPages[$i]['Slug'] = "instantbugfix";
         $portPages[$i]['Html'] = '<p>&nbsp;</p>';
-        $portPages[$i]['Background'] = '/bundles/portfolio/images/projects/instantbugfix/home.png';
+        $portPages[$i]['Background'] = '/bundles/jeroenedportfolio/images/projects/instantbugfix/home.png';
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
@@ -95,7 +95,7 @@ class LoadUserData implements FixtureInterface{
         $portPages[$i]['ShowTitle'] = false;
         $portPages[$i]['Slug'] = "tuinhier";
         $portPages[$i]['Html'] = '<p>&nbsp;</p>';
-        $portPages[$i]['Background'] = '/bundles/portfolio/images/projects/tuinhier/home.png';
+        $portPages[$i]['Background'] = '/bundles/jeroenedportfolio/images/projects/tuinhier/home.png';
         
         $i++;
         $portPages[$i]['ShowTitle'] = true;
