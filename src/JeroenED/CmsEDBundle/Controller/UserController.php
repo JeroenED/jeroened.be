@@ -54,8 +54,43 @@ class UserController extends Controller {
     /**
      * @Route("/admin/users/edit/{id}", name="users_edit")
      */
-    public function editAction($id) {
-        return new Response('Sorry, Not yet implemented');
+    public function editAction($id, Request $request) {
+        $db = $this->getDoctrine()->getManager();
+        $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
+        $passwordbackup = $user->getPassword();
+        $form = $this->createForm(new UserType(), $user, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $user->getId()))));
+        $config = $form->get('password')->getConfig()->getOptions();
+        $config['required'] = false;
+        $form->add('password', 'repeated', $config);
+        $form->add('current', 'password', array('label' => 'Current password', 'mapped' => false));
+        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form->handleRequest($request);
+        
+        if($form->isValid()) {
+            $factory = $this->get('security.encoder_factory');
+
+            $encoder = $factory->getEncoder($user);
+            $password = $form->all()['current']->getData();
+            if ($encoder->isPasswordValid($passwordbackup, $password, $user->getSalt())) {
+                
+                $newpassword = $form->getData()->getPassword();
+                if ($newpassword == '') {
+                    $user->setPassword($passwordbackup);
+                } else {
+                    $newpassword = $encoder->encodePassword($newpassword, $user->getSalt());
+                    $user->setPassword($newpassword);
+                }
+            
+                $db->flush();
+                
+                return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been modified'));
+            }
+            
+            return $this->redirectToRoute($request->attributes->get('_route'), array('error' => 'Invalid password'));
+            
+        } else {
+            return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView()));
+        }
     }
     
     /**
@@ -79,11 +114,11 @@ class UserController extends Controller {
     /**
      * @Route("/admin/users/create", name="users_create")
      */
-    public function createSubmitAction(Request $request) {
+    public function createAction(Request $request) {
         $user = new User();
         $db = $this->getDoctrine()->getManager();
         $form = $this->createForm(new UserType(), $user, array('action' => $this->generateUrl($request->attributes->get('_route'))));
-        
+        $form->add('register', 'submit', array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         if($form->isValid()) {
