@@ -66,6 +66,7 @@ class UserController extends Controller {
         $form->add('register', 'submit', array('label' => 'Confirm'));
         $form->handleRequest($request);
         
+        $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
             $factory = $this->get('security.encoder_factory');
 
@@ -121,6 +122,7 @@ class UserController extends Controller {
         $form->add('register', 'submit', array('label' => 'Confirm'));
         $form->handleRequest($request);
         
+        $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
             $factory = $this->get('security.encoder_factory');
 
@@ -134,7 +136,7 @@ class UserController extends Controller {
             return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView()));
+            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
         }
     }
 }

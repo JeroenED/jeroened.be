@@ -1,0 +1,5 @@
+## YAML Template.
+---
+services:
+    form_errors:
+        class: JeroenED\CmsEDBundle\Form\FormErrors
