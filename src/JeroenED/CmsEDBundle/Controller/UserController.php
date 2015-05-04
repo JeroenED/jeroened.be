@@ -98,7 +98,9 @@ class UserController extends Controller {
      * @Route("/admin/users/details/{id}", name="users_details")
      */
     public function detailsAction($id) {
-        return new Response('Sorry, Not yet implemented');
+        $db = $this->getDoctrine()->getManager();
+        $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
+        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('user' => $user));
     }
     
     /**
