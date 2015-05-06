@@ -1,8 +1,15 @@
 {# empty Twig template #}
 {{ form_start(form) }}
+{% if errors is iterable %}
+    <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <p>{{ form_label(form.userName) }}{{form_widget(form.userName)}}</p>
 <p>{{ form_label(form.email) }}{{form_widget(form.email)}}</p>
-<p>{{ form_label(form.current) }}{{form_widget(form.current)}}</p>
 <p>{{ form_label(form.password.first) }}{{form_widget(form.password.first)}}</p>
 <p>{{ form_label(form.password.second) }}{{form_widget(form.password.second)}}</p>
 <p>{{ form_widget(form.register)}}</p>

@@ -86,8 +86,8 @@ class UserController extends Controller {
                 
                 return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been modified'));
             }
-            
-            return $this->redirectToRoute($request->attributes->get('_route'), array('error' => 'Invalid password'));
+            $form_errors[] = 'Invalid current password';
+            return $this->redirectToRoute($request->attributes->get('_route'), array( 'errors' => $form_errors));
             
         } else {
             return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView()));
