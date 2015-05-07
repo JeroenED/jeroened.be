@@ -1,0 +1,26 @@
+<h1>Pages Module</h1>
+{% if not message is  empty %}
+    <div class="message">{{ message }}</div>
+{% endif %}
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.title }}</td>
+                <td>
+                    <a href="{{ path('page_edit', { 'id': page.id }) }}">edit</a> |
+                    <a href="{{ path('page_details', { 'id': page.id }) }}">details</a> |
+                    <a onclick="return confirm('Are you sure you want to delete {{ page.title }}?')" href="{{ path('page_delete', { 'id': page.id }) }}">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+<p><a href="{{ path('page_create') }}">Create new page</a></p>

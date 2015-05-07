@@ -29,86 +29,86 @@ namespace JeroenED\CmsEDBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use JeroenED\CmsEDBundle\Form\Type\MenuType;
-use JeroenED\PortfolioBundle\Entity\MenuItem;
+use JeroenED\CmsEDBundle\Form\Type\PageType;
+use JeroenED\PortfolioBundle\Entity\Page;
 
 /**
- * Description of MenuController
+ * Description of PageController
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class MenuController extends Controller {
+class PageController extends Controller {
     
     /**
-     * @Route("/admin/menu", name="menu_index")
+     * @Route("/admin/pages", name="page_index")
      */
     public function indexAction() {
         $request = $this->getRequest();
         $message = $request->query->get('message') ? $request->query->get('message') : '';
-        $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem');
-        $menus = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menus' => $menus, 'message' => $message));
+        $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page');
+        $pages = $repository->findAll();
+        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message));
     }
     
     /**
-     * @Route("/admin/menu/edit/{id}", name="menu_edit")
+     * @Route("/admin/pages/edit/{id}", name="page_edit")
      */
     public function editAction($id, Request $request) {
         $db = $this->getDoctrine()->getManager();
-        $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        $form = $this->createForm(new MenuType(), $menu, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $menu->getId()))));
+        $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
+        $form = $this->createForm(new PageType(), $page, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $page->getId()))));
         $form->add('register', 'submit', array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
             $db->flush();
-            return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been modified'));
+            return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
         }
     }
     
     /**
-     * @Route("/admin/menu/details/{id}", name="menu_details")
+     * @Route("/admin/pages/details/{id}", name="page_details")
      */
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
-        $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Menu:details.html.twig', array('menu' => $menu));
+        $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
+        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page));
     }
     
     /**
-     * @Route("/admin/menu/delete/{id}", name="menu_delete")
+     * @Route("/admin/pages/delete/{id}", name="page_delete")
      */
     public function deleteAction($id) {
         $db = $this->getDoctrine()->getManager();
-        $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        $db->remove($menu);
+        $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
+        $db->remove($page);
         $db->flush();
-        return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been deleted'));
+        return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been deleted'));
     }
     
     /**
-     * @Route("/admin/menu/create", name="menu_create")
+     * @Route("/admin/pages/create", name="page_create")
      */
     public function createAction(Request $request) {
-        $menu = new MenuItem();
+        $page = new Page();
         $db = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new MenuType(), $menu, array('action' => $this->generateUrl($request->attributes->get('_route'))));
+        $form = $this->createForm(new PageType(), $page, array('action' => $this->generateUrl($request->attributes->get('_route'))));
         $form->add('register', 'submit', array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
-            $db->persist($menu);
+            $db->persist($page);
             $db->flush();
             
-            return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been created'));
+            return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
         }
     }
 }
