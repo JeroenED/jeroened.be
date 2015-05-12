@@ -1,4 +1,6 @@
-<h1>Users Module</h1>
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}
+    <h1>Users Module</h1>
 {% if not message is  empty %}
     <div class="message">{{ message }}</div>
 {% endif %}
@@ -24,3 +26,4 @@
         {% endfor %}
     </tbody>
 <p><a href="{{ path('users_create') }}">Create new user</a></p>
+{% endblock %}

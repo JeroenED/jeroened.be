@@ -47,7 +47,7 @@ class MenuController extends Controller {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem');
         $menus = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menus' => $menus, 'message' => $message));
+        return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menus' => $menus, 'message' => $message, 'title' => 'Menus'));
     }
     
     /**
@@ -66,7 +66,7 @@ class MenuController extends Controller {
             return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Menu:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Modify ' . $menu->getLabel()));
         }
     }
     
@@ -76,7 +76,7 @@ class MenuController extends Controller {
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
         $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Menu:details.html.twig', array('menu' => $menu));
+        return $this->render('JeroenEDCmsEDBundle:Menu:details.html.twig', array('menu' => $menu,  'title' => 'Menus :: Details of ' . $menu->getLabel()));
     }
     
     /**
@@ -108,7 +108,7 @@ class MenuController extends Controller {
             return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Create new menu'));
         }
     }
 }

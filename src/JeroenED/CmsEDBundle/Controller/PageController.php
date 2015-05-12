@@ -47,7 +47,7 @@ class PageController extends Controller {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page');
         $pages = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message));
+        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message,  'title' => 'Pages'));
     }
     
     /**
@@ -66,7 +66,7 @@ class PageController extends Controller {
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Modify ' . $page->getTitle()));
         }
     }
     
@@ -76,7 +76,7 @@ class PageController extends Controller {
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page));
+        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $pages->getTitle()));
     }
     
     /**
@@ -108,7 +108,7 @@ class PageController extends Controller {
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Create new page'));
         }
     }
 }

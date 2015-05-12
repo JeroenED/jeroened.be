@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function adminAction()
     {
-        return $this->render('JeroenEDCmsEDBundle:Default:index.html.twig');
+        return $this->render('JeroenEDCmsEDBundle:Default:index.html.twig', array('title' => 'Home'));
     }
     /**
      * @Route("/admin/phpinfo"), name="phpinfo"

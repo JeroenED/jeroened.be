@@ -1,3 +1,5 @@
-{# empty Twig template #}
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}
 <h1>{{ user.userName }}</h1>
 <p>Email: {{ user.Email }}</p>
+{% endblock %}

@@ -1,3 +1,5 @@
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}
 <h1>Menu Module</h1>
 {% if not message is  empty %}
     <div class="message">{{ message }}</div>
@@ -23,4 +25,6 @@
             </tr>
         {% endfor %}
     </tbody>
+</table>
 <p><a href="{{ path('menu_create') }}">Create new menu</a></p>
+{% endblock %}

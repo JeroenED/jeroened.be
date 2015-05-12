@@ -1,4 +1,6 @@
-{# empty Twig template #}
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}
 <h1>{{ menu.label }}</h1>
 <p>Destination: {{ menu.destination }}</p>
 <p>Rank: {{ menu.rank }}</p>
+{% endblock %}

@@ -1,4 +1,5 @@
-{# empty Twig template #}
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}
 {{ form_start(form) }}
 {% if errors is iterable %}
     <ul>
@@ -15,3 +16,4 @@
 <p>{{ form_widget(form.register)}}</p>
 
 {{ form_end(form) }}
+{% endblock %}

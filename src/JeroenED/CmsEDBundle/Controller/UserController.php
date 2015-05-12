@@ -48,7 +48,7 @@ class UserController extends Controller {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDCmsEDBundle:User');
         $users = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users, 'message' => $message));
+        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users, 'message' => $message,  'title' => 'Users'));
     }
     
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller {
             return $this->redirectToRoute($request->attributes->get('_route'), array( 'errors' => $form_errors));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView()));
+            return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView(),  'title' => 'Users :: Modify ' . $user->getUsername()));
         }
     }
     
@@ -100,7 +100,7 @@ class UserController extends Controller {
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
         $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('user' => $user));
+        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('user' => $user,  'title' => 'Users :: Details of ' . $user->getUsername()));
     }
     
     /**
@@ -138,7 +138,7 @@ class UserController extends Controller {
             return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors));
+            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Users :: Create new user'));
         }
     }
 }
