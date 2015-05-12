@@ -29,11 +29,14 @@ nav ul li a{color:#d1d1d1;text-decoration:none}
 .clearfix{display:inline-block}
 html[xmlns] .clearfix{display:block}
 * html .clearfix{height:1%}
-@media only screen and (max-width:480px){.page table caption, .page h1{font-size:20px;}
-.page h1{font-size:20px;}
+@media only screen and (max-width:480px){
+.page table caption, .page h1{font-size:16px;}
+.page h1{font-size:20px}
+.page {font-size: 12px}
+.page h2 {font-size: 16px;}
 .mobile{display:block}
 .nomobile{display:none}
-#personalia{display:none;}
+#personalia th{display:none;}
 #languages table,#languages thead,#languages tbody,#languages th,#languages td,#languages tr{display:block}
 #languages thead tr{position:absolute;top:-9999px;left:-9999px}
 #languages td{position:relative;padding-left:100px}
@@ -42,4 +45,8 @@ html[xmlns] .clearfix{display:block}
 #languages td:nth-of-type(2):before{content:"Begrijpen"}
 #languages td:nth-of-type(3):before{content:"Lezen"}
 #languages td:nth-of-type(4):before{content:"Schrijven"}
+}
+@media only screen and (max-width:1024px){
+.mobile{display:block}
+.nomobile{display:none}
 }
