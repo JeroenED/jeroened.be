@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JeroenED\PortfolioBundle\JeroenEDPortfolioBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new JeroenED\CmsEDBundle\JeroenEDCmsEDBundle(),
+            new lib\KCFinderBundle\libKCFinderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

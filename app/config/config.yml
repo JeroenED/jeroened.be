@@ -71,3 +71,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+lib_kc_finder:
+    upload_url: "/uploads/images_articles"
+    upload_dir: "%kernel.root_dir%/../web/bundles/jeroenedportfolio"

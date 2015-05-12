@@ -1,0 +1,11 @@
+{% extends 'JeroenEDCmsEDBundle::base.html.twig' %}
+{% block body %}<h1>{{ portfolio.title}}</h1>
+<h2>Pages</h2>
+{% for page in pages %}
+    <h3>{{ page.Slug | default('/') }}</h3>
+    <p>ShowTitle: {{ page.ShowTitle | default('1') }}</p>
+    <p>Slug: {{ page.Slug | default('/') }}</p>
+    <p>Background: {{ page.Background | default('none')}}</p>
+    <p>{{ page.Html }}</p>
+{% endfor %}
+{% endblock %}

@@ -42,7 +42,7 @@ class PortfolioController extends Controller implements InitializableControllerI
         foreach ($allPortfolioItems as $item) {
             $this->portfolio[$i]['title'] = $item->getTitle();
             $this->portfolio[$i]['rank'] = $item->getRank();
-            $this->portfolio[$i]['pages'] = unserialize($item->getPages());
+            $this->portfolio[$i]['pages'] = json_decode($item->getPages(), true);
             $i++;
         }
         $allMenuItems = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem')->findBy(array(), array('rank' => 'asc'));

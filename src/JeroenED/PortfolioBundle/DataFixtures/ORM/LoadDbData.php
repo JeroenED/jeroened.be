@@ -51,9 +51,10 @@ class LoadUserData implements FixtureInterface{
         
         $i = 0;
         $portPages[$i]['ShowTitle'] = false;
+        $portPages[$i]['Slug'] = "portfolio";
         $portPages[$i]['Html'] = '<h1 class="title">Jeroen De Meerleer</h1><h2 class="author">Developer-Operator</h2><p class="small nomobile" style="margin-top: 50px;">Gebruik de pijltjes om mijn portfolio weer te geven.</p><p class="mobile" style="margin-top: 50px;">Swipe om mijn portfolio weer te geven.</p>';
         
-        $dbItems[$it]->setPages(serialize($portPages));
+        $dbItems[$it]->setPages(json_encode($portPages));
                 
         $dbItems[$it]->setRank(1);
                 
@@ -83,7 +84,7 @@ class LoadUserData implements FixtureInterface{
         $portPages[$i]['Slug'] = "instantbugfix-live";
         $portPages[$i]['Html'] = '<h2>Bekijk het zelf!</h2><p><a href="http://instantbugfix.jeroened.be/" target="_blank">instantbugfix.jeroened.be</a></p><p><a href="http://git.jeroened.be/JeroenED/instant-bugfix" target="_blank">Git-project</a></p>';
        
-        $dbItems[$it]->setPages(serialize($portPages));
+        $dbItems[$it]->setPages(json_encode($portPages));
         
         $dbItems[$it]->setRank(2);
                 
@@ -112,7 +113,7 @@ class LoadUserData implements FixtureInterface{
         $portPages[$i]['Slug'] = "tuinhier-live";
         $portPages[$i]['Html'] = '<h2>Bekijk het zelf!</h2><p><a href="http://www.tuinhierwaregem.be/" target="_blank">tuinhierwaregem.be</a></p>';
        
-        $dbItems[$it]->setPages(serialize($portPages));
+        $dbItems[$it]->setPages(json_encode($portPages));
         $dbItems[$it]->setRank(3);
         
         $it++; // About Page
