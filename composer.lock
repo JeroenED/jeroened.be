@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "917f9c7a9ed209bbf9a8d0b7a68919e0",
+    "hash": "e88a76d352902701f1ae20753945eddf",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -963,45 +963,6 @@
             "time": "2014-01-12 16:20:24"
         },
         {
-            "name": "jocelynkerbourch/kc-finder-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jocelynkerbourch/KCFinderBundle.git",
-                "reference": "9cefd3f4558e5582d05cc7a214702160b392f90c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jocelynkerbourch/KCFinderBundle/zipball/9cefd3f4558e5582d05cc7a214702160b392f90c",
-                "reference": "9cefd3f4558e5582d05cc7a214702160b392f90c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "lib\\KCFinderBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Jocelyn Kerbourc'h",
-                    "email": "jocelyn.kerbourch@gmail.com"
-                }
-            ],
-            "description": "KCFinder is free open-source alternative to the CKFinder web file manager",
-            "keywords": [
-                "CKFinder",
-                "file",
-                "kcfinder",
-                "manager"
-            ],
-            "time": "2014-03-25 20:11:56"
-        },
-        {
             "name": "kriswallsmith/assetic",
             "version": "v1.2.1",
             "source": {
@@ -1188,17 +1149,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.21",
+            "version": "v3.0.22",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8"
+                "reference": "0fe4ec86db57c232becb694e01cdabe3c4d9af7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/da23c78093676a823a1ff43a214987ea3fbf83c8",
-                "reference": "da23c78093676a823a1ff43a214987ea3fbf83c8",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/0fe4ec86db57c232becb694e01cdabe3c4d9af7c",
+                "reference": "0fe4ec86db57c232becb694e01cdabe3c4d9af7c",
                 "shasum": ""
             },
             "require": {
@@ -1244,7 +1205,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-04-10 06:20:46"
+            "time": "2015-05-02 16:23:08"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1581,16 +1542,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.6.6",
+            "version": "v2.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b"
+                "reference": "0449d0e1178bc8e934520b20432d1705c3b25e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/48c9e835a877adfb023b8b6d033d9dd14f342b4b",
-                "reference": "48c9e835a877adfb023b8b6d033d9dd14f342b4b",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/0449d0e1178bc8e934520b20432d1705c3b25e7e",
+                "reference": "0449d0e1178bc8e934520b20432d1705c3b25e7e",
                 "shasum": ""
             },
             "require": {
@@ -1694,7 +1655,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-01 16:55:26"
+            "time": "2015-05-11 01:58:49"
         },
         {
             "name": "twig/extensions",
@@ -1858,9 +1819,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jocelynkerbourch/kc-finder-bundle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
