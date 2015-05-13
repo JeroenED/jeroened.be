@@ -52,7 +52,7 @@ class PageType extends AbstractType {
     }
 
     public function getName() {
-        return 'Menu';
+        return 'page';
     }
     
 }

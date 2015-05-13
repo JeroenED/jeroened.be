@@ -10,9 +10,17 @@
 {% endif %}
 
 <p>{{ form_label(form.title) }}{{form_widget(form.title)}}</p>
-<p>{{ form_label(form.html) }}{{form_widget(form.html)}}</p>
+<p>{{form_widget(form.html)}}</p>
 <p>{{ form_label(form.slug) }}{{form_widget(form.slug)}}</p>
 <p>{{ form_widget(form.register)}}</p>
 
 {{ form_end(form) }}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            CKEDITOR.replace( 'page[html]' );
+        });
+    </script>
 {% endblock %}

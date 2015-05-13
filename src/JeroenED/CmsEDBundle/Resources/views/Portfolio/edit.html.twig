@@ -62,7 +62,7 @@ $(document).ready(function() {
         var newObject = {
             Slug: $("#PortfolioPage_slug").val(),
             Background: $("#PortfolioPage_background").val(),
-            Html: $("#PortfolioPage_html").val(),
+            Html: CKEDITOR.instances.PortfolioPage_html.getData(),
             ShowTitle: $("#PortfolioPage_showtitle")[0].checked ? true : false
         };
         var oldObjects = [];
@@ -81,6 +81,7 @@ $(document).ready(function() {
         $("#PortfolioPage_slug").val('');
         $("#PortfolioPage_background").val('');
         $("#PortfolioPage_html").val('');
+        CKEDITOR.instances.PortfolioPage_html.setData('');
         $("#PortfolioPage_showtitle")[0].checked = false;
         $("#PortfolioPage_index").val('');
     });
@@ -92,6 +93,7 @@ $(document).ready(function() {
                 $("#PortfolioPage_slug").val(pages[index].Slug);
                 $("#PortfolioPage_background").val(pages[index].Background);
                 $("#PortfolioPage_html").val(pages[index].Html);
+                CKEDITOR.instances.PortfolioPage_html.setData(pages[index].Html);
                 $("#PortfolioPage_showtitle")[0].checked = pages[index].ShowTitle;
                 $("#PortfolioPage_index").val(index);
                 $('form[name=PortfolioPage]').css('display', 'block');
@@ -105,6 +107,7 @@ $(document).ready(function() {
                 
         }
     });
+    CKEDITOR.replace( 'PortfolioPage[html]' );
 });
 </script>
 {% endblock %}
