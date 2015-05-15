@@ -1,7 +1,7 @@
 code{white-space:pre}
 body{background:#1c1e20;background:-moz-radial-gradient(center,circle cover,#555a5f 0%,#1c1e20 100%);background:-webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,#555a5f),color-stop(100%,#1c1e20));background:-webkit-radial-gradient(center,circle cover,#555a5f 0%,#1c1e20 100%);background:-o-radial-gradient(center,circle cover,#555a5f 0%,#1c1e20 100%);background:-ms-radial-gradient(center,circle cover,#555a5f 0%,#1c1e20 100%);background:radial-gradient(center,circle cover,#555a5f 0%,#1c1e20 100%);background-color:#2b2b2b}
 .reveal{font-family:'Open Sans',sans-serif;font-size:36px;font-weight:400;letter-spacing:-.02em;color:#eee;background-image:url('/bundles/jeroenedportfolio/images/background.png')}
-::selection{color:#fff;background:#ff5e99;text-shadow:none}
+::selection{color:#fff;background:#363636;text-shadow:none}
 .reveal h1,.reveal h2,.reveal h3,.reveal h4,.reveal h5,.reveal h6{margin:0 0 20px;color:#d1d1d1;font-family:'Open Sans',sans-serif;font-weight:300}
 .reveal h1{font-size:64px}
 .reveal h2{font-size:48px}
