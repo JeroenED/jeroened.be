@@ -36,6 +36,9 @@ security:
                 check_path: /login_check
                 csrf_provider: security.csrf.token_manager
             provider: cmsed_db_provider
+            logout:
+                path:   /logout
+                target: /
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
