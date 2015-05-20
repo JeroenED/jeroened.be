@@ -218,6 +218,7 @@ select {
 #contentitems input[type=number],
 #contentitems input[type=color],
 #contentitems input[type=email],
+#contentitems input[type=password],
 #contentitems textarea {
 	margin:0;
 	font-family:'roboto', sans-serif;
@@ -229,6 +230,22 @@ select {
 	background-color:#dcdcdc;
 	color:#1d1d1d;
 	box-sizing: border-box;
+        border-radius: 2px;
+}
+
+
+#contentitems [type=submit], #contentitems button {
+	margin:0;
+	font-family:'roboto', sans-serif;
+	font-size:16px;
+	appearance:none;
+	box-shadow:1px 1px 1px #252525;
+	border:1px solid #272727;
+	width:100px;
+	background-color:#1d1d1d;
+	color:#dcdcdc;
+	box-sizing: border-box;
+        border-radius: 2px;
 }
 
 #contentitems input[type="checkbox"], #contentitems input[type="radio"] {
