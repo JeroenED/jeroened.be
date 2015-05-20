@@ -33,14 +33,22 @@ use JeroenED\CmsEDBundle\Form\Type\PortfolioType;
 use JeroenED\CmsEDBundle\Form\Type\PortfolioPageType;
 use JeroenED\PortfolioBundle\Entity\PortfolioItem;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
+use JeroenED\CmsEDBundle\Entity\User;
 
 /**
  * Description of PortfolioController
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class PortfolioController extends Controller {
+class PortfolioController extends Controller implements InitializableControllerInterface  {
+
+    private $init;
     
+    public function initialize( Request $request, SecurityContextInterface $security_context) {
+        $this->init['user'] = $this->getUser()->getUsername();
+    }
     /**
      * @Route("/admin/portfolio", name="portfolio_index")
      */
@@ -49,7 +57,7 @@ class PortfolioController extends Controller {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
         $portfolio = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio'));
+        return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'init' => $this->init));
     }
     
     /**
@@ -71,7 +79,7 @@ class PortfolioController extends Controller {
             return $this->redirectToRoute('portfolio_index', array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle()));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'init' => $this->init));
         }
     }
     
@@ -82,7 +90,7 @@ class PortfolioController extends Controller {
         $db = $this->getDoctrine()->getManager();
         $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($id);
         $pages = json_decode($item->getPages());
-        return $this->render('JeroenEDCmsEDBundle:Portfolio:details.html.twig', array('portfolio' => $item, 'pages' => $pages, 'title' => 'Portfolio :: Details of ' . $item->getTitle()));
+        return $this->render('JeroenEDCmsEDBundle:Portfolio:details.html.twig', array('portfolio' => $item, 'pages' => $pages, 'title' => 'Portfolio :: Details of ' . $item->getTitle(), 'init' => $this->init));
     }
     
     /**
@@ -116,7 +124,7 @@ class PortfolioController extends Controller {
             return $this->redirectToRoute('portfolio_index', array('message' => 'Page ' . $item->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:create.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'errors' => $form_errors,   'title' => 'Portfolio :: Create new item'));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:create.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'errors' => $form_errors,   'title' => 'Portfolio :: Create new item', 'init' => $this->init));
         }
     }
     

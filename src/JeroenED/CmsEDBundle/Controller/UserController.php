@@ -31,6 +31,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use JeroenED\CmsEDBundle\Form\Type\UserType;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Entity\User;
 
 /**
@@ -38,7 +40,13 @@ use JeroenED\CmsEDBundle\Entity\User;
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class UserController extends Controller {
+class UserController extends Controller implements InitializableControllerInterface {
+    
+    private $init;
+    
+    public function initialize( Request $request, SecurityContextInterface $security_context) {
+        $init['user'] = $this->getUser()->getUsername();
+    }
     
     /**
      * @Route("/admin/users", name="users_index")

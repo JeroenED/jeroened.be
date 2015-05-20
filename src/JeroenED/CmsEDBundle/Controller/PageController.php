@@ -31,13 +31,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JeroenED\CmsEDBundle\Form\Type\PageType;
 use JeroenED\PortfolioBundle\Entity\Page;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
+use JeroenED\CmsEDBundle\Entity\User;
 
 /**
  * Description of PageController
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class PageController extends Controller {
+class PageController extends Controller implements InitializableControllerInterface  {
+    
+    private $init;
+    
+    public function initialize( Request $request, SecurityContextInterface $security_context) {
+        $this->init['user'] = $this->getUser()->getUsername();
+    }
     
     /**
      * @Route("/admin/pages", name="page_index")
@@ -47,7 +56,7 @@ class PageController extends Controller {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page');
         $pages = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message,  'title' => 'Pages'));
+        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message,  'title' => 'Pages', 'init' => $this->init));
     }
     
     /**
@@ -66,7 +75,7 @@ class PageController extends Controller {
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Modify ' . $page->getTitle()));
+            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Modify ' . $page->getTitle(), 'init' => $this->init));
         }
     }
     
@@ -76,7 +85,7 @@ class PageController extends Controller {
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $pages->getTitle()));
+        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $pages->getTitle(), 'init' => $this->init));
     }
     
     /**
@@ -108,7 +117,7 @@ class PageController extends Controller {
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Create new page'));
+            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Create new page', 'init' => $this->init));
         }
     }
 }
