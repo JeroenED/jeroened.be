@@ -24,15 +24,43 @@
  * THE SOFTWARE.
  */
 
-namespace JeroenED\PortfolioBundle\Model;
+namespace JeroenED\CmsEDBundle\EventListener;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 
 /**
  * @author Matt Drollette <matt@drollette.com>
  */
-interface InitializableControllerInterface
+class BeforeControllerListener
 {
-    public function initialize(Request $request, SecurityContextInterface $security_context);
+    private $security_context;
+
+    public function __construct(SecurityContextInterface $security_context)
+    {
+        $this->security_context = $security_context;
+    }
+
+    public function onKernelController(FilterControllerEvent $event)
+    {
+        $controller = $event->getController();
+
+        if (!is_array($controller)) {
+            // not a object but a different kind of callable. Do nothing
+            return;
+        }
+
+        $controllerObject = $controller[0];
+
+        // skip initializing for exceptions
+        if ($controllerObject instanceof ExceptionController) {
+            return;
+        }
+
+        if ($controllerObject instanceof InitializableControllerInterface) {
+            // this method is the one that is part of the interface.
+            $controllerObject->initialize($event->getRequest(), $this->security_context);
+        }
+    }
 }
