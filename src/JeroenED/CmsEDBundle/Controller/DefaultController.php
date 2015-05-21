@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
+use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 
 class DefaultController extends Controller implements InitializableControllerInterface 
@@ -14,7 +15,24 @@ class DefaultController extends Controller implements InitializableControllerInt
     private $init;
     
     public function initialize( Request $request, SecurityContextInterface $security_context) {
+$kernel = $this->get('kernel');
+        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
+        $initializer = new Initializer();
+        $parts = $initializer->getWebsiteParts();
+        $route = $this->generateUrl($request->attributes->get('_route'));
+        if ($dev) $route = explode('/app_dev.php', $route)[1];
+        foreach ($parts as $key1 => $part1) {
+            foreach($part1['parts'] as $key2 => $part2) {
+                if($route == $part2['link']) {
+                    $parts[$key1]['parts'][$key2]['active'] = true;
+                }
+            }
+            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
+        }
+        
+        
+        $this->init['leftnav'] = $parts;
     }
     /**
      * @Route("/admin"), name="admin_index"

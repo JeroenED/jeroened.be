@@ -33,6 +33,7 @@ use JeroenED\CmsEDBundle\Form\Type\PageType;
 use JeroenED\PortfolioBundle\Entity\Page;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
+use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 
 /**
@@ -45,7 +46,24 @@ class PageController extends Controller implements InitializableControllerInterf
     private $init;
     
     public function initialize( Request $request, SecurityContextInterface $security_context) {
+        $kernel = $this->get('kernel');
+        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
+        $initializer = new Initializer();
+        $parts = $initializer->getWebsiteParts();
+        $route = $this->generateUrl($request->attributes->get('_route'));
+        if ($dev) $route = explode('/app_dev.php', $route)[1];
+        foreach ($parts as $key1 => $part1) {
+            foreach($part1['parts'] as $key2 => $part2) {
+                if($route == $part2['link']) {
+                    $parts[$key1]['parts'][$key2]['active'] = true;
+                }
+            }
+            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
+        }
+        
+        
+        $this->init['leftnav'] = $parts;
     }
     
     /**
@@ -60,7 +78,7 @@ class PageController extends Controller implements InitializableControllerInterf
     }
     
     /**
-     * @Route("/admin/pages/edit/{id}", name="page_edit")
+     * @Route("/admin/pages/edit/{id}", name="page_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
         $db = $this->getDoctrine()->getManager();
@@ -80,7 +98,7 @@ class PageController extends Controller implements InitializableControllerInterf
     }
     
     /**
-     * @Route("/admin/pages/details/{id}", name="page_details")
+     * @Route("/admin/pages/details/{id}", name="page_details", defaults={ "id" = "-1"})
      */
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
@@ -89,7 +107,7 @@ class PageController extends Controller implements InitializableControllerInterf
     }
     
     /**
-     * @Route("/admin/pages/delete/{id}", name="page_delete")
+     * @Route("/admin/pages/delete/{id}", name="page_delete", defaults={ "id" = "-1"})
      */
     public function deleteAction($id) {
         $db = $this->getDoctrine()->getManager();
