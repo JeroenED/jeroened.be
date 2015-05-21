@@ -31,15 +31,11 @@ THE SOFTWARE.
     padding: 0;
 }
 
-html {
-    height: 100%;
-}
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #efefef;
+    background-color: #a6a6a6;
     color: #252525;
-    height: 100%;
 }
 
 a {
@@ -82,10 +78,8 @@ header #logo {
 /* ---------- */
 
 nav {
-    height: calc(100% - 155px);
     width: 250px;
     text-align: center;
-    background-color: #a6a6a6;
     float: left;
 }
 nav ul {
@@ -107,6 +101,7 @@ nav ul li a {
 #content {
     float: left;
     width: calc(100% - 250px);
+	background-color: #efefef;
 }
 
 #contentnav {
