@@ -20,7 +20,7 @@
                 <td>
                     <a href="{{ path('portfolio_edit', { 'id': item.id }) }}">edit</a> |
                     <a href="{{ path('portfolio_details', { 'id': item.id }) }}">details</a> |
-                    <a onclick="return confirm('Are you sure you want to delete {{ item.title }}?')" href="{{ path('portfolio_delete', { 'id': item.id }) }}">delete</a>
+                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ item.title }}?" data-link="{{ path('portfolio_delete', { 'id': item.id }) }}">delete</a>
                 </td>
             </tr>
         {% endfor %}
