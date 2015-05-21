@@ -44,10 +44,10 @@ class ApiController extends Controller {
      */
     public function getPageAction($slug)
     {
-        if($slug == 'none') throw new Exception('No slug-parameter given');
+        if($slug == 'none') return new Response("<h1>Page not Found</h1>");
                 
         $page = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page')->findOneBy(array("slug" => $slug), array());
-        
+        if ($page == null ) return new Response("<h1>Page not Found</h1>");
         return new Response("<h1>" . $page->getTitle() . "</h1>" . $page->getHtml());
     }
 }
