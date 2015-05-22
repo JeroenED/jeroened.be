@@ -30,7 +30,9 @@ THE SOFTWARE.
     margin: 0;
     padding: 0;
 }
-
+html, body {
+	height: 100%;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -58,7 +60,10 @@ header {
 }
 
 header #logo {
-    height: 150px;
+	display: inline-block;
+	height: 150px;
+	margin: 0;
+	vertical-align: top;
 }
 
 #meta {
@@ -101,6 +106,7 @@ nav ul li a {
 #content {
     float: left;
     width: calc(100% - 250px);
+    height: calc(100% - 150px);
 	background-color: #efefef;
 }
 
