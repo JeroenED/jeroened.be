@@ -106,7 +106,7 @@ nav ul li a {
 #content {
     float: left;
     width: calc(100% - 250px);
-    height: calc(100% - 150px);
+    min-height: calc(100% - 150px);
 	background-color: #efefef;
 }
 
