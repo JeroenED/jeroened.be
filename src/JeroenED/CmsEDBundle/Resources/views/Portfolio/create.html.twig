@@ -70,10 +70,10 @@ $(document).ready(function() {
         if ($('#PortfolioPage_index').val() !== '') {
             var index =$('#PortfolioPage_index').val()
             oldObjects[index] = newObject;
-            $('.pages tr[data-index=' + index + ']').html('<td>' + $("#PortfolioPage_slug").val() + '</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
+            $('.pages tr[data-index=' + index + ']').html('<td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
         }else { 
             var index = oldObjects.push(newObject) - 1; 
-            $('.pages').append('<tr data-index="' + index + '"><td>' + $("#PortfolioPage_slug").val() + '</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
+            $('.pages').append('<tr data-index="' + index + '"><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
         }
         $('#Portfolio_pages').val(JSON.stringify(oldObjects));
         $('.nopages').css('display', 'none');

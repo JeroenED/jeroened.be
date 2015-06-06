@@ -15,8 +15,8 @@
     <tbody>
         {% for item in portfolio %}
             <tr>
-                <td>{{ item.id }}</td>
-                <td>{{ item.title }}</td>
+                <td class="col-id">{{ item.id }}</td>
+                <td class="col-label">{{ item.title }}</td>
                 <td>
                     <a href="{{ path('portfolio_edit', { 'id': item.id }) }}">edit</a> |
                     <a href="{{ path('portfolio_details', { 'id': item.id }) }}">details</a> |

@@ -261,6 +261,10 @@ select {
     vertical-align: top;
 }
 
+#contentitems .col-label {
+    width: 300px;
+}
+
 .clearfix:before,
 .clearfix:after {
     content: " "; /* 1 */

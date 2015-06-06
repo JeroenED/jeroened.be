@@ -15,9 +15,9 @@
     <tbody>
         {% for page in pages %}
             <tr>
-                <td>{{ page.id }}</td>
-                <td>{{ page.title }}</td>
-                <td>
+                <td class="col-id">{{ page.id }}</td>
+                <td class="col-label">{{ page.title }}</td>
+                <td class="col-actions">
                     <a href="{{ path('page_edit', { 'id': page.id }) }}">edit</a> |
                     <a href="{{ path('page_details', { 'id': page.id }) }}">details</a> |
                     <a href="javascript: void(0);" class="confirmLink" data-text="Are you sure you want to delete {{ page.title }}?" data-link="{{ path('page_delete', { 'id': page.id }) }}">delete</a>
