@@ -74,7 +74,7 @@ class PortfolioController extends Controller implements InitializableControllerI
         $request = $this->getRequest();
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
-        $portfolio = $repository->findAll();
+        $portfolio = $repository->findBy(array(), array('rank' => 'asc'));
         return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'init' => $this->init));
     }
     
@@ -147,4 +147,17 @@ class PortfolioController extends Controller implements InitializableControllerI
     }
     
     
+    /**
+     * @Route("/admin/portfolio/rankupdate", name="portfolio_ranks")
+     */
+    public function rankAction(Request $request) {
+        $ranks = json_decode($request->request->get('ranks'), true);
+        $db = $this->getDoctrine()->getManager();
+        foreach($ranks as $key=>$value) {
+            $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($key);
+            $item->setRank($value);
+        }
+        $db->flush();
+        return $this->redirectToRoute('portfolio_index', array('message' => 'The order has been updated'));
+    }
 }

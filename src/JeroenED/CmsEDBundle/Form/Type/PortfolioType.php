@@ -40,7 +40,7 @@ class PortfolioType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('title', 'text', array('label' => 'Title'));
-        $builder->add('rank', 'integer', array('label' => 'Rank'));
+        $builder->add('rank', 'hidden');
         $builder->add('pages', 'hidden');
     }
     
