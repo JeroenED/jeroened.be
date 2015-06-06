@@ -18,13 +18,14 @@
 <table>
     <thead>
         <tr>
+            <th>id</th>
             <th>Slug</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody class="pages">
         {% for key,page in pages %}
-            <tr data-index="{{ key }}"><td>{{ page.Slug }}</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>
+            <tr data-index="{{ key }}"><td class="col-id">{{ key }}</td><td>{{ page.Slug }}</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>
         {% endfor %}
     </tbody>
 </table>
@@ -70,10 +71,10 @@ $(document).ready(function() {
         if ($('#PortfolioPage_index').val() !== '') {
             var index =$('#PortfolioPage_index').val()
             oldObjects[index] = newObject;
-            $('.pages tr[data-index=' + index + ']').html('<td>' + $("#PortfolioPage_slug").val() + '</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
+            $('.pages tr[data-index=' + index + ']').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
         }else { 
             var index = oldObjects.push(newObject) - 1; 
-            $('.pages').append('<tr data-index="' + index + '"><td>' + $("#PortfolioPage_slug").val() + '</td><td><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
+            $('.pages').append('<tr data-index="' + index + '"><td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
         }
         $('#Portfolio_pages').val(JSON.stringify(oldObjects));
         $('.nopages').css('display', 'none');
@@ -107,6 +108,32 @@ $(document).ready(function() {
                 
         }
     });
+    
+    $(document).ready(function() {
+        var fixHelperModified = function(e, tr) {
+            var $originals = tr.children();
+            var $helper = tr.clone();
+            $helper.children().each(function(index) {
+                $(this).width($originals.eq(index).width())
+            });
+            return $helper;
+        },
+        updateIndex = function(e, ui) {
+            var oldOrder = $.parseJSON($('#Portfolio_pages').val());
+            var newOrder = [];
+            $('td.col-id', ui.item.parent()).each(function (i) {
+                newOrder[i] = oldOrder[$(this).html()];
+                $(this).html(i);
+            });
+            $('#Portfolio_pages').val(JSON.stringify(newOrder));
+        };
+
+        $("table tbody").sortable({
+            helper: fixHelperModified,
+            stop: updateIndex
+        }).disableSelection();
+    });
+
     CKEDITOR.replace( 'PortfolioPage[html]' );
 });
 </script>
