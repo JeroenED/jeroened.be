@@ -24,7 +24,7 @@
     </thead>
     <tbody class="pages">
         <tr class="nopages">
-            <td colspan="2">No pages, yet</td>
+            <td colspan="3">No pages, yet</td>
         </tr>
     </tbody>
 </table>
@@ -70,10 +70,10 @@ $(document).ready(function() {
         if ($('#PortfolioPage_index').val() !== '') {
             var index =$('#PortfolioPage_index').val()
             oldObjects[index] = newObject;
-            $('.pages tr[data-index=' + index + ']').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
+            $('.pages tr td.col-id:contains('+ index +')').closest('tr').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
         }else { 
             var index = oldObjects.push(newObject) - 1; 
-            $('.pages').append('<tr data-index="' + index + '"><td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
+            $('.pages').append('<tr><td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
         }
         $('#Portfolio_pages').val(JSON.stringify(oldObjects));
         $('.nopages').css('display', 'none');
@@ -86,7 +86,7 @@ $(document).ready(function() {
         $("#PortfolioPage_index").val('');
     });
     $('table').on('click', 'a[data-action]', function() {
-        var index = $(this).closest('tr').data('index');
+        var index = $(this).closest('td').siblings(".col-id").html(); 
         var pages = $.parseJSON($('#Portfolio_pages').val());
         switch ($(this).data('action')) {
             case 'edit':
@@ -99,11 +99,32 @@ $(document).ready(function() {
                 $('form[name=PortfolioPage]').css('display', 'block');
                 break;
             case 'remove':
-                if(!confirm('Are you sure you want to delete this page?')) exit;
-                pages.splice(index, 1);
-                $('#Portfolio_pages').val(JSON.stringify(pages));
-                $('.pages tr[data-index=' + index+ ']').remove();
-                if (pages.length == 0){ $('.nopages').css('display', ''); }
+                $('#dialog').html('Are you sure you want to delete this page?');
+		e.preventDefault();
+		$("#dialog").dialog({
+                    buttons: {
+                        "Confirm": function() {
+                            pages.splice(index, 1);
+                            $('#Portfolio_pages').val(JSON.stringify(pages));
+                            $('.pages tr td.col-id:contains('+ index +')').closest('tr').remove();
+                            if (pages.length == 0){
+                                $('.nopages').css('display', '');
+                            }
+                            else { 
+                                var i = 0;
+                                $('.pages tr td.col-id').each( function () {
+                                    $(this).html(i);
+                                    i++;
+                                });
+                            }
+                            $(this).dialog("close");
+                        },
+                        "Cancel": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+		});
+		$("#dialog").dialog("open");
                 
         }
     });
