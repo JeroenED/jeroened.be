@@ -18,4 +18,5 @@ body{background:#1c1e20;background:-moz-radial-gradient(center,circle cover,#555
 .reveal ul ul ul{list-style-type:circle;}
 .reveal ul ul, .reveal ul ol, .reveal ol ol, .reveal ol ul{display:block;margin-left:40px;}
 .reveal .slide-number{color:#13daec}
+.reveal img{border:0;background: none}
 div.slide-background.present{background-position:center top}
