@@ -12,7 +12,7 @@ sync.*
 *.php~
 
 # No thumbs
-*/.thumbs
+src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 
 ## Symfony shizzle
 /app/bootstrap.php.cache
