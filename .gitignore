@@ -11,6 +11,9 @@ sync.*
 ## Remove backups
 *.php~
 
+# No thumbs
+*/.thumbs
+
 ## Symfony shizzle
 /app/bootstrap.php.cache
 /app/cache/*

@@ -154,7 +154,9 @@ $(document).ready(function() {
         }).disableSelection();
     });
     
-    CKEDITOR.replace( 'PortfolioPage[html]' );
+    CKEDITOR.replace( 'PortfolioPage[html]', {
+        customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js'
+    });
 });
 </script>
 {% endblock %}
