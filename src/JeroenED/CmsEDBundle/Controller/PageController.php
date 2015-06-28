@@ -35,6 +35,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
+use JeroenED\CmsEDBundle\Classes\Functions;
 
 /**
  * Description of PageController
@@ -89,6 +90,7 @@ class PageController extends Controller implements InitializableControllerInterf
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
+            $page->setHtml(Functions::encryptEmails($page->getHtml()));
             $db->flush();
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been modified'));
             
@@ -129,6 +131,8 @@ class PageController extends Controller implements InitializableControllerInterf
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
+            $page->setHtml(Functions::encryptEmails($page->getHtml()));
+            
             $db->persist($page);
             $db->flush();
             
