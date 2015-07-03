@@ -14,6 +14,9 @@ sync.*
 # No thumbs
 src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 
+# No copied resources
+/web/bundles/*
+
 ## Symfony shizzle
 /app/bootstrap.php.cache
 /app/cache/*
