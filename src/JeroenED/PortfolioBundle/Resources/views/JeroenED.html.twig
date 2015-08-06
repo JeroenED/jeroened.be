@@ -39,7 +39,12 @@ THE SOFTWARE.
             "bundles/jeroenedportfolio/scss/reveal.scss"
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-        {% endstylesheets %}        
+        {% endstylesheets %}
+        {% stylesheets filter="scssphp" output="css/print.css"
+            "bundles/jeroenedportfolio/scss/print.scss"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print">
+        {% endstylesheets %}
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/head.min.js"></script>

@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2015 Jeroen De Meerleer
+ * 
+ * Deze CSS file word gebruikt bij het afdrukken van pagina's
+ */
+
+$font: 'Open Sans',sans-serif;
+$default-color: #1D1D1D;
+$font-size: 12pt;
+$h1-font-size: 18pt;
+$h2-font-size: 14pt;
+
+.reveal, .logo, nav, .copyright, .page { display: none; }
+
+body, html { overflow: visible; }
+
+a {
+    color: #4a4a4a;
+    text-decoration: underline;
+}
+
+p {
+    font-family: $font;
+    color: $default-color;
+}
+.printable {
+    font-family: $font;
+    color: $default-color;
+    overflow: visible;
+    
+    p { font-size: $font-size; }
+    h1 { font-size: $h1-font-size; }
+    h2 { font-size: $h2-font-size; }
+    
+    #languages { width: 100% }
+    
+    table {
+        margin-bottom: 15px;
+               
+        caption { font-size: $h2-font-size; }
+        th { text-align: left; }
+    }
+    
+    form {
+        input[type="text"],.page form textarea {
+            display: block;
+            margin: 0;
+            font-size: $font-size;
+            box-shadow: none;
+            border: 2px solid #4a4a4a;
+            border-radius: 2px;
+            width: 175px;
+            background-color: $default-color;
+            color: #1d1d1d;
+            font-family: $font;
+            appearance: none;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            display: block;
+            margin: 0;
+            font-size: $font-size;
+            box-shadow: none;
+            border: 0;
+            border-radius: 2px;
+            width: 175px;
+            background-color: #4a4a4a;
+            color: #a4a4a4;
+            font-family: $font;
+            appearance: none;
+            height: 50px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            display: block;
+            margin: 0;
+            font-size: $font-size;
+            box-shadow: none;
+            border: 0;
+            border-radius: 2px;
+            width: 175px;
+            background-color: #4a4a4a;
+            color: #a4a4a4;
+            font-family: $font;
+            appearance: none;
+            height: 50px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 150px;
+        }
+    }
+    
+ }
+.cv-informatics {
+    width: 100%;
+    
+    th, td { width: 25%; }
+    th { text-align: left; }
+    td { text-align: right; }
+}
+
