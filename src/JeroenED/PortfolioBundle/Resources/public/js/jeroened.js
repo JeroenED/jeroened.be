@@ -21,11 +21,16 @@ $(document).ready(function() {
         closePage();
     });
     $(window).resize(function() {
-        closePage();
+        $('.page').css("max-height", $(window).innerHeight() - 100 + "px");
+        $('.page').css("max-width", $(window).innerWidth() - 100 + "px");
+        $('.page').mCustomScrollbar('update');
+        $('.page').css("top", ($(window).innerHeight() - $('.page').innerHeight()) / 2 + $(window).scrollTop() + "px");
+        $('.page').css("left", ($(window).innerWidth() - $('.page').innerWidth()) / 2 + $(window).scrollLeft() + "px");
     });
 });
 
 function OpenPage(page) {
+    closePage();
     $('body').append('<div class="loading page">Your page is loading...</div>');
     var hash = location.hash;
     $('.loading').css("position", "absolute");
