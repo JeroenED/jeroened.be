@@ -1,0 +1,179 @@
+/*
+ * Copyright (c) 2015 Jeroen De Meerleer
+ * 
+ * Deze CSS file word gebruikt voor alle onderdelen van de website die niet te maken hebben met reveal.js
+ */
+
+$font: 'Open Sans',sans-serif;
+$default-color: #d1d1d1;
+
+a {
+    color: #4a4a4a;
+    text-decoration: none
+}
+a:hover {
+    text-decoration: underline
+}
+p {
+    font-family: $font;
+    color: $default-color
+}
+.logo *,nav *,.copyright * {
+    margin: 0;
+    padding: 0
+}
+.logo {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font-family: $font;
+    font-size: 24px;
+    color: $default-color;
+    font-weight: 300
+}
+nav {
+
+}
+nav {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 175px;
+    font-size: 0;
+
+    .navicon {
+        float: left;
+        background-color: rgba(0,0,0,0.2);
+        margin-left: 1px;
+        margin-bottom: 1px;
+        height: 24px
+    }
+    
+    .navlabel {
+        background-color: rgba(0,0,0,0.2);
+        float: left;
+        width: 150px;
+        margin-bottom: 1px
+    }
+    
+    ul li {
+        background-color: rgba(0,0,0,0.2);
+        width: 150px;
+        margin-bottom: 1px;
+        margin-left: 200px
+    }
+    
+    .navlabel p, ul li {
+        font-family: $font;
+        font-size: 24px;
+        line-height: 24px;
+        color: $default-color;
+        font-weight: 300;
+        text-align: right;
+        cursor: pointer
+    }
+    
+    ul {
+        list-style: none
+    }
+    
+    ul li a {
+        color: $default-color;
+        text-decoration: none
+    }  
+} 
+.copyright {
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    
+    p {
+        font-size: 10px;
+        font-family: $font;
+        color: $default-color;
+        width: 100%;
+        text-align: center
+    }
+}
+.loading {
+    cursor: wait
+}
+.page {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.9);
+    padding: 25px;
+    z-index: 999;
+    font-family: $font;
+    color: $default-color;
+    
+    table {
+        margin-bottom: 15px;
+        caption { font-size: 24px; }
+        th { text-align: left; }
+    }
+    
+    form {
+        input[type="text"],.page form textarea {
+            display: block;
+            margin: 0;
+            font-size: 18px;
+            box-shadow: none;
+            border: 2px solid #4a4a4a;
+            border-radius: 2px;
+            width: 175px;
+            background-color: $default-color;
+            color: #1d1d1d;
+            font-family: $font;
+            appearance: none;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            display: block;
+            margin: 0;
+            font-size: 18px;
+            box-shadow: none;
+            border: 0;
+            border-radius: 2px;
+            width: 175px;
+            background-color: #4a4a4a;
+            color: #a4a4a4;
+            font-family: $font;
+            appearance: none;
+            height: 50px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            display: block;
+            margin: 0;
+            font-size: 18px;
+            box-shadow: none;
+            border: 0;
+            border-radius: 2px;
+            width: 175px;
+            background-color: #4a4a4a;
+            color: #a4a4a4;
+            font-family: $font;
+            appearance: none;
+            height: 50px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            height: 150px;
+        }
+    }
+    
+ }
+.cv-informatics {
+    width: 100%;
+    
+    th, td { width: 25%; }
+    th { text-align: left; }
+    td { text-align: right; }
+}
+.mobile { display: none;}
+
+@import 'clearfix';
+@import 'mobile';

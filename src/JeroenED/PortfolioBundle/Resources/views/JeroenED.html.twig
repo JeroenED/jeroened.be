@@ -31,16 +31,19 @@ THE SOFTWARE.
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 
         <title>Jeroen De Meerleer :: Developer-Operator</title>
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/reveal.min.css" rel="stylesheet">
-        <link href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/css/print/pdf.min.css" media="print" rel='stylesheet' type='text/css'>
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/css/reveal.min.css" rel="stylesheet" type="text/css">
         <link href="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.8/jquery.mCustomScrollbar.css" rel='stylesheet' type='text/css'>
-        <link href="{{ asset('bundles/jeroenedportfolio/css/reveal.css') }}" rel='stylesheet' type='text/css'>
-        <link href="{{ asset('bundles/jeroenedportfolio/css/jeroened.css') }}" rel='stylesheet' type='text/css'>
-
+        {% stylesheets filter="scssphp" output="css/app.css"
+            "bundles/jeroenedportfolio/scss/jeroened.scss"
+            "bundles/jeroenedportfolio/scss/reveal.scss"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}        
+        
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/lib/js/head.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.0.0/js/reveal.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/head.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/js/reveal.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.8/jquery.mCustomScrollbar.min.js"></script>
 
         {% javascripts filter="?jsqueeze" output="js/app.js"
@@ -51,7 +54,7 @@ THE SOFTWARE.
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <!--[if lt IE 9]>
-            <script src="{{ asset('bundles/jeroenedportfolio/reveal.js/lib/js/html5shiv.js') }}"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/html5shiv.min.js"></script>
         <![endif]-->
     </head>
 
@@ -85,7 +88,7 @@ THE SOFTWARE.
         </ul>
     </nav>
         <div class="copyright">
-        <p>&copy; copyright 2015 Jeroen De Meerleer | v1.0</p>
+        <p>&copy; copyright 2015 Jeroen De Meerleer | {{ version }}</p>
     </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

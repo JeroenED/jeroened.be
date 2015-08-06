@@ -11,6 +11,7 @@ Daarnaast symfony geüpdate naar de laatste versie (2.7) en is ervoor gezorgd da
 
 ## Belangrijke wijzigingen
 * Upgrade naar Symfony 2.7
+* Versienummer uitgebreid met monthstamp
 
 # Scrumreport 2015-07
 De eerste sprint is afgelopen. Alle bug reports die zijn gemeld zijn opgelost.

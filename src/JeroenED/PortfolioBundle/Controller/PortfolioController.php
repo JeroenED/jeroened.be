@@ -35,6 +35,7 @@ class PortfolioController extends Controller implements InitializableControllerI
 {
     private $portfolio;
     private $menu;
+    const version = "v1.0.1508"; 
     
     public function initialize( Request $request, SecurityContextInterface $security_context) {
         $allPortfolioItems = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->findBy(array(), array('rank' => 'asc'));
@@ -60,7 +61,7 @@ class PortfolioController extends Controller implements InitializableControllerI
      */
     public function indexAction()
     {
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $this->portfolio, 'menu' => $this->menu));
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $this->portfolio, 'menu' => $this->menu, 'version' => self::version));
 
     }
 
@@ -68,6 +69,6 @@ class PortfolioController extends Controller implements InitializableControllerI
      * @Route("/page/{slug}")
      */
     public function pageAction($slug) {
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $this->portfolio, 'menu' => $this->menu));
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $this->portfolio, 'menu' => $this->menu, 'version' => self::version));
     }
 }
