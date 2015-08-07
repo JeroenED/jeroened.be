@@ -1,17 +1,19 @@
 # Scrumreport 2015-08
 Voor de sprint van augustus had wat extra zaken in gedachten. Zo is er ondersteuning voor scss ingebouwd en word automatisch minified javascript gegenereerd.
-Daarnaast symfony geüpdate naar de laatste versie (2.7) en is ervoor gezorgd dat er geen wijzigingen in composer.json moeten worden doorgevoerd om de laatste versie te kunnen installeren.
+Daarnaast is symfony geüpdate naar de laatste versie (2.7) en is ervoor gezorgd dat er geen wijzigingen in composer.json moeten worden doorgevoerd om de laatste versie te kunnen installeren.
 
 ## Issues
-(Geen bug-fixes uitgevoerd)
+* #11: Media query for touch-devices is not reliable for tablets
 
 ## Nieuwe functies
 * Ondersteuning voor scss
 * Automatisch minified Javascript
+* Stylesheet voor media Print
 
 ## Belangrijke wijzigingen
 * Upgrade naar Symfony 2.7
 * Versienummer uitgebreid met monthstamp
+* Venster vergrootten of verkleinen sluit niet meer de pagina
 
 # Scrumreport 2015-07
 De eerste sprint is afgelopen. Alle bug reports die zijn gemeld zijn opgelost.
