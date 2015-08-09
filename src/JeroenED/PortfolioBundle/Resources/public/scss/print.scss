@@ -27,6 +27,7 @@ p {
     font-family: $font;
     color: $default-color;
     overflow: visible;
+    display: block;
     
     p { font-size: $font-size; }
     h1 { font-size: $h1-font-size; }
