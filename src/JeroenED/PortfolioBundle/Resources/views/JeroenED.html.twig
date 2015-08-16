@@ -50,7 +50,6 @@ THE SOFTWARE.
         <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/head.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/js/reveal.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.8/jquery.mCustomScrollbar.min.js"></script>
-
         {% javascripts filter="?jsqueeze" output="js/app.js"
             "bundles/jeroenedportfolio/js/reveal.js"
             "bundles/jeroenedportfolio/js/jeroened.js"
@@ -58,6 +57,11 @@ THE SOFTWARE.
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
+
+        <script type="text/javascript">
+        ga('create', '{{ ga_tracking }}', 'auto');
+        ga('send', 'pageview');
+        </script>
         <!--[if lt IE 9]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/html5shiv.min.js"></script>
         <![endif]-->
