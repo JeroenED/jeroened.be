@@ -77,6 +77,7 @@ function OpenPage(page) {
         }
     });
     history.pushState(null, "", "/page/" + page);
+    ga('send', 'pageview', "/page/" + page);
     location.hash = hash;
 }
 
@@ -85,5 +86,6 @@ function closePage() {
     $(".page").remove();
     $(".printable").remove();
     history.pushState(null, "", "/");
+    ga('send', 'pageview', "/");
     location.hash = hash;
 }
