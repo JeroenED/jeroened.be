@@ -27,11 +27,8 @@ namespace JeroenED\PortfolioBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
-use JeroenED\PortfolioBundle\Model\InitializableControllerInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Description of ApiController
@@ -44,10 +41,10 @@ class ApiController extends Controller {
      */
     public function getPageAction($slug)
     {
-        if($slug == 'none') return new Response("<h1>Page not Found</h1>");
+        if($slug == 'none') throw new NotFoundHttpException('Page not found');
                 
         $page = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page')->findOneBy(array("slug" => $slug), array());
-        if ($page == null ) return new Response("<h1>Page not Found</h1>");
+        if ($page == null ) throw new NotFoundHttpException('Page not found');
         return new Response("<h1>" . $page->getTitle() . "</h1>" . $page->getHtml());
     }
 }

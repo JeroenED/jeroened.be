@@ -16,6 +16,8 @@ src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 
 # No copied resources
 /web/bundles/*
+/web/css
+/web/js
 
 ## Symfony shizzle
 /app/bootstrap.php.cache

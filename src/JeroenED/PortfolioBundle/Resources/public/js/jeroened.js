@@ -75,6 +75,14 @@ function OpenPage(page) {
                 $('<tr>' + head + body + '</tr>').insertAfter(this);
             });
         }
+    }).fail(function() { 
+        $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:closePage();">Click here to close this window</a></p></div>');
+        $('#' + page).css("position", "absolute");
+        $('#' + page).css("max-height", $(window).innerHeight() - 100 + "px");
+        $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");    
+        $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
+        $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
+        $('.loading').remove();
     });
     history.pushState(null, "", "/page/" + page);
     ga('send', 'pageview', "/page/" + page);
