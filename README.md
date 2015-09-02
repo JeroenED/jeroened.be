@@ -9,7 +9,15 @@ Clone the GIT-repository and run `composer install`.
 
 Oh, I forgot. You need to feed the kittens.
 
-## Admin panel
+## Get it running
+
+### Create assets
+
+After you installed the website you will have to create the assets. You can easily do this with following command
+    
+    php app/console assetic:dump
+
+### Admin panel user
 
 First create a new user by running following command:
 
