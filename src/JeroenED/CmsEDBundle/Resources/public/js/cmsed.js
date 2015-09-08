@@ -42,4 +42,5 @@ $(document).ready(function() {
 		});
 		$("#dialog").dialog("open");
 	});
+	$("nav").height($(document).height() - 150);
 });
