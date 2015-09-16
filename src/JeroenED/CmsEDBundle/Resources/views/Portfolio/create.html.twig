@@ -54,6 +54,7 @@ function openKCFinder_singleFile() {
 $(document).ready(function() {
     $('.addPage').click(function() {
         $('form[name=PortfolioPage]').css('display', 'block');
+        $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
     });
     $('#PortfolioPage_background').click(function() {
         openKCFinder_singleFile();
