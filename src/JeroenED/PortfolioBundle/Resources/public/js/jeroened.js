@@ -69,6 +69,9 @@ function OpenPage(page) {
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
         $('.loading').remove();
+	$('.table-mobile').each(function() {
+		$(this).stacktable();
+	});
         if ($(window).innerWidth() <= 480) {
             $('.cv-informatics tr').each(function() {
                 var head = $(':nth-child(3)', this).clone().wrap('<p>').parent().html();
