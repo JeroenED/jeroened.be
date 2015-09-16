@@ -37,6 +37,9 @@ $(document).ready(function() {
         $('.nomobile').css("display", "block");
         $('.mobile').css("display", "none");
     }
+    $('.table-mobile').each(function() {
+      $(this).stacktable();
+    });
 });
 
 function OpenPage(page) {
