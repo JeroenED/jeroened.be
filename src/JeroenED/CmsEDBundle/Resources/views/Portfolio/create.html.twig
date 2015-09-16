@@ -98,6 +98,7 @@ $(document).ready(function() {
                 $("#PortfolioPage_showtitle")[0].checked = pages[index].ShowTitle;
                 $("#PortfolioPage_index").val(index);
                 $('form[name=PortfolioPage]').css('display', 'block');
+                $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
                 break;
             case 'remove':
                 $('#dialog').html('Are you sure you want to delete this page?');
