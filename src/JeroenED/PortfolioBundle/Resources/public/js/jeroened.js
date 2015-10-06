@@ -11,12 +11,6 @@ $(document).ready(function() {
             "margin-left": cur
         });
     });
-    $("a").click(function() {
-        if ($(this).attr("href") == 'javascript:void(0)') {
-            var page = $(this).data("page");
-            OpenPage(page);
-        }
-    });
     $(document).on("click", '.closebtn', function() {
         closePage();
     });
