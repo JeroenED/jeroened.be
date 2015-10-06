@@ -94,7 +94,7 @@ THE SOFTWARE.
         </div>
         <ul>
             {% for item in menu %}
-                <li><a {% if item.external == true %}href="{{ item.destination }}" target="_blank"{% else %}href="javascript:void(0)" data-page="{{ item.destination }}"{% endif %}>{{ item.label }}</a></li>
+                <li><a {% if item.external == true %}href="{{ item.destination }}" target="_blank"{% else %}href="javascript:OpenPage('{{ item.destination }}')"{% endif %}>{{ item.label }}</a></li>
             {% endfor %}
         </ul>
     </nav>
