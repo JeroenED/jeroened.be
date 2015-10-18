@@ -30,3 +30,4 @@ src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 /bin/
 /composer.phar
 /vendor/
+/.project
