@@ -33,7 +33,9 @@ p {
     h1 { font-size: $h1-font-size; }
     h2 { font-size: $h2-font-size; }
     
-    #languages { width: 100% }
+    #languages { width: 100%; }
+    
+    .noprint { display: none; } 
     
     table {
         margin-bottom: 15px;
@@ -103,4 +105,3 @@ p {
     th { text-align: left; }
     td { text-align: right; }
 }
-
