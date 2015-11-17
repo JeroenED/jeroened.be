@@ -4,7 +4,7 @@
  * Deze CSS file word gebruikt voor alle onderdelen van de website die niet te maken hebben met reveal.js
  */
 
-$font: 'Open Sans',sans-serif;
+$font: 'Source Sans Pro', sans-serif;
 $default-color: #d1d1d1;
 
 a {
@@ -178,5 +178,7 @@ nav {
 }
 .mobile { display: none;}
 
+@import 'reveal';
+@import 'stacktable';
 @import 'clearfix';
 @import 'mobile';

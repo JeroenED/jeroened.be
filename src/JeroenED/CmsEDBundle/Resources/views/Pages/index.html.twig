@@ -16,7 +16,7 @@
         {% for page in pages %}
             <tr>
                 <td class="col-id">{{ page.id }}</td>
-                <td class="col-label">{{ page.title }}</td>
+                <td class="col-label">{{ page.title }} ({{ page.slug }})</td>
                 <td class="col-actions">
                     <a href="{{ path('page_edit', { 'id': page.id }) }}">edit</a> |
                     <a href="{{ path('page_details', { 'id': page.id }) }}">details</a> |
