@@ -1,3 +1,17 @@
+# Scrumreport 2015-11
+Eindelijk een grafische update. Voor de eerste keer sinds het online komen van de website is er een grafische update. Het hoofdlettertype is gewijzigd. Een andere belangrijke wijziging: een Git-flow systeem. Met andere woorden: geen minuut stilgezeten.
+
+## Issues
+* (none)
+
+## Nieuwe functies
+* #13 Add slug to duplicate page-names
+
+## Belangrijke wijzigingen
+* Git flow system
+* Nieuw lettertype
+* Updated start-data (Git-issue)
+
 # Scrumreport 2015-10
 Geen zware wijziginging dit keer. De enige wijziging is een kleine JavaScript-edit op hoe de pagina's worden geopent.
 De echte wijzigingen zijn de overstap naar Linux als main-OS en de overstap naar VMWare als Hypervisor voor de virtuële machine
