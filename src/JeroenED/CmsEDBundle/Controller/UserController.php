@@ -29,12 +29,13 @@ namespace JeroenED\CmsEDBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use JeroenED\CmsEDBundle\Form\Type\UserType;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 /**
  * Description of UserController
@@ -45,7 +46,7 @@ class UserController extends Controller implements InitializableControllerInterf
     
     private $init;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
         $kernel = $this->get('kernel');
         $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
@@ -69,8 +70,7 @@ class UserController extends Controller implements InitializableControllerInterf
     /**
      * @Route("/admin/users", name="users_index")
      */
-    public function indexAction() {
-        $request = $this->getRequest();
+    public function indexAction(Request $request) {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDCmsEDBundle:User');
         $users = $repository->findAll();
@@ -87,8 +87,8 @@ class UserController extends Controller implements InitializableControllerInterf
         $form = $this->createForm(new UserType(), $user, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $user->getId()))));
         $config = $form->get('password')->getConfig()->getOptions();
         $config['required'] = false;
-        $form->add('password', 'repeated', $config);
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form->add('password', RepeatedType::Class, $config);
+        $form->add('register', SubmitType::Class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
@@ -134,8 +134,8 @@ class UserController extends Controller implements InitializableControllerInterf
     public function createAction(Request $request) {
         $user = new User();
         $db = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new UserType(), $user, array('action' => $this->generateUrl($request->attributes->get('_route'))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form = $this->createForm(UserType::class, $user, array('action' => $this->generateUrl($request->attributes->get('_route'))));
+        $form->add('register', SubmitType::class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);

@@ -33,10 +33,12 @@ use JeroenED\CmsEDBundle\Form\Type\PortfolioType;
 use JeroenED\CmsEDBundle\Form\Type\PortfolioPageType;
 use JeroenED\PortfolioBundle\Entity\PortfolioItem;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 /**
  * Description of PortfolioController
@@ -47,7 +49,7 @@ class PortfolioController extends Controller implements InitializableControllerI
 
     private $init;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
         $kernel = $this->get('kernel');
         $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
@@ -70,8 +72,7 @@ class PortfolioController extends Controller implements InitializableControllerI
     /**
      * @Route("/admin/portfolio", name="portfolio_index")
      */
-    public function indexAction() {
-        $request = $this->getRequest();
+    public function indexAction(Request $request) {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
         $portfolio = $repository->findBy(array(), array('rank' => 'asc'));
@@ -85,10 +86,10 @@ class PortfolioController extends Controller implements InitializableControllerI
         $db = $this->getDoctrine()->getManager();
         $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($id);
         $pages = json_decode($item->getPages(), true);
-        $form = $this->createForm(new PortfolioType(), $item, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $item->getId()))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
-        $pageform = $this->createForm(new PortfolioPageType(), null, array('action' => "#"));
-        $pageform->add('register', 'button', array('label' => 'Add page'));
+        $form = $this->createForm(PortfolioType::class, $item, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $item->getId()))));
+        $form->add('register', SubmitType::class, array('label' => 'Confirm'));
+        $pageform = $this->createForm(PortfolioPageType::class, null, array('action' => "#"));
+        $pageform->add('register', ButtonType::class, array('label' => 'Add page'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
@@ -128,14 +129,17 @@ class PortfolioController extends Controller implements InitializableControllerI
     public function createAction(Request $request) {
         $item = new PortfolioItem();
         $db = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new PortfolioType(), $item, array('action' => $this->generateUrl($request->attributes->get('_route'))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
-        $pageform = $this->createForm(new PortfolioPageType(), null, array('action' => "#"));
-        $pageform->add('register', 'button', array('label' => 'Add page'));
+        $form = $this->createForm(PortfolioType::class, $item, array('action' => $this->generateUrl($request->attributes->get('_route'))));
+         $form->add('register', SubmitType::class, array('label' => 'Confirm'));
+        $pageform = $this->createForm(PortfolioPageType::class, null, array('action' => "#"));
+        $pageform->add('register', ButtonType::class, array('label' => 'Add page'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
+       	    $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
+            $rank = count($repository->findAll())+1;
+            $item->setRank($rank);
             $db->persist($item);
             $db->flush();
             

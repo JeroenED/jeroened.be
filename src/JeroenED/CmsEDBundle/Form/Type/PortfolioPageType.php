@@ -30,6 +30,10 @@ namespace JeroenED\CmsEDBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Description of MenuType
@@ -39,16 +43,15 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class PortfolioPageType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('slug', 'text', array('label' => 'Slug'));
-        $builder->add('showtitle', 'checkbox', array('label' => 'Show title', 'required' => false));
-        $builder->add('background', 'text', array('label' => 'Background image', 'required' => false, 'attr' => array('class' => 'openkcfinder')));
-        $builder->add('html', 'textarea', array('label' => 'Html'));
-        $builder->add('index', 'hidden');
+        $builder->add('slug', TextType::class, array('label' => 'Slug'));
+        $builder->add('showtitle', CheckboxType::class, array('label' => 'Show title', 'required' => false));
+        $builder->add('background', TextType::class, array('label' => 'Background image', 'required' => false, 'attr' => array('class' => 'openkcfinder')));
+        $builder->add('html', TextareaType::class, array('label' => 'Html'));
+        $builder->add('index', HiddenType::class);
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
-        $resolver->setDefaults(array('mapped' => false
-        ));
+        $resolver->setDefaults(array('mapped' => false));
     }
 
     public function getName() {

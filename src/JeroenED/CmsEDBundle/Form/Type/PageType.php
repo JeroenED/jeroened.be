@@ -30,6 +30,8 @@ namespace JeroenED\CmsEDBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Description of MenuType
@@ -39,9 +41,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class PageType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('title', 'text', array('label' => 'Title'));
-        $builder->add('html', 'textarea', array('label' => 'Html'));
-        $builder->add('slug', 'text', array('label' => 'Slug'));
+        $builder->add('title', TextType::Class, array('label' => 'Title'));
+        $builder->add('html', TextareaType::Class, array('label' => 'Html'));
+        $builder->add('slug', TextType::Class, array('label' => 'Slug'));
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

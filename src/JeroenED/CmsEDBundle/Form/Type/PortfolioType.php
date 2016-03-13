@@ -30,6 +30,8 @@ namespace JeroenED\CmsEDBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 /**
  * Description of MenuType
@@ -39,9 +41,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class PortfolioType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('title', 'text', array('label' => 'Title'));
-        $builder->add('rank', 'hidden');
-        $builder->add('pages', 'hidden');
+        $builder->add('title', TextType::class, array('label' => 'Title'));
+        $builder->add('rank', HiddenType::class);
+        $builder->add('pages', HiddenType::class);
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

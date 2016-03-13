@@ -29,7 +29,6 @@ src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 /var/sessions/*
 !var/sessions/.gitkeep
 /app/phpunit.xml
-/bin/
 /composer.phar
 /vendor/
 /.project
