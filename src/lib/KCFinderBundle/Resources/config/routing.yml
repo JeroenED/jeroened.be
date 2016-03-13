@@ -1,19 +1,19 @@
 KCFinder_browse:
-    pattern:  /admin/kcfinder/browse.php
+    path:  /admin/kcfinder/browse.php
     defaults: { _controller: "libKCFinderBundle:Proxy:browse" }
 
 KCFinder_css:
-    pattern:  /admin/kcfinder/css.php
+    path:  /admin/kcfinder/css.php
     defaults: { _controller: "libKCFinderBundle:Proxy:css" }
 
 KCFinder_js_localize:
-    pattern:  /admin/kcfinder/js_localize.php
+    path:  /admin/kcfinder/js_localize.php
     defaults: { _controller: "libKCFinderBundle:Proxy:js_localize" }
 
 KCFinder_upload:
-    pattern:  /admin/kcfinder/upload.php
+    path:  /admin/kcfinder/upload.php
     defaults: { _controller: "libKCFinderBundle:Proxy:upload" }
 
 KCFinder_js_browser_joiner:
-    pattern:  /admin/kcfinder/js/browser/joiner.php
+    path:  /admin/kcfinder/js/browser/joiner.php
     defaults: { _controller: "libKCFinderBundle:Proxy:js_browser_joiner" }

@@ -5,7 +5,7 @@ namespace JeroenED\CmsEDBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
@@ -14,7 +14,7 @@ class DefaultController extends Controller implements InitializableControllerInt
 {
     private $init;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
 $kernel = $this->get('kernel');
         $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();

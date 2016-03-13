@@ -31,10 +31,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JeroenED\CmsEDBundle\Form\Type\PageType;
 use JeroenED\PortfolioBundle\Entity\Page;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
-use JeroenED\CmsEDBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use JeroenED\CmsEDBundle\Classes\Functions;
 
 /**
@@ -46,7 +46,7 @@ class PageController extends Controller implements InitializableControllerInterf
     
     private $init;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
         $kernel = $this->get('kernel');
         $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
@@ -70,8 +70,7 @@ class PageController extends Controller implements InitializableControllerInterf
     /**
      * @Route("/admin/pages", name="page_index")
      */
-    public function indexAction() {
-        $request = $this->getRequest();
+    public function indexAction(Request $request) {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page');
         $pages = $repository->findAll();
@@ -84,8 +83,8 @@ class PageController extends Controller implements InitializableControllerInterf
     public function editAction($id, Request $request) {
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
-        $form = $this->createForm(new PageType(), $page, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $page->getId()))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form = $this->createForm(PageType::Class, $page, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $page->getId()))));
+        $form->add('register', SubmitType::Class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
@@ -105,7 +104,7 @@ class PageController extends Controller implements InitializableControllerInterf
     public function detailsAction($id) {
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $pages->getTitle(), 'init' => $this->init));
+        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $page->getTitle(), 'init' => $this->init));
     }
     
     /**
@@ -125,8 +124,8 @@ class PageController extends Controller implements InitializableControllerInterf
     public function createAction(Request $request) {
         $page = new Page();
         $db = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new PageType(), $page, array('action' => $this->generateUrl($request->attributes->get('_route'))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form = $this->createForm(PageType::Class, $page, array('action' => $this->generateUrl($request->attributes->get('_route'))));
+        $form->add('register', SubmitType::Class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);

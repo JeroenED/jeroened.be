@@ -31,10 +31,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JeroenED\CmsEDBundle\Form\Type\MenuType;
 use JeroenED\PortfolioBundle\Entity\MenuItem;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Description of MenuController
@@ -45,7 +46,7 @@ class MenuController extends Controller implements InitializableControllerInterf
     
     private $init;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
         $kernel = $this->get('kernel');
         $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
         $this->init['user'] = $this->getUser()->getUsername();
@@ -68,8 +69,7 @@ class MenuController extends Controller implements InitializableControllerInterf
     /**
      * @Route("/admin/menu", name="menu_index")
      */
-    public function indexAction() {
-        $request = $this->getRequest();
+    public function indexAction(Request $request) {
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem');
         $menus = $repository->findAll();
@@ -82,8 +82,8 @@ class MenuController extends Controller implements InitializableControllerInterf
     public function editAction($id, Request $request) {
         $db = $this->getDoctrine()->getManager();
         $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        $form = $this->createForm(new MenuType(), $menu, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $menu->getId()))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form = $this->createForm(MenuType::Class, $menu, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $menu->getId()))));
+        $form->add('register', SubmitType::Class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
@@ -122,8 +122,8 @@ class MenuController extends Controller implements InitializableControllerInterf
     public function createAction(Request $request) {
         $menu = new MenuItem();
         $db = $this->getDoctrine()->getManager();
-        $form = $this->createForm(new MenuType(), $menu, array('action' => $this->generateUrl($request->attributes->get('_route'))));
-        $form->add('register', 'submit', array('label' => 'Confirm'));
+        $form = $this->createForm(MenuType::Class, $menu, array('action' => $this->generateUrl($request->attributes->get('_route'))));
+        $form->add('register', SubmitType::Class, array('label' => 'Confirm'));
         $form->handleRequest($request);
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
