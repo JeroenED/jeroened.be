@@ -28,7 +28,7 @@ namespace JeroenED\PortfolioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 
 class PortfolioController extends Controller implements InitializableControllerInterface
@@ -36,7 +36,7 @@ class PortfolioController extends Controller implements InitializableControllerI
     private $portfolio;
     private $menu;
     
-    public function initialize( Request $request, SecurityContextInterface $security_context) {
+    public function initialize( Request $request, TokenStorage $security_context) {
         $allPortfolioItems = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->findBy(array(), array('rank' => 'asc'));
         $i=0;
         foreach ($allPortfolioItems as $item) {

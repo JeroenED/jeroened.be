@@ -10,7 +10,7 @@
 {% endif %}
 
 <p>{{ form_label(form.title) }}{{form_widget(form.title)}}</p>
-<p>{{form_widget(form.rank)}}</p>
+<p>{{ form_widget(form.rank )}}</p>
 <p>{{ form_widget(form.register)}}</p>
 <p>{{ form_widget(form.pages)}}</p>
 
@@ -28,6 +28,7 @@
         </tr>
     </tbody>
 </table>
+
 <p><a href="javascript:void(0);" class="addPage">Add a page</a></p>
 {{ form_start(pageform, { 'attr': {'style': 'display: none;'} }) }}
 
@@ -53,51 +54,51 @@ function openKCFinder_singleFile() {
 }
 $(document).ready(function() {
     $('.addPage').click(function() {
-        $('form[name=PortfolioPage]').css('display', 'block');
+        $('form[name=portfolio_page]').css('display', 'block');
         $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
     });
-    $('#PortfolioPage_background').click(function() {
+    $('#portfolio_page_background').click(function() {
         openKCFinder_singleFile();
     });
-    $('#PortfolioPage_register').click(function() {
+    $('#portfolio_page_register').click(function() {
         var newObject = {
-            Slug: $("#PortfolioPage_slug").val(),
-            Background: $("#PortfolioPage_background").val(),
-            Html: CKEDITOR.instances.PortfolioPage_html.getData(),
-            ShowTitle: $("#PortfolioPage_showtitle")[0].checked ? true : false
+            Slug: $("#portfolio_page_slug").val(),
+            Background: $("#portfolio_page_background").val(),
+            Html: CKEDITOR.instances.portfolio_page_html.getData(),
+            ShowTitle: $("#portfolio_page_showtitle")[0].checked ? true : false
         };
         var oldObjects = [];
-        if ($('#Portfolio_pages').val() !== '') oldObjects = $.parseJSON($('#Portfolio_pages').val());
-        if ($('#PortfolioPage_index').val() !== '') {
-            var index =$('#PortfolioPage_index').val()
+        if ($('#portfolio_pages').val() !== '') oldObjects = $.parseJSON($('#portfolio_pages').val());
+        if ($('#portfolio_page_index').val() !== '') {
+            var index =$('#portfolio_page_index').val()
             oldObjects[index] = newObject;
-            $('.pages tr td.col-id:contains('+ index +')').closest('tr').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
+            $('.pages tr td.col-id:contains('+ index +')').closest('tr').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#portfolio_page_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
         }else { 
             var index = oldObjects.push(newObject) - 1; 
-            $('.pages').append('<tr><td class="col-id">' + index + '</td><td class="col-label">' + $("#PortfolioPage_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
+            $('.pages').append('<tr><td class="col-id">' + index + '</td><td class="col-label">' + $("#portfolio_page_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
         }
-        $('#Portfolio_pages').val(JSON.stringify(oldObjects));
+        $('#portfolio_pages').val(JSON.stringify(oldObjects));
         $('.nopages').css('display', 'none');
-        $('form[name=PortfolioPage]').css('display', 'none');
-        $("#PortfolioPage_slug").val('');
-        $("#PortfolioPage_background").val('');
-        $("#PortfolioPage_html").val('');
-        CKEDITOR.instances.PortfolioPage_html.setData('');
-        $("#PortfolioPage_showtitle")[0].checked = false;
-        $("#PortfolioPage_index").val('');
+        $('form[name=portfolio_page]').css('display', 'none');
+        $("#portfolio_page_slug").val('');
+        $("#portfolio_page_background").val('');
+        $("#portfolio_page_html").val('');
+        CKEDITOR.instances.portfolio_page_html.setData('');
+        $("#portfolio_page_showtitle")[0].checked = false;
+        $("#portfolio_page_index").val('');
     });
     $('table').on('click', 'a[data-action]', function() {
         var index = $(this).closest('td').siblings(".col-id").html(); 
-        var pages = $.parseJSON($('#Portfolio_pages').val());
+        var pages = $.parseJSON($('#portfolio_pages').val());
         switch ($(this).data('action')) {
             case 'edit':
-                $("#PortfolioPage_slug").val(pages[index].Slug);
-                $("#PortfolioPage_background").val(pages[index].Background);
-                $("#PortfolioPage_html").val(pages[index].Html);
-                CKEDITOR.instances.PortfolioPage_html.setData(pages[index].Html);
-                $("#PortfolioPage_showtitle")[0].checked = pages[index].ShowTitle;
-                $("#PortfolioPage_index").val(index);
-                $('form[name=PortfolioPage]').css('display', 'block');
+                $("#portfolio_page_slug").val(pages[index].Slug);
+                $("#portfolio_page_background").val(pages[index].Background);
+                $("#portfolio_page_html").val(pages[index].Html);
+                CKEDITOR.instances.portfolio_page_html.setData(pages[index].Html);
+                $("#portfolio_page_showtitle")[0].checked = pages[index].ShowTitle;
+                $("#portfolio_page_index").val(index);
+                $('form[name=portfolio_page]').css('display', 'block');
                 $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
                 break;
             case 'remove':
@@ -107,7 +108,7 @@ $(document).ready(function() {
                     buttons: {
                         "Confirm": function() {
                             pages.splice(index, 1);
-                            $('#Portfolio_pages').val(JSON.stringify(pages));
+                            $('#portfolio_pages').val(JSON.stringify(pages));
                             $('.pages tr td.col-id:contains('+ index +')').closest('tr').remove();
                             if (pages.length == 0){
                                 $('.nopages').css('display', '');
@@ -141,13 +142,13 @@ $(document).ready(function() {
             return $helper;
         },
         updateIndex = function(e, ui) {
-            var oldOrder = $.parseJSON($('#Portfolio_pages').val());
+            var oldOrder = $.parseJSON($('#portfolio_pages').val());
             var newOrder = [];
             $('td.col-id', ui.item.parent()).each(function (i) {
                 newOrder[i] = oldOrder[$(this).html()];
                 $(this).html(i);
             });
-            $('#Portfolio_pages').val(JSON.stringify(newOrder));
+            $('#portfolio_pages').val(JSON.stringify(newOrder));
         };
 
         $("table tbody").sortable({
@@ -156,7 +157,7 @@ $(document).ready(function() {
         }).disableSelection();
     });
     
-    CKEDITOR.replace( 'PortfolioPage[html]', {
+    CKEDITOR.replace( 'portfolio_page[html]', {
         customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js'
     });
 });

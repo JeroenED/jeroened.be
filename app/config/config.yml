@@ -30,7 +30,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        version:       "v1.0.1512"
+        version:       "v1.0.1603"
         ga_tracking:   "UA-50762456-1"
 
 # Assetic Configuration
