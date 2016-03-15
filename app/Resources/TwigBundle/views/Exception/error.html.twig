@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>An Error Occurred: {{ status_text }}</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta charset="UTF-8">
+	<meta content="width=device-width" name="viewport">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script type="text/javascript">
+	$(window).resize(function() {
+		$("#container").css("position", "absolute");
+		var height = ($(window).innerHeight() - $("#container").innerHeight()) / 2 + $(window).scrollTop()
+		if (height < 0) height = 0;
+		$("#container").css("top", height + "px");
+		$("#container").css("left", "0px");
+	});
+	$(document).ready(function() {
+		$(window).resize();
+	});
+	</script>
+	<style type="text/css">
+	@import url(//fonts.googleapis.com/css?family=Roboto);
+	* { margin:0; padding:0 }
+	h1, h2 { margin: 15px; text-align: center }
+	body { background-color:#ccc }
+	#container { width: 100% }
+	#padding { padding:25px }
+	p { text-align:center }
+	table { max-width: 600px; width:100%; margin: 0 auto }
+	caption { font-size:24px }
+	
+	#notice {
+		background-color:#eee;
+		font-family: "Roboto", "Helvetica Neue", sans-serif;
+		border-radius:10px;
+		padding:15px;
+		max-width:640px;
+		min-width: 240px;
+		margin:auto;
+		line-height: 20px
+	}
+</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="padding">
+			<div id="notice">
+				<h1>Oops! An error occured</h1>
+				<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+				<p>Something is broken. Please let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
