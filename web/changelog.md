@@ -1,14 +1,15 @@
 # Scrumreport 2015-11
-Na lange periode eindelijk nog eens een update. Weliswaar een update achter de schermen namelijk een upgrade naar symfony 3.
+Na lange periode eindelijk nog eens een update. Weliswaar een update achter de schermen namelijk een upgrade naar symfony 3. Daarnaast zijn de fout-pagina's onder handen genomen.
 
 ## Issues
 * (none)
 
 ## Nieuwe functies
-* (none
+* (none)
 
 ## Belangrijke wijzigingen
 * Update naar Symfony 3
+* Nieuwe fout-paginas's
 
 # Scrumreport 2015-11
 Eindelijk een grafische update. Voor de eerste keer sinds het online komen van de website is er een grafische update. Het hoofdlettertype is gewijzigd. Een andere belangrijke wijziging: een Git-flow systeem. Met andere woorden: geen minuut stilgezeten.
