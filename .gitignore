@@ -20,14 +20,15 @@ src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 /web/js
 
 ## Symfony shizzle
-/app/bootstrap.php.cache
-/app/cache/*
-!app/cache/.gitkeep
+/var/bootstrap.php.cache
+/var/cache/*
+!var/cache/.gitkeep
 /app/config/parameters.yml
-/app/logs/*
-!app/logs/.gitkeep
+/var/logs/*
+!var/logs/.gitkeep
+/var/sessions/*
+!var/sessions/.gitkeep
 /app/phpunit.xml
-/bin/
 /composer.phar
 /vendor/
 /.project

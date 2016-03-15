@@ -30,6 +30,10 @@ namespace JeroenED\CmsEDBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 /**
  * Description of UserType
@@ -39,10 +43,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class UserType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('userName', 'text', array('label' => 'Username'));
-        $builder->add('email', 'email', array('label' => 'E-mail'));
-        $builder->add('password', 'repeated', array(
-            'type' => 'password',
+        $builder->add('userName', TextType::Class, array('label' => 'Username'));
+        $builder->add('email', EmailType::Class, array('label' => 'E-mail'));
+        $builder->add('password', RepeatedType::Class, array(
+            'type' => PasswordType::Class,
             'invalid_message' => 'The password fields must match.',
             'first_options' => array('label' => 'Password'),
             'second_options' => array('label' => 'Repeat password')

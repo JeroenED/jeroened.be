@@ -1,70 +1,57 @@
 <!DOCTYPE html>
-<!--
-The MIT License
-
-Copyright 2015 Jeroen De Meerleer <me@jeroened.be>.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
--->
 <html>
 <head>
-        <meta charset="utf-8">
-        <meta content="Jeroen De Meerleer" name="author">
-        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-		<meta http-equiv="refresh" content="10; url=/">
-		
-        <title>Jeroen De Meerleer :: Developer-Operator</title>
-        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/css/reveal.min.css" rel="stylesheet">
-        <link href="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/css/print/pdf.min.css" media="print" rel='stylesheet' type='text/css'>
-        <link href="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.8/jquery.mCustomScrollbar.css" rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/css/app.css" type="text/css">
-        <link rel="stylesheet" href="/css/print.css" type="text/css" media="print">
-        
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/head.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/js/reveal.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.0.8/jquery.mCustomScrollbar.min.js"></script>
-        <script src="/js/app.js"></script>
+	<title>An Error Occurred: {{ status_text }}</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta charset="UTF-8">
+	<meta content="width=device-width" name="viewport">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script type="text/javascript">
+	$(window).resize(function() {
+		$("#container").css("position", "absolute");
+		var height = ($(window).innerHeight() - $("#container").innerHeight()) / 2 + $(window).scrollTop()
+		if (height < 0) height = 0;
+		$("#container").css("top", height + "px");
+		$("#container").css("left", "0px");
+	});
+	$(document).ready(function() {
+		$(window).resize();
+	});
+	</script>
+	<style type="text/css">
+	@import url(//fonts.googleapis.com/css?family=Roboto);
+	* { margin:0; padding:0 }
+	h1, h2 { margin: 15px; text-align: center }
+	body { background-color:#ccc }
+	#container { width: 100% }
+	#padding { padding:25px }
+	p { text-align:center }
+	table { max-width: 600px; width:100%; margin: 0 auto }
+	caption { font-size:24px }
 	
-        <!--[if lt IE 9]>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.1.0/lib/js/html5shiv.min.js"></script>
-        <![endif]-->
-    </head>
+	#notice {
+		background-color:#eee;
+		font-family: "Roboto", "Helvetica Neue", sans-serif;
+		border-radius:10px;
+		padding:15px;
+		max-width:640px;
+		min-width: 240px;
+		margin:auto;
+		line-height: 20px
+	}
+</style>
+</head>
 
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-					<h1>That's an error! &num;&commat;&amp;&sect;<h1>
-					<h2>{{ status_code }} {{ status_text }}</h2>
-					<p>You&apos;ll get redirected in a few seconds</p>
-                </section>
-            </div>
-        </div>
-        <div class="logo">
-            JeroenED
-        </div>    
-        <div class="copyright">
-        <p>&copy; copyright 2015 Jeroen De Meerleer | {{ version }}</p>
-    </div>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<body>
+	<div id="container">
+		<div id="padding">
+			<div id="notice">
+				<h1>Oops! An error occured</h1>
+				<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+				<p>Something is broken. Please let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</p>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

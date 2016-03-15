@@ -27,7 +27,7 @@
 namespace JeroenED\CmsEDBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 
 /**
@@ -37,7 +37,7 @@ class BeforeControllerListener
 {
     private $security_context;
 
-    public function __construct(SecurityContextInterface $security_context)
+    public function __construct(TokenStorage $security_context)
     {
         $this->security_context = $security_context;
     }
