@@ -28,6 +28,7 @@ namespace JeroenED\PortfolioBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 
@@ -65,9 +66,12 @@ class PortfolioController extends Controller implements InitializableControllerI
     }
 
     /**
-     * @Route("/page/{slug}")
+     * @Route("/changelog")
      */
-    public function pageAction($slug) {
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $this->portfolio, 'menu' => $this->menu));
+    public function changelogAction() {
+        $file = $this->get('kernel')->getRootDir() . '/../changelog.md';
+        $handler = $this->container->get('kernel')->locateResource('@JeroenEDPortfolioBundle') . '/markdown/handler.php';
+	require $handler;
+        return new Response();
     }
 }
