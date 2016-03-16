@@ -1,4 +1,4 @@
-# Scrumreport 2015-11
+# Scrumreport 2016-03
 Na lange periode eindelijk nog eens een update. Weliswaar een update achter de schermen namelijk een upgrade naar symfony 3. Daarnaast zijn de fout-pagina's onder handen genomen.
 
 ## Issues
