@@ -66,6 +66,13 @@ class PortfolioController extends Controller implements InitializableControllerI
     }
 
     /**
+     * @Route("/page/{slug}")
+     */
+    public function pageAction($slug) {
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $this->portfolio, 'menu' => $this->menu));
+    }
+
+    /**
      * @Route("/changelog")
      */
     public function changelogAction() {
