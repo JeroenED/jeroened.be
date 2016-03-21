@@ -6,8 +6,10 @@ header('Content-type: text/html; charset=utf-8');
 <head>
 	<link rel="stylesheet" type="text/css" href="/bundles/jeroenedportfolio/markdown/style.css">
 	<meta name="content-type" http-equiv="content-type" value="text/html; utf-8">
+	<title>JeroenED.be Changelog</title>
 </head>
 <body>
+<article>
 <?php
 
 require('markdown.php');
@@ -22,5 +24,6 @@ if($file
 	echo "<p>Bad filename given</p>";
 }
 ?>
+</article>
 </body>
 </html>
