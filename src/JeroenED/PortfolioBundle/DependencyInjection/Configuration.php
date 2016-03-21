@@ -1,5 +1,4 @@
 <?php
-
 namespace JeroenED\PortfolioBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
