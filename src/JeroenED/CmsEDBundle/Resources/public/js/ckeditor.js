@@ -7,3 +7,4 @@ CKEDITOR.editorConfig = function(config) {
    config.filebrowserFlashUploadUrl = '/admin/kcfinder/upload.php?opener=ckeditor&type=flash';
    config.allowedContent = true
 };
+CKEDITOR.plugins.addExternal( 'codemirror', '/bundles/jeroenedcmsed/ckeditor-plugins/codemirror/', 'plugin.js' );
