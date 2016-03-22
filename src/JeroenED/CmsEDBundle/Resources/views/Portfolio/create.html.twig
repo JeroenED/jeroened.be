@@ -10,9 +10,10 @@
 {% endif %}
 
 <p>{{ form_label(form.title) }}{{form_widget(form.title)}}</p>
-<p>{{ form_widget(form.rank )}}</p>
-<p>{{ form_widget(form.register)}}</p>
-<p>{{ form_widget(form.pages)}}</p>
+<p>{{ form_label(form.archived) }}{{form_widget(form.archived)}}</p>
+<p>{{ form_widget(form.rank) }}</p>
+<p>{{ form_widget(form.register) }}</p>
+<p>{{ form_widget(form.pages) }}</p>
 
 {{ form_end(form) }}
 <table>
@@ -158,7 +159,7 @@ $(document).ready(function() {
     });
     
     CKEDITOR.replace( 'portfolio_page[html]', {
-        customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js'
+        customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js',  extraPlugins: 'codemirror'
     });
 });
 </script>
