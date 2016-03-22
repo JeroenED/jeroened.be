@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Description of MenuType
@@ -18,6 +19,7 @@ class PortfolioType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('title', TextType::class, array('label' => 'Title'));
+        $builder->add('archived', CheckboxType::class, array('label' => 'Archived', 'required' => false));
         $builder->add('rank', HiddenType::class);
         $builder->add('pages', HiddenType::class);
     }
