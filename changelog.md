@@ -1,16 +1,19 @@
 # Changelog JeroenED.be
-## Scrumreport 2016-04
+## Scrumreport 2016-03 (B-for-Belgium)
+Omwille van de recente gebeurtenissen in Brussel en ik de bijhorende pagina die ik heb gecreeërd niet wilde weggooien als die niet meer van toepassing was, heb ik beslist om een tussentijdse patch uit te brengen met de wijzigingen die reeds beschikbaar waren en een special feature archiveren.
+
 Nu de draad eindelijk terug opgenomen is heb ik weer wat zichtbaardere wijzigingen doorgevoerd. Zo is o.a. de behandeling van de changelog opgenomen in symfony waardoor deze op de normale plaats kan worden gezet en is eindelijk de source-view van CKeditor gevuld met syntax coloring.
 
 ### Issues
 * (none)
 
 ### Nieuwe functies
-* enabled reading view on Changelog
+* Lezersweergave geactiveerd op changelog.
+* Archiveren 
 
 ### Belangrijke wijzigingen
-* New URI for changelog (`changelog` instead of `changelog.md`)
-* Nieuwe fout-paginas's
+* Nieuwe URL voor changelog (changelog in plaats van changelog.md)
+* Syntax coloring in CKeditor
 
 ## Scrumreport 2016-03
 Na lange periode eindelijk nog eens een update. Weliswaar een update achter de schermen namelijk een upgrade naar symfony 3. Daarnaast zijn de fout-pagina's onder handen genomen.
