@@ -40,7 +40,13 @@ class PortfolioItem {
      * @ORM\Column(type="integer")
      */
     protected $rank;
-
+    
+    /**
+     * 
+     * @ORM\Column(type="boolean")
+     */
+    protected $archived;
+    
     /**
      * Get id
      *
@@ -120,5 +126,28 @@ class PortfolioItem {
     public function getRank()
     {
         return $this->rank;
+    }
+
+    /**
+     * Set archived
+     *
+     * @param boolean $archived
+     * @return PortfolioItem
+     */
+    public function setArchived($archived)
+    {
+        $this->archived = $archived;
+
+        return $this;
+    }
+
+    /**
+     * Get archived
+     *
+     * @return boolean
+     */
+    public function getArchived()
+    {
+        return $this->archived;
     }
 }
