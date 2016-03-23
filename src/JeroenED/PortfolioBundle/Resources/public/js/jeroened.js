@@ -1,10 +1,12 @@
+var currentPage = getCurrentPage();
+
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
         if (cur == "0px") {
             cur = "200px"
         } else {
-            closePage();
+            closePage(currentPage);
             cur = "0px"
         }
         $("nav ul li").animate({
@@ -12,7 +14,7 @@ $(document).ready(function() {
         });
     });
     $(document).on("click", '.closebtn', function() {
-        closePage();
+        closePage(currentPage);
     });
     $(window).resize(function() {
         $('.page').css("max-height", $(window).innerHeight() - 100 + "px");
@@ -37,7 +39,7 @@ $(document).ready(function() {
 });
 
 function OpenPage(page) {
-    closePage();
+    closePage(currentPage);
     $('body').append('<div class="loading page">Your page is loading...</div>');
     var hash = location.hash;
     $('.loading').css("position", "absolute");
@@ -76,7 +78,7 @@ function OpenPage(page) {
             });
         }
     }).fail(function() { 
-        $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:closePage();">Click here to close this window</a></p></div>');
+        $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:closePage(currentPage);">Click here to close this window</a></p></div>');
         $('#' + page).css("position", "absolute");
         $('#' + page).css("max-height", $(window).innerHeight() - 100 + "px");
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");    
@@ -89,11 +91,17 @@ function OpenPage(page) {
     location.hash = hash;
 }
 
-function closePage() {
+function closePage(previousPage) {
     var hash = location.hash;
     $(".page").remove();
     $(".printable").remove();
-    history.pushState(null, "", "/");
-    ga('send', 'pageview', "/");
+    history.pushState(null, "", previousPage);
+    ga('send', 'pageview', previousPage);
     location.hash = hash;
+}
+
+function getCurrentPage() {
+    var previous = location.pathname;
+    if (previous.indexOf('page/') > -1) { previous = '/' }
+    return previous;
 }
