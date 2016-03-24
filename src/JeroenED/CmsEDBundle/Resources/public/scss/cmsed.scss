@@ -1,0 +1,262 @@
+$font-stack: 'Roboto', sans-serif;
+$background-color: #efefef;
+$dark-background-color: #a6a6a6;
+$foreground-color: #252525;
+$link-color: #303552;
+$error-color: #880000;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+	height: 100%;
+}
+
+body {
+    font-family: $font-stack;
+    background-color: $background-color;
+    color: $foreground-color;
+}
+
+a {
+   color: $link-color;
+   text-decoration: underline;
+}
+
+#container {
+    height: 100%;
+    min-height: 100%;
+}
+/* ---------- */
+/* --HEADER-- */
+/* ---------- */
+
+header {
+    text-align: center;
+    background-image: url('/bundles/jeroenedcmsed/images/header.png');
+    background-position: center;
+
+    #logo {
+        display: inline-block;
+        height: 150px;
+        margin: 0;
+        vertical-align: top;
+    }
+}
+
+
+#meta {
+    position: absolute;
+    right: 0px;
+    top: 150px;
+    background-color: $dark-background-color;
+    color: $foreground-color;
+    padding: 5px 10px;
+    border-radius: 0px 0px 0px 5px;
+    -webkit-border-radius: 0px 0px 0px 5px;
+    -moz-border-radius: 0px 0px 0px 5px; 
+}
+
+/* ---------- */
+/* NAVIGATION */
+/* ---------- */
+
+nav {
+
+    width: 250px;
+    text-align: center;
+    float: left;
+    background-color: $dark-background-color;
+    
+    ul {
+
+        list-style: none;
+        
+        li {
+
+            margin: 15px;
+            
+            a {
+
+                color: $foreground-color;
+                text-decoration: none;
+            }
+
+        }
+    }
+}
+
+/* -------------- */
+/* --CONTENTNAV-- */
+/* -------------- */
+#content {
+    float: left;
+    width: calc(100% - 250px);
+    min-height: calc(100% - 150px);
+    background-color: #efefef;
+	
+	#contentnav {
+		height: 25px;
+
+		ul {
+			list-style: none;
+
+			li {
+
+				width: 140px;
+				/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+				background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhZmFmYWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+				background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(175,175,175,1) 100%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(175,175,175,1))); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* IE10+ */
+				background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#afafaf',GradientType=0 ); /* IE6-8 */
+				float: left;
+				text-align: center;
+				border: 1px solid #afafaf;
+				padding: 5px;
+
+				a {
+					color: $foreground-color;
+					text-decoration: none;
+				}
+			}
+
+			li.active {
+				box-shadow: 2px 3px 2px $foreground-color;
+				-webkit-box-shadow: 2px 3px 2px $foreground-color;
+				-moz-box-shadow: 2px 3px 2px $foreground-color; 
+			}
+		}
+	}
+	
+	#contentitems {
+		padding: 25px;
+		
+		p {
+			margin: 15px;
+		}
+
+	   select {
+		  width: 250px;
+	   }
+
+	   label {
+		  display: inline-block;
+		  width: 250px;
+		  vertical-align: top;
+	   }
+
+	   input[type=text], input[type=url], input[type=tel], input[type=number], input[type=color], input[type=email], input[type=password], textarea {
+		margin: 0;
+		font-family: 'roboto', sans-serif;
+		font-size: 16px;
+		appearance: none;
+		box-shadow: 1px 1px 1px $foreground-color;
+		border: 1px solid $foreground-color;
+		width: 250px;
+		background-color: #dcdcdc;
+		color: #1d1d1d;
+		box-sizing: border-box;
+			border-radius: 2px;
+	   }
+
+	   input[type=submit], button {
+		margin: 0;
+		font-family: 'roboto', sans-serif;
+		font-size: 16px;
+		appearance: none;
+		box-shadow: 1px 1px 1px $foreground-color;
+		border: 1px solid #272727;
+		width: 100px;
+		background-color: #1d1d1d;
+		color: #dcdcdc;
+		box-sizing: border-box;
+			border-radius: 2px;
+	   }
+
+	   .col-label {
+		   width: 300px;
+	   }
+	   
+	   select {
+			padding: 0px;
+			margin: -4px;
+			-webkit-box-shadow: 1px 1px 1px $foreground-color;
+			-moz-box-shadow: 1px 1px 1px $foreground-color;
+			box-shadow: 1px 1px 1px $foreground-color;
+			background: #dcdcdc;
+			font-family: 'roboto', sans-serif;
+			font-size: 16px;
+			color: $foreground-color;
+			border: 1px solid $foreground-color;
+			outline: none;
+			display: inline-block;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			cursor: pointer;
+		}
+
+		/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+		@media screen and (-webkit-min-device-pixel-ratio:0) {
+			select {padding-right: 18px}
+		}
+		
+		.select-arrow {
+			position:relative;
+		}
+		&:after {
+			content: '<>';
+			font: 14px "consolas", monospace;
+			color: $foreground-color;
+			-webkit-transform: rotate(90deg);
+			-moz-transform: rotate(90deg);
+			-ms-transform: rotate(90deg);
+			transform: rotate(90deg);
+			right: 0px; top: 0px;
+			padding: 0 0 3px;
+			border-bottom: 1px solid #ddd;
+			position: absolute;
+			pointer-events: none;
+			width: 15px;
+			height: 15px;
+		
+		}
+		
+		&:before {
+			content: '';
+			right: -2px; top: -1px;
+			width: 20px; height: 20px;
+			background: #dcdcdc;
+			position: absolute;
+			pointer-events: none;
+			display: block;
+		}
+	}
+
+}
+
+
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}

@@ -1,0 +1,78 @@
+$font-stack: 'Roboto', sans-serif;
+$background-color: #efefef;
+$dark-background-color: #a6a6a6;
+$foreground-color: #252525;
+$link-color: #303552;
+$error-color: #880000;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $foreground-color;
+    font-family: $font-stack;
+}
+header {
+    text-align: center;
+    background-image: url('/bundles/jeroenedcmsed/images/header.png');
+    background-position: center;
+    height: 500px;
+    padding-top: 250px;
+    box-sizing: border-box;  
+	
+	#logo {
+		height: 250px;
+	}
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+p { padding: 15px;}
+
+form {
+    background-color: $dark-background-color;
+    padding-left: 50%;
+}
+input {
+	
+	&[type=text], &[type=password] {
+		margin:0;
+		font-family:'roboto', sans-serif;
+		font-size:16px;
+		appearance:none;
+		box-shadow:1px 1px 1px $foreground-color;
+		border:1px solid $foreground-color;
+		width:250px;
+		background-color:#dcdcdc;
+		color:#1d1d1d;
+		box-sizing: border-box;
+		border-radius: 2px;
+	}
+	
+	&[type=submit] {
+		margin: 0;
+		font-family: 'roboto', sans-serif;
+		font-size: 16px;
+		appearance: none;
+		box-shadow: 1px 1px 1px $foreground-color;
+		border: 1px solid $foreground-color;
+		width: 100px;
+		background-color: $foreground-color;
+		color: $background-color;
+		box-sizing: border-box;
+		border-radius: 2px;
+	}
+}
+
+
+
+.error {
+    color: #880000;
+    display: inline-block;
+    margin-left: 15px;
+}
