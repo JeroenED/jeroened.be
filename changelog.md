@@ -1,15 +1,5 @@
 # Changelog JeroenED.be
-## Scrumreport 2016-04
 
-### Issues
-* (none)
-
-### Nieuwe functies
-* (none)
-
-### Belangrijke wijzigingen
-* (none)
-* 
 ## Scrumreport 2016-03 (B-for-Brussels)
 Omwille van de recente gebeurtenissen in Brussel heb ik beslist om een tussentijdse release te doen van de laatste wijzigingen. De wijzigigingen zijn zichtbaarder dan de vorige release en omvatten een archiveringsfunctie en de activatie van de leesweergave op de changelog. Daarnaast is de changelog verplaatst naar een iets logischere locatie en is syntax coloring eindelijk geactiveerd in de bron weergave van CKeditor.
 
