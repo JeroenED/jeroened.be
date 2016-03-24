@@ -74,7 +74,7 @@
         </ul>
     </nav>
         <div class="copyright">
-        <p>&copy; copyright 2015 Jeroen De Meerleer | {{ version }}</p>
+        <p>&copy; copyright 2015-{{ 'now' | date('Y') }} Jeroen De Meerleer | {{ version }}</p>
     </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
