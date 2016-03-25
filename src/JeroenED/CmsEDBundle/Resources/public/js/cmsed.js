@@ -23,11 +23,11 @@ $(document).ready(function() {
 });
 
 
-function loadCKeditor(instance) {
+function loadCKeditor(instance, style) {
     CKEDITOR.replace( instance, {
         customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js',
         extraPlugins: 'codemirror',
-        bodyClass: 'reveal'
+        bodyClass: style
     });
 }
 function UrlExists(url)
