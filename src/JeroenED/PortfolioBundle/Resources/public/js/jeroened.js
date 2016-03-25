@@ -34,8 +34,17 @@ $(document).ready(function() {
         $('.mobile').css("display", "none");
     }
     $('.table-mobile').each(function() {
-      $(this).stacktable();
+        $(this).stacktable();
     });
+    
+    $('body').on('click', "a[href^='/page/']", function(e) {
+        OpenPage($(this).attr('href').replace('/page/', ''));
+        e.preventDefault();
+    });
+
+    $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
+    .addClass("external")
+    .attr("target","_blank");
 });
 
 function OpenPage(page) {
