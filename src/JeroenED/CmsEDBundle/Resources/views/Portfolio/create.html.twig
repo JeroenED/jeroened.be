@@ -50,6 +50,11 @@ function openKCFinder_singleFile() {
     window.KCFinder.callBack = function(url) {
         $('.openkcfinder').val(url);
         window.KCFinder = null;
+        url = $('#portfolio_page_background').val();
+        CKEDITOR.instances.portfolio_page_html.destroy();
+        if(!UrlExists(url)) { url = "/bundles/jeroenedportfolio/images/background.png"; }
+        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
+        loadCKeditor('portfolio_page[html]',  'reveal');
     };
     window.open('/admin/kcfinder/browse.php?type=images&opener=custom', 'kcfinder_single', "width=1280, height=720");
 }
@@ -101,6 +106,10 @@ $(document).ready(function() {
                 $("#portfolio_page_index").val(index);
                 $('form[name=portfolio_page]').css('display', 'block');
                 $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
+                CKEDITOR.instances.portfolio_page_html.destroy();
+                if(!UrlExists(url)) { url = "/bundles/jeroenedportfolio/images/background.png"; }
+		CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
+                loadCKeditor('portfolio_page[html]', 'reveal');
                 break;
             case 'remove':
                 $('#dialog').html('Are you sure you want to delete this page?');
@@ -158,9 +167,7 @@ $(document).ready(function() {
         }).disableSelection();
     });
     
-    CKEDITOR.replace( 'portfolio_page[html]', {
-        customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js',  extraPlugins: 'codemirror'
-    });
+    loadCKeditor('portfolio_page[html]', 'reveal');
 });
 </script>
 {% endblock %}

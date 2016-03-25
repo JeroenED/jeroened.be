@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>JeroenED.be :: Backend :: {{ title }}</title>
+        <title>JeroenED.be :: Admin panel :: {{ title }}</title>
         
         <meta charset="UTF-8">
         
@@ -10,11 +10,20 @@
         <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/jeroenedcmsed/css/jquery-ui.structure.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('bundles/jeroenedcmsed/css/jquery-ui.theme.min.css') }}" rel="stylesheet" type="text/css">
-        
+        {% stylesheets filter="scssphp" output="css/cmsed.css"
+            "bundles/jeroenedcmsed/scss/cmsed.scss"
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
+		
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
-        <script src="{{ asset('bundles/jeroenedcmsed/js/cmsed.js') }}" type="text/javascript"></script>
+		{% javascripts filter="?jsqueeze" output="js/cmsed.js"
+            "bundles/jeroenedcmsed/js/cmsed.js"
+        %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
         
         {{ block('javascript') }}
     </head>
