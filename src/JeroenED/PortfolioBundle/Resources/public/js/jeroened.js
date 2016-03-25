@@ -34,8 +34,17 @@ $(document).ready(function() {
         $('.mobile').css("display", "none");
     }
     $('.table-mobile').each(function() {
-      $(this).stacktable();
+        $(this).stacktable();
     });
+    
+    $('body').on('click', "a[href^='/page/']", function(e) {
+        OpenPage($(this).attr('href').replace('/page/', ''));
+        e.preventDefault();
+    });
+
+    $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
+    .addClass("external")
+    .attr("target","_blank");
 });
 
 function OpenPage(page) {
@@ -77,6 +86,10 @@ function OpenPage(page) {
                 $('<tr>' + head + body + '</tr>').insertAfter(this);
             });
         }
+
+        $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
+        .addClass("external")
+        .attr("target","_blank");
     }).fail(function() { 
         $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:closePage(currentPage);">Click here to close this window</a></p></div>');
         $('#' + page).css("position", "absolute");

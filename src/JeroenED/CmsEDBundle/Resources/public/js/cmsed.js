@@ -21,3 +21,20 @@ $(document).ready(function() {
 	});
 	$("nav").height($(document).height() - 150);
 });
+
+
+function loadCKeditor(instance, style) {
+    CKEDITOR.replace( instance, {
+        customConfig: '/bundles/jeroenedcmsed/js/ckeditor.js',
+        extraPlugins: 'codemirror',
+        bodyClass: style
+    });
+}
+function UrlExists(url)
+{
+    if(url == '') return false;
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status!=404;
+}
