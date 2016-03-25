@@ -19,12 +19,6 @@ code {
 
 body {
     background: #1c1e20;
-    background: -moz-radial-gradient(center,circle cover,$gradient-start,$gradient-stop);
-    background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,#555a5f),color-stop(100%,#1c1e20));
-    background: -webkit-radial-gradient(center,circle cover,$gradient-start,$gradient-stop);
-    background: -o-radial-gradient(center,circle cover,$gradient-start,$gradient-stop);
-    background: -ms-radial-gradient(center,circle cover,$gradient-start,$gradient-stop);
-    background: radial-gradient(center,circle cover,$gradient-start,$gradient-stop);
 }
 
 ::selection {
