@@ -208,34 +208,36 @@ nav {
 		
 		.select-arrow {
 			position:relative;
+			
+			&:after {
+				content: '<>';
+				font: 14px "consolas", monospace;
+				color: $foreground-color;
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				-ms-transform: rotate(90deg);
+				transform: rotate(90deg);
+				right: 0px; top: 0px;
+				padding: 0 0 3px;
+				border-bottom: 1px solid #ddd;
+				position: absolute;
+				pointer-events: none;
+				width: 15px;
+				height: 15px;
+			
+			}
+			
+			&:before {
+				content: '';
+				right: -2px; top: -1px;
+				width: 20px; height: 20px;
+				background: #dcdcdc;
+				position: absolute;
+				pointer-events: none;
+				display: block;
+			}
 		}
-		&:after {
-			content: '<>';
-			font: 14px "consolas", monospace;
-			color: $foreground-color;
-			-webkit-transform: rotate(90deg);
-			-moz-transform: rotate(90deg);
-			-ms-transform: rotate(90deg);
-			transform: rotate(90deg);
-			right: 0px; top: 0px;
-			padding: 0 0 3px;
-			border-bottom: 1px solid #ddd;
-			position: absolute;
-			pointer-events: none;
-			width: 15px;
-			height: 15px;
-		
-		}
-		
-		&:before {
-			content: '';
-			right: -2px; top: -1px;
-			width: 20px; height: 20px;
-			background: #dcdcdc;
-			position: absolute;
-			pointer-events: none;
-			display: block;
-		}
+
 	}
 
 }
