@@ -4,6 +4,7 @@ $(document).ready(function() {
         progress: false,
         history: true,
         center: true,
+        overview: false,
         transition: 'linear',
     });
 });
