@@ -1,5 +1,18 @@
 # Changelog JeroenED.be
 
+## Scrumreport 2016-04
+Na de uitzonderlijke B-for-Brussels release van vorige maand weer een iets normalere release. Wijzigingen zijn vooral in het administratiepaneel te vinden. Ook is er een issue van het archief gefixet waarbij de closepage functie niet reageerde zoals zou moeten.
+
+### Issues
+* (none)
+
+### Nieuwe functies
+* SASS geactiveerd op administratie paneel
+
+### Belangrijke wijzigingen
+* De fugly overloop op de homepage is eindelijk verwijderd
+* Css in CKeditor is toegepast
+
 ## Scrumreport 2016-03 (B-for-Brussels)
 Omwille van de recente gebeurtenissen in Brussel heb ik beslist om een tussentijdse release te doen van de laatste wijzigingen. De wijzigigingen zijn zichtbaarder dan de vorige release en omvatten een archiveringsfunctie en de activatie van de leesweergave op de changelog. Daarnaast is de changelog verplaatst naar een iets logischere locatie en is syntax coloring eindelijk geactiveerd in de bron weergave van CKeditor.
 
@@ -13,6 +26,7 @@ Omwille van de recente gebeurtenissen in Brussel heb ik beslist om een tussentij
 ### Belangrijke wijzigingen
 * Nieuwe URL voor changelog (changelog in plaats van changelog.md)
 * Syntax coloring in CKeditor
+
 ## Scrumreport 2016-03
 Na lange periode eindelijk nog eens een update. Weliswaar een update achter de schermen namelijk een upgrade naar symfony 3. Daarnaast zijn de fout-pagina's onder handen genomen.
 
