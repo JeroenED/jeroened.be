@@ -1,4 +1,5 @@
-var currentPage = getCurrentPage();
+var currentPage = "/";
+var pages = new Array("archive", "changelog");
 
 $(document).ready(function() {
     $("nav").click(function() {
@@ -36,10 +37,15 @@ $(document).ready(function() {
     $('.table-mobile').each(function() {
         $(this).stacktable();
     });
-    
-    $('body').on('click', "a[href^='/page/']", function(e) {
-        OpenPage($(this).attr('href').replace('/page/', ''));
-        e.preventDefault();
+
+    $('body').on('click', "a[href^='/']", function(e) {
+		var page = $(this).attr('href').replace('/', '')
+		if(pages.indexOf(page) == -1)
+		{  
+			OpenPage($(this).attr('href').replace('/', ''));
+			e.preventDefault();
+		}
+
     });
 
     $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
@@ -99,8 +105,8 @@ function OpenPage(page) {
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
         $('.loading').remove();
     });
-    history.pushState(null, "", "/page/" + page);
-    ga('send', 'pageview', "/page/" + page);
+    history.pushState(null, "", "/" + page);
+    ga('send', 'pageview', "/" + page);
     location.hash = hash;
 }
 
