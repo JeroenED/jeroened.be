@@ -59,7 +59,7 @@ class UserController extends Controller implements InitializableControllerInterf
         $db = $this->getDoctrine()->getManager();
         $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
         $passwordbackup = $user->getPassword();
-        $form = $this->createForm(new UserType(), $user, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $user->getId()))));
+        $form = $this->createForm(UserType::class, $user, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $user->getId()))));
         $config = $form->get('password')->getConfig()->getOptions();
         $config['required'] = false;
         $form->add('password', RepeatedType::Class, $config);
