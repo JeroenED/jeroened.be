@@ -47,6 +47,7 @@ class PortfolioController extends Controller
 
     }
 
+
     /**
      * @Route("/archive")
      */
@@ -58,14 +59,7 @@ class PortfolioController extends Controller
 
     }
     
-    /**
-     * @Route("/page/{slug}")
-     */
-    public function pageAction($slug) {
-        $portfolio = $this->getPortfolio();
-        $menu = $this->getMenu();
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu));
-    }
+
 
     /**
      * @Route("/changelog")
@@ -75,5 +69,14 @@ class PortfolioController extends Controller
         $handler = $this->container->get('kernel')->locateResource('@JeroenEDPortfolioBundle') . '/markdown/handler.php';
 	require $handler;
         return new Response();
+    }
+
+    /**
+     * @Route("/{slug}")
+     */
+    public function pageAction($slug) {
+        $portfolio = $this->getPortfolio();
+        $menu = $this->getMenu();
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu));
     }
 }
