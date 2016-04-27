@@ -1,13 +1,12 @@
-var currentPage = "/";
-var pages = new Array("archive", "changelog");
-
+var pages = new Array("", "archive", "changelog");
+var currentPage = getCurrentPage();
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
         if (cur == "0px") {
             cur = "200px"
         } else {
-            closePage(currentPage);
+            ClosePage(currentPage);
             cur = "0px"
         }
         $("nav ul li").animate({
@@ -15,7 +14,7 @@ $(document).ready(function() {
         });
     });
     $(document).on("click", '.closebtn', function() {
-        closePage(currentPage);
+        ClosePage(currentPage);
     });
     $(window).resize(function() {
         $('.page').css("max-height", $(window).innerHeight() - 100 + "px");
@@ -42,10 +41,9 @@ $(document).ready(function() {
 		var page = $(this).attr('href').replace('/', '')
 		if(pages.indexOf(page) == -1)
 		{  
-			OpenPage($(this).attr('href').replace('/', ''));
+			OpenPage(page);
 			e.preventDefault();
 		}
-
     });
 
     $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
@@ -53,8 +51,19 @@ $(document).ready(function() {
     .attr("target","_blank");
 });
 
-function OpenPage(page) {
-    closePage(currentPage);
+window.onpopstate = function(e) {
+	var page = location.pathname.replace('/', '')
+	if(pages.indexOf(page) > -1)
+	{  
+		ClosePage(currentPage, false);
+		e.preventDefault();
+	} else {
+		if($('#' + page).length == 0) OpenPage(page, false);
+	}
+}
+
+function OpenPage(page, popState = true) {
+    ClosePage(currentPage, false);
     $('body').append('<div class="loading page">Your page is loading...</div>');
     var hash = location.hash;
     $('.loading').css("position", "absolute");
@@ -97,7 +106,7 @@ function OpenPage(page) {
         .addClass("external")
         .attr("target","_blank");
     }).fail(function() { 
-        $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:closePage(currentPage);">Click here to close this window</a></p></div>');
+        $('body').append('<div class="page" id="' + page + '"><h1 style="text-align: center;">404 Not Found</h1><p style="text-align: center;"><a href="javascript:ClosePage(currentPage);">Click here to close this window</a></p></div>');
         $('#' + page).css("position", "absolute");
         $('#' + page).css("max-height", $(window).innerHeight() - 100 + "px");
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");    
@@ -105,22 +114,27 @@ function OpenPage(page) {
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
         $('.loading').remove();
     });
-    history.pushState(null, "", "/" + page);
-    ga('send', 'pageview', "/" + page);
-    location.hash = hash;
+    if (popState) {
+		history.pushState(null, "", "/" + page + hash);
+		ga('send', 'pageview', "/" + page + hash);
+	}
 }
 
-function closePage(previousPage) {
+function ClosePage(previousPage, popState = true) {
     var hash = location.hash;
     $(".page").remove();
     $(".printable").remove();
-    history.pushState(null, "", previousPage);
-    ga('send', 'pageview', previousPage);
-    location.hash = hash;
+    if (popState) {
+		history.pushState(null, "", previousPage + hash);
+		ga('send', 'pageview', previousPage);
+	}
 }
 
 function getCurrentPage() {
-    var previous = location.pathname;
-    if (previous.indexOf('page/') > -1) { previous = '/' }
+    var previous = location.pathname.replace('/', '')
+	if(pages.indexOf(previous) == -1)
+	{  
+		previous = '/'
+	}
     return previous;
 }
