@@ -62,7 +62,8 @@ window.onpopstate = function(e) {
 	}
 }
 
-function OpenPage(page, popState = true) {
+function OpenPage(page, popState) {
+    popState = typeof popState !== 'undefined' ? popState : true;
     ClosePage(currentPage, false);
     $('body').append('<div class="loading page">Your page is loading...</div>');
     var hash = location.hash;
@@ -120,7 +121,8 @@ function OpenPage(page, popState = true) {
 	}
 }
 
-function ClosePage(previousPage, popState = true) {
+function ClosePage(previousPage, popState) {
+    popState = typeof popState !== 'undefined' ? popState : true;
     var hash = location.hash;
     $(".page").remove();
     $(".printable").remove();
