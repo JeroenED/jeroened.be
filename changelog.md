@@ -1,5 +1,17 @@
 # Changelog JeroenED.be
 
+## Scrumreport 2016-05
+Deze maand een belangrijke functie geïmplementeerd: de vorige- en volgende knop is volledig werkende. Daarnaast is de uri van de pagina's gewijzigd en staat de fugly "/page" er niet meer bij.
+
+### Issues
+* (none)
+
+### Nieuwe functies
+* Vorige- en Volgende-knoppen zijn werkende
+
+### Belangrijke wijzigingen
+* URI van pagina's gewijzigd naar /{{ slug }}
+
 ## Scrumreport 2016-04
 Na de uitzonderlijke B-for-Brussels release van vorige maand weer een iets normalere release. Wijzigingen zijn vooral in het administratiepaneel te vinden. Ook is er een issue van het archief gefixet waarbij de closepage functie niet reageerde zoals zou moeten.
 
