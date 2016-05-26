@@ -1,4 +1,4 @@
-var pages = new Array("", "archive", "changelog");
+var pages = new Array("/", "/archive", "/changelog");
 var currentPage = getCurrentPage();
 $(document).ready(function() {
     $("nav").click(function() {
@@ -38,10 +38,10 @@ $(document).ready(function() {
     });
 
     $('body').on('click', "a[href^='/']", function(e) {
-		var page = $(this).attr('href').replace('/', '')
+		var page = $(this).attr('href');
 		if(pages.indexOf(page) == -1)
 		{  
-			OpenPage(page);
+			OpenPage(page.replace(/^\/|\/$/g, ''));
 			e.preventDefault();
 		}
     });
@@ -52,7 +52,7 @@ $(document).ready(function() {
 });
 
 window.onpopstate = function(e) {
-	var page = location.pathname.replace('/', '')
+	var page = location.pathname;
 	if(pages.indexOf(page) > -1)
 	{  
 		ClosePage(currentPage, false);
@@ -61,6 +61,14 @@ window.onpopstate = function(e) {
 		if($('#' + page).length == 0) OpenPage(page, false);
 	}
 }
+
+function stripTrailingSlash(str) {
+	if(str.substr(-1) === '/') {
+		return str.substr(0, str.length - 1);
+	}
+	return str;
+}
+
 
 function OpenPage(page, popState) {
     popState = typeof popState !== 'undefined' ? popState : true;
@@ -116,7 +124,7 @@ function OpenPage(page, popState) {
         $('.loading').remove();
     });
     if (popState) {
-		history.pushState(null, "", "/" + page + hash);
+		history.pushState(null, "", page + hash);
 		ga('send', 'pageview', "/" + page + hash);
 	}
 }
@@ -133,10 +141,10 @@ function ClosePage(previousPage, popState) {
 }
 
 function getCurrentPage() {
-    var previous = location.pathname.replace('/', '')
+    var previous = location.pathname;
 	if(pages.indexOf(previous) == -1)
 	{  
-		previous = '/'
+		previous = '/';
 	}
     return previous;
 }
