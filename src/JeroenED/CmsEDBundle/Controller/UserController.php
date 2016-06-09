@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use JeroenED\CmsEDBundle\Form\Type\UserType;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -17,45 +16,28 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class UserController extends Controller implements InitializableControllerInterface {
-    
-    private $init;
-    
-    public function initialize( Request $request, TokenStorage $security_context) {
-        $kernel = $this->get('kernel');
-        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
-        $this->init['user'] = $this->getUser()->getUsername();
-        $initializer = new Initializer();
-        $parts = $initializer->getWebsiteParts();
-        $route = $this->generateUrl($request->attributes->get('_route'));
-        if ($dev) $route = explode('/app_dev.php', $route)[1];
-        foreach ($parts as $key1 => $part1) {
-            foreach($part1['parts'] as $key2 => $part2) {
-                if($route == $part2['link']) {
-                    $parts[$key1]['parts'][$key2]['active'] = true;
-                }
-            }
-            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
-        }
-        
-        
-        $this->init['leftnav'] = $parts;
-    }
+class UserController extends Controller{
     
     /**
      * @Route("/admin/users", name="users_index")
      */
     public function indexAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDCmsEDBundle:User');
         $users = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users, 'message' => $message,  'title' => 'Users', 'init' => $this->init));
+        return $this->render("JeroenEDCmsEDBundle:Users:index.html.twig", array('users' => $users, 'message' => $message,  'title' => 'Users', 'user' => $user, 'menus' => $menus));
     }
     
     /**
      * @Route("/admin/users/edit/{id}", name="users_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
+		$initializer = new Initializer;
+        $cur_user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
         $passwordbackup = $user->getPassword();
@@ -79,17 +61,21 @@ class UserController extends Controller implements InitializableControllerInterf
             $db->flush();
             return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been modified'));           
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView(),  'title' => 'Users :: Modify ' . $user->getUsername(),'errors' => $form_errors, 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Users:edit.html.twig', array('form' => $form->createView(),  'title' => 'Users :: Modify ' . $user->getUsername(),'errors' => $form_errors, 'user' => $cur_user, 'menus' => $menus));
         }
     }
     
     /**
      * @Route("/admin/users/details/{id}", name="users_details", defaults={ "id" = "-1"})
      */
-    public function detailsAction($id) {
+    public function detailsAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('user' => $user,  'title' => 'Users :: Details of ' . $user->getUsername(), 'init' => $this->init));
+        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('userdetails' => $user,  'title' => 'Users :: Details of ' . $user->getUsername(), 'user' => $cur_user, 'menus' => $menus));
     }
     
     /**
@@ -107,6 +93,9 @@ class UserController extends Controller implements InitializableControllerInterf
      * @Route("/admin/users/create", name="users_create")
      */
     public function createAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $user = new User();
         $db = $this->getDoctrine()->getManager();
         $form = $this->createForm(UserType::class, $user, array('action' => $this->generateUrl($request->attributes->get('_route'))));
@@ -127,7 +116,7 @@ class UserController extends Controller implements InitializableControllerInterf
             return $this->redirectToRoute('users_index', array('message' => 'User ' . $user->getUsername() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Users :: Create new user', 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Users :: Create new user', 'user' => $cur_user, 'menus' => $menus));
         }
     }
 }

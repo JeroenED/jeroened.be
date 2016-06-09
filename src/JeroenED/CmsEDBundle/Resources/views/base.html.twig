@@ -32,11 +32,11 @@
                 <img src="/bundles/jeroenedcmsed/images/logo.png" alt="CmsED" id="logo">
             </header>
             <div id="meta">
-                <p>Hello {{ init.user }}, <a href="/logout">log out</a></p>
+                <p>Hello {{ user }}, <a href="/logout">log out</a></p>
             </div>
             <nav>
                 <ul>
-                    {% for leftnav in init.leftnav %}
+                    {% for leftnav in menus.leftnav %}
                         <li><a href="{{ leftnav.link }}">{{ leftnav.label }}</a></li>
                     {% endfor %}
                 </ul>
@@ -44,7 +44,7 @@
             <div id="content" class="clearfix">
                 <div id="contentnav">
                     <ul>
-                        {% for nav in init.uppernav %}
+                        {% for nav in menus.uppernav %}
                         <li{% if 'active' in nav|keys %} class="active"{% endif %}><a href="{{ nav.link }}">{{ nav.label }}</a></li>
                         {% endfor %}
                     </ul>

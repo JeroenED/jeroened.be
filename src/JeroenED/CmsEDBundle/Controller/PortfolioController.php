@@ -9,7 +9,6 @@ use JeroenED\CmsEDBundle\Form\Type\PortfolioPageType;
 use JeroenED\PortfolioBundle\Entity\PortfolioItem;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,44 +19,28 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class PortfolioController extends Controller implements InitializableControllerInterface  {
-
-    private $init;
-    
-    public function initialize( Request $request, TokenStorage $security_context) {
-        $kernel = $this->get('kernel');
-        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
-        $this->init['user'] = $this->getUser()->getUsername();
-        $initializer = new Initializer();
-        $parts = $initializer->getWebsiteParts();
-        $route = $this->generateUrl($request->attributes->get('_route'));
-        if ($dev) $route = explode('/app_dev.php', $route)[1];
-        foreach ($parts as $key1 => $part1) {
-            foreach($part1['parts'] as $key2 => $part2) {
-                if($route == $part2['link']) {
-                    $parts[$key1]['parts'][$key2]['active'] = true;
-                }
-            }
-            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
-        }
-        
-        
-        $this->init['leftnav'] = $parts;
-    }
+class PortfolioController extends Controller  {
+	
     /**
      * @Route("/admin/portfolio", name="portfolio_index")
      */
     public function indexAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
         $portfolio = $repository->findBy(array(), array('rank' => 'asc'));
-        return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'init' => $this->init));
+        return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'user' => $user, 'menus' => $menus));
     }
     
     /**
      * @Route("/admin/portfolio/edit/{id}", name="portfolio_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($id);
         $pages = json_decode($item->getPages(), true);
@@ -73,18 +56,21 @@ class PortfolioController extends Controller implements InitializableControllerI
             return $this->redirectToRoute('portfolio_index', array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'user' => $user, 'menus' => $menus));
         }
     }
     
     /**
      * @Route("/admin/portfolio/details/{id}", name="portfolio_details", defaults={ "id" = "-1"})
      */
-    public function detailsAction($id) {
+    public function detailsAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($id);
         $pages = json_decode($item->getPages());
-        return $this->render('JeroenEDCmsEDBundle:Portfolio:details.html.twig', array('portfolio' => $item, 'pages' => $pages, 'title' => 'Portfolio :: Details of ' . $item->getTitle(), 'init' => $this->init));
+        return $this->render('JeroenEDCmsEDBundle:Portfolio:details.html.twig', array('portfolio' => $item, 'pages' => $pages, 'title' => 'Portfolio :: Details of ' . $item->getTitle(), 'user' => $user, 'menus' => $menus));
     }
     
     /**
@@ -102,6 +88,9 @@ class PortfolioController extends Controller implements InitializableControllerI
      * @Route("/admin/portfolio/create", name="portfolio_create")
      */
     public function createAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $item = new PortfolioItem();
         $db = $this->getDoctrine()->getManager();
         $form = $this->createForm(PortfolioType::class, $item, array('action' => $this->generateUrl($request->attributes->get('_route'))));
@@ -121,7 +110,7 @@ class PortfolioController extends Controller implements InitializableControllerI
             return $this->redirectToRoute('portfolio_index', array('message' => 'Page ' . $item->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:create.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'errors' => $form_errors,   'title' => 'Portfolio :: Create new item', 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:create.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'errors' => $form_errors,   'title' => 'Portfolio :: Create new item', 'user' => $user, 'menus' => $menus));
         }
     }
     
