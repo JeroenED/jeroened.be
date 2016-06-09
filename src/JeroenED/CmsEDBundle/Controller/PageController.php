@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JeroenED\CmsEDBundle\Form\Type\PageType;
 use JeroenED\PortfolioBundle\Entity\Page;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use JeroenED\CmsEDBundle\Classes\Functions;
@@ -17,45 +16,28 @@ use JeroenED\CmsEDBundle\Classes\Functions;
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class PageController extends Controller implements InitializableControllerInterface  {
-    
-    private $init;
-    
-    public function initialize( Request $request, TokenStorage $security_context) {
-        $kernel = $this->get('kernel');
-        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
-        $this->init['user'] = $this->getUser()->getUsername();
-        $initializer = new Initializer();
-        $parts = $initializer->getWebsiteParts();
-        $route = $this->generateUrl($request->attributes->get('_route'));
-        if ($dev) $route = explode('/app_dev.php', $route)[1];
-        foreach ($parts as $key1 => $part1) {
-            foreach($part1['parts'] as $key2 => $part2) {
-                if($route == $part2['link']) {
-                    $parts[$key1]['parts'][$key2]['active'] = true;
-                }
-            }
-            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
-        }
-        
-        
-        $this->init['leftnav'] = $parts;
-    }
-    
+class PageController extends Controller {
+
     /**
      * @Route("/admin/pages", name="page_index")
      */
     public function indexAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page');
         $pages = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message,  'title' => 'Pages', 'init' => $this->init));
+        return $this->render("JeroenEDCmsEDBundle:Pages:index.html.twig", array('pages' => $pages, 'message' => $message,  'title' => 'Pages', 'user' => $user, 'menus' => $menus));
     }
     
     /**
      * @Route("/admin/pages/edit/{id}", name="page_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
         $form = $this->createForm(PageType::Class, $page, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $page->getId()))));
@@ -69,17 +51,20 @@ class PageController extends Controller implements InitializableControllerInterf
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Modify ' . $page->getTitle(), 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Pages:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Modify ' . $page->getTitle(), 'user' => $user, 'menus' => $menus));
         }
     }
     
     /**
      * @Route("/admin/pages/details/{id}", name="page_details", defaults={ "id" = "-1"})
      */
-    public function detailsAction($id) {
+    public function detailsAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $page = $db->getRepository('JeroenEDPortfolioBundle:Page')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $page->getTitle(), 'init' => $this->init));
+        return $this->render('JeroenEDCmsEDBundle:Pages:details.html.twig', array('page' => $page,  'title' => 'Pages :: Details of ' . $page->getTitle(), 'user' => $user, 'menus' => $menus));
     }
     
     /**
@@ -97,6 +82,9 @@ class PageController extends Controller implements InitializableControllerInterf
      * @Route("/admin/pages/create", name="page_create")
      */
     public function createAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $page = new Page();
         $db = $this->getDoctrine()->getManager();
         $form = $this->createForm(PageType::Class, $page, array('action' => $this->generateUrl($request->attributes->get('_route'))));
@@ -113,7 +101,7 @@ class PageController extends Controller implements InitializableControllerInterf
             return $this->redirectToRoute('page_index', array('message' => 'Page ' . $page->getTitle() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Create new page', 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Pages:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Pages :: Create new page', 'user' => $user, 'menus' => $menus));
         }
     }
 }

@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JeroenED\CmsEDBundle\Form\Type\MenuType;
 use JeroenED\PortfolioBundle\Entity\MenuItem;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
-use JeroenED\CmsEDBundle\Model\InitializableControllerInterface;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,44 +16,28 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
  *
  * @author Jeroen De Meerleer <me@jeroened.be>
  */
-class MenuController extends Controller implements InitializableControllerInterface  {
+class MenuController extends Controller  {
     
-    private $init;
-    
-    public function initialize( Request $request, TokenStorage $security_context) {
-        $kernel = $this->get('kernel');
-        $dev = ($kernel->getEnvironment() == 'dev') ? true : false;
-        $this->init['user'] = $this->getUser()->getUsername();
-        $initializer = new Initializer();
-        $parts = $initializer->getWebsiteParts();
-        $route = $this->generateUrl($request->attributes->get('_route'));
-        if ($dev) $route = explode('/app_dev.php', $route)[1];
-        foreach ($parts as $key1 => $part1) {
-            foreach($part1['parts'] as $key2 => $part2) {
-                if($route == $part2['link']) {
-                    $parts[$key1]['parts'][$key2]['active'] = true;
-                }
-            }
-            if (stripos($route, $part1['link']) !== false) $this->init['uppernav'] = $parts[$key1]['parts'];
-        }
-        
-        
-        $this->init['leftnav'] = $parts;
-    }
     /**
      * @Route("/admin/menu", name="menu_index")
      */
     public function indexAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem');
-        $menus = $repository->findAll();
-        return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menus' => $menus, 'message' => $message, 'title' => 'Menus', 'init' => $this->init));
+        $menuitems = $repository->findAll();
+        return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menuitems' => $menuitems, 'message' => $message, 'title' => 'Menus', 'user' => $user, 'menus' => $menus));
     }
     
     /**
      * @Route("/admin/menu/edit/{id}", name="menu_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
         $form = $this->createForm(MenuType::Class, $menu, array('action' => $this->generateUrl($request->attributes->get('_route'), array('id' => $menu->getId()))));
@@ -67,17 +50,20 @@ class MenuController extends Controller implements InitializableControllerInterf
             return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Modify ' . $menu->getLabel(), 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Menu:edit.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Modify ' . $menu->getLabel(), 'user' => $user, 'menus' => $menus));
         }
     }
     
     /**
      * @Route("/admin/menu/details/{id}", name="menu_details", defaults={ "id" = "-1"})
      */
-    public function detailsAction($id) {
+    public function detailsAction($id, Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $menu = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Menu:details.html.twig', array('menu' => $menu,  'title' => 'Menus :: Details of ' . $menu->getLabel(), 'init' => $this->init));
+        return $this->render('JeroenEDCmsEDBundle:Menu:details.html.twig', array('menu' => $menu,  'title' => 'Menus :: Details of ' . $menu->getLabel(), 'user' => $user, 'menus' => $menus));
     }
     
     /**
@@ -95,6 +81,9 @@ class MenuController extends Controller implements InitializableControllerInterf
      * @Route("/admin/menu/create", name="menu_create")
      */
     public function createAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
         $menu = new MenuItem();
         $db = $this->getDoctrine()->getManager();
         $form = $this->createForm(MenuType::Class, $menu, array('action' => $this->generateUrl($request->attributes->get('_route'))));
@@ -109,7 +98,7 @@ class MenuController extends Controller implements InitializableControllerInterf
             return $this->redirectToRoute('menu_index', array('message' => 'Menuitem ' . $menu->getLabel() . ' has been created'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Create new menu', 'init' => $this->init));
+            return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Create new menu', 'user' => $user, 'menus' => $menus));
         }
     }
 }
