@@ -30,8 +30,21 @@ class PortfolioController extends Controller  {
         $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
-        $portfolio = $repository->findBy(array(), array('rank' => 'asc'));
+        $portfolio = $repository->findBy(array('archived' => false), array('rank' => 'asc'));
         return $this->render("JeroenEDCmsEDBundle:Portfolio:index.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'user' => $user, 'menus' => $menus));
+    }
+	
+	/**
+     * @Route("/admin/portfolio/archive", name="portfolio_archive")
+     */
+    public function archiveAction(Request $request) {
+		$initializer = new Initializer;
+        $user = $this->getUser()->getUsername();
+        $menus = $initializer->getMenus($request);
+        $message = $request->query->get('message') ? $request->query->get('message') : '';
+        $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
+        $portfolio = $repository->findBy(array('archived' => true), array('rank' => 'asc'));
+        return $this->render("JeroenEDCmsEDBundle:Portfolio:archive.html.twig", array('portfolio' => $portfolio, 'message' => $message, 'title' => 'Portfolio', 'user' => $user, 'menus' => $menus));
     }
     
     /**
@@ -53,10 +66,11 @@ class PortfolioController extends Controller  {
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
             $db->flush();
-            return $this->redirectToRoute('portfolio_index', array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been modified'));
+			$returnurl = $item->getArchived() ? "portfolio_archive" : "portfolio_index";
+            return $this->redirectToRoute($returnurl, array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'user' => $user, 'menus' => $menus));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'user' => $user, 'menus' => $menus, 'returnurl' => $returnurl));
         }
     }
     
@@ -76,12 +90,13 @@ class PortfolioController extends Controller  {
     /**
      * @Route("/admin/portfolio/delete/{id}", name="portfolio_delete", defaults={ "id" = "-1"})
      */
-    public function deleteAction($id) {
+    public function deleteAction(Request $request, $id) {
+		$returnurl = $request->query->get('returnurl') ? $request->query->get('returnurl') : 'portfolio_index';
         $db = $this->getDoctrine()->getManager();
         $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($id);
         $db->remove($item);
         $db->flush();
-        return $this->redirectToRoute('portfolio_index', array('message' => 'Page ' . $item->getTitle() . ' has been deleted'));
+        return $this->redirectToRoute($returnurl, array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been deleted'));
     }
     
     /**
@@ -104,10 +119,11 @@ class PortfolioController extends Controller  {
        	    $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
             $rank = count($repository->findAll())+1;
             $item->setRank($rank);
+			$returnurl = $item->getArchived() ? "portfolio_archive" : "portfolio_index";
             $db->persist($item);
             $db->flush();
             
-            return $this->redirectToRoute('portfolio_index', array('message' => 'Page ' . $item->getTitle() . ' has been created'));
+            return $this->redirectToRoute($returnurl, array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been created'));
             
         } else {
             return $this->render('JeroenEDCmsEDBundle:Portfolio:create.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'errors' => $form_errors,   'title' => 'Portfolio :: Create new item', 'user' => $user, 'menus' => $menus));
@@ -116,16 +132,17 @@ class PortfolioController extends Controller  {
     
     
     /**
-     * @Route("/admin/portfolio/rankupdate", name="portfolio_ranks")
+     * @Route("/admin/portfolio/rankupdate", name="portfolio_ranks", defaults={ "id" = "-1"})
      */
-    public function rankAction(Request $request) {
+    public function rankAction(Request $request, $returnurl) {
         $ranks = json_decode($request->request->get('ranks'), true);
+        $returnurl = $request->request->get('returnurl');
         $db = $this->getDoctrine()->getManager();
         foreach($ranks as $key=>$value) {
             $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($key);
             $item->setRank($value);
         }
         $db->flush();
-        return $this->redirectToRoute('portfolio_index', array('message' => 'The order has been updated'));
+        return $this->redirectToRoute($returnurl, array('message' => 'The order has been updated'));
     }
 }
