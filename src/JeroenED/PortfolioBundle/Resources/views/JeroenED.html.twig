@@ -33,16 +33,11 @@
         {% javascripts filter="?jsqueeze" output="js/app.js"
             "bundles/jeroenedportfolio/js/reveal.js"
             "bundles/jeroenedportfolio/js/jeroened.js"
-            "bundles/jeroenedportfolio/js/analytics.js"
             "bundles/jeroenedportfolio/js/stacktable.js"
+            "bundles/jeroenedportfolio/js/analytics.js"
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-        <script type="text/javascript">
-        ga('create', '{{ ga_tracking }}', 'auto');
-        ga('send', 'pageview');
-        </script>
         <!--[if lt IE 9]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/lib/js/html5shiv.min.js"></script>
         <![endif]-->
