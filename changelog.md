@@ -1,5 +1,17 @@
 # Changelog JeroenED.be
 
+## Scrumreport 2016-06
+Deze maand is de laatste commit gedaan voor het afwerken van het archief. Meer bepaald het toevoegen van het archief aan het administratiepaneel. Daarnaast is er ook een probleem opgelost waarbij pagina's heropent werden na het sliden door de presentatie.
+
+### Issues
+* #14: Page is loaded over and over again when sliding through presentation
+
+### Nieuwe functies
+* Archief-weergave in administratiepaneel
+
+### Belangrijke wijzigingen
+* (none)
+
 ## Scrumreport 2016-05
 Deze maand een belangrijke functie geïmplementeerd: de vorige- en volgende knop is volledig werkende. Daarnaast is de uri van de pagina's gewijzigd en staat de fugly "/page" er niet meer bij.
 
