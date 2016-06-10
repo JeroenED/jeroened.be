@@ -125,7 +125,7 @@ function OpenPage(page, popState) {
     });
     if (popState) {
 		history.pushState(null, "", page + hash);
-		ga('send', 'pageview', "/" + page + hash);
+		_paq.push(['trackPageView', window.location.href]);
 	}
 }
 
@@ -136,7 +136,7 @@ function ClosePage(previousPage, popState) {
     $(".printable").remove();
     if (popState) {
 		history.pushState(null, "", previousPage + hash);
-		ga('send', 'pageview', previousPage);
+		_paq.push(['trackPageView', window.location.href]);
 	}
 }
 
@@ -148,3 +148,4 @@ function getCurrentPage() {
 	}
     return previous;
 }
+
