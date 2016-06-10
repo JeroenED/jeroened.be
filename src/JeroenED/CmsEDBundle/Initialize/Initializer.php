@@ -24,7 +24,7 @@ class Initializer extends Controller {
 	
     public function getMenus(Request $request) {
         $parts = $this->getWebsiteParts();
-		$route = $_SERVER['REQUEST_URI'];
+		$route = explode('?', $_SERVER['REQUEST_URI'])[0];
         foreach ($parts as $key1 => $part1) {
             foreach($part1['parts'] as $key2 => $part2) {
                 if($route == $part2['link']) {
