@@ -122,15 +122,20 @@ function OpenPage(page, popState) {
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
         $('.loading').remove();
-    });
-    if (popState) {
-		history.pushState(null, "", page + hash);
-		_paq.push(['trackPageView', window.location.href]);
-	}
+    }).complete(function() {
+		var pageTitle = $(".page h1").html();
+		document.title = pageTitle + " :: " + document.title;
+		if (popState) {
+			history.pushState(null, "", page + hash);
+			_paq.push(['trackPageView', window.location.href]);
+		}
+	});
 }
 
 function ClosePage(previousPage, popState) {
     popState = typeof popState !== 'undefined' ? popState : true;
+	var pageTitle = $(".page h1").html();
+	document.title = document.title.replace(pageTitle + " :: ", '');
     var hash = location.hash;
     $(".page").remove();
     $(".printable").remove();
