@@ -41,8 +41,8 @@ $(document).ready(function() {
 		var page = $(this).attr('href');
 		if(pages.indexOf(page) == -1)
 		{  
-			OpenPage(page.replace(/^\/|\/$/g, ''));
 			e.preventDefault();
+			OpenPage(page.replace(/^\/|\/$/g, ''));
 		}
     });
 
@@ -58,6 +58,7 @@ window.onpopstate = function(e) {
 		ClosePage(currentPage, false);
 		e.preventDefault();
 	} else {
+		page = page.replace(/^\/|\/$/g, '');
 		if($('#' + page).length == 0) OpenPage(page, false);
 	}
 }
@@ -81,7 +82,7 @@ function OpenPage(page, popState) {
     $('.loading').css("top", ($(window).innerHeight() - $('.loading').innerHeight()) / 2 + $(window).scrollTop() + "px");
     $('.loading').css("left", ($(window).innerWidth() - $('.loading').innerWidth()) / 2 + $(window).scrollLeft() + "px");
     $.ajax({
-        url: location.protocol + "//" + location.hostname + "/api/getPage/" + page
+        url: "/api/getPage/" + page
     }).done(function(data) {
         $('body').append('<div class="page" id="' + page + '"></div>');
         $('#' + page).html(data);
@@ -122,11 +123,12 @@ function OpenPage(page, popState) {
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
         $('#' + page).css("left", ($(window).innerWidth() - $('#' + page).innerWidth()) / 2 + $(window).scrollLeft() + "px");
         $('.loading').remove();
-    }).complete(function() {
+    }).always(function() {
 		var pageTitle = $(".page h1").html();
 		document.title = pageTitle + " :: " + document.title;
 		if (popState) {
 			history.pushState(null, "", page + hash);
+			_paq.push(['setDocumentTitle', document.title]);
 			_paq.push(['trackPageView', window.location.href]);
 		}
 	});
@@ -141,6 +143,7 @@ function ClosePage(previousPage, popState) {
     $(".printable").remove();
     if (popState) {
 		history.pushState(null, "", previousPage + hash);
+		_paq.push(['setDocumentTitle', document.title]);
 		_paq.push(['trackPageView', window.location.href]);
 	}
 }
