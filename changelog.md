@@ -1,13 +1,14 @@
 # Changelog JeroenED.be
 
 ## Scrumreport 2016-06
-Deze maand is de laatste commit gedaan voor het afwerken van het archief. Meer bepaald het toevoegen van het archief aan het administratiepaneel. Daarnaast is er ook een probleem opgelost waarbij pagina's heropent werden na het sliden door de presentatie.
+Deze maand is de laatste commit gedaan voor het afwerken van het archief. Meer bepaald het toevoegen van het archief aan het administratiepaneel. Dan is er ook een aanpassing op de mainpage waarbij de paginatitel van een pagina op de titelbalk verschijnt bij het openen. Daarnaast is er ook een probleem opgelost waarbij pagina's heropent werden na het sliden door de presentatie.
 
 ### Issues
 * #14: Page is loaded over and over again when sliding through presentation
 
 ### Nieuwe functies
 * Archief-weergave in administratiepaneel
+* Pagina-titel in titelbalk.
 
 ### Belangrijke wijzigingen
 * (none)
