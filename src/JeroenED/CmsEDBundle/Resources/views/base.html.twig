@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
         {% endstylesheets %}
 		
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script src="//cdn.ckeditor.com/4.5.8/full/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
 		{% javascripts filter="?jsqueeze" output="js/cmsed.js"
             "bundles/jeroenedcmsed/js/cmsed.js"
         %}
@@ -32,11 +32,11 @@
                 <img src="/bundles/jeroenedcmsed/images/logo.png" alt="CmsED" id="logo">
             </header>
             <div id="meta">
-                <p>Hello {{ init.user }}, <a href="/logout">log out</a></p>
+                <p>Hello {{ user }}, <a href="/logout">log out</a></p>
             </div>
             <nav>
                 <ul>
-                    {% for leftnav in init.leftnav %}
+                    {% for leftnav in menus.leftnav %}
                         <li><a href="{{ leftnav.link }}">{{ leftnav.label }}</a></li>
                     {% endfor %}
                 </ul>
@@ -44,7 +44,7 @@
             <div id="content" class="clearfix">
                 <div id="contentnav">
                     <ul>
-                        {% for nav in init.uppernav %}
+                        {% for nav in menus.uppernav %}
                         <li{% if 'active' in nav|keys %} class="active"{% endif %}><a href="{{ nav.link }}">{{ nav.label }}</a></li>
                         {% endfor %}
                     </ul>
