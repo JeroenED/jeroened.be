@@ -134,9 +134,9 @@ class PortfolioController extends Controller  {
     /**
      * @Route("/admin/portfolio/rankupdate", name="portfolio_ranks", defaults={ "id" = "-1"})
      */
-    public function rankAction(Request $request, $returnurl) {
+    public function rankAction(Request $request) {
         $ranks = json_decode($request->request->get('ranks'), true);
-        $returnurl = $request->request->get('returnurl');
+        $returnurl = $request->request->get('returnurl') ? $request->request->get('returnurl') : 'portfolio_index';
         $db = $this->getDoctrine()->getManager();
         foreach($ranks as $key=>$value) {
             $item = $db->getRepository('JeroenEDPortfolioBundle:PortfolioItem')->find($key);
