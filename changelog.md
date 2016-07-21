@@ -1,5 +1,17 @@
 # Changelog JeroenED.be
 
+## Scrumreport 2016-07
+Een kleine update deze maand. Het belangrijkste deze maand is dat gitlab-ci is geïntegreerd en volledig actief. Deze release is dan ook via CI gedeployed.
+
+### Issues
+* #??: Could not update order of portfolio.
+
+### Nieuwe functies
+* CI
+
+### Belangrijke wijzigingen
+* Deployment gebeurt nu via CI.
+
 ## Scrumreport 2016-06
 Deze maand is de laatste commit gedaan voor het afwerken van het archief. Meer bepaald het toevoegen van het archief aan het administratiepaneel. Dan is er ook een aanpassing op de mainpage waarbij de paginatitel van een pagina op de titelbalk verschijnt bij het openen. Daarnaast is er ook een probleem opgelost waarbij pagina's heropent werden na het sliden door de presentatie.
 
