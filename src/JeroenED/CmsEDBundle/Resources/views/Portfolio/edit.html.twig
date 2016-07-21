@@ -73,6 +73,10 @@ $(document).ready(function() {
     $('.addPage').click(function() {
         $('form[name=portfolio_page]').css('display', 'block');
         $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
+        CKEDITOR.instances.portfolio_page_html.destroy();
+        url = "/bundles/jeroenedportfolio/images/background.png";
+        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
+        loadCKeditor('portfolio_page[html]', 'reveal');
     });
     $('#portfolio_page_background').click(function() {
         openKCFinder_singleFile();
