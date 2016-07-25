@@ -40,13 +40,13 @@ class LoadUserData implements FixtureInterface{
         $dbItems[$it] = new PortfolioItem();
         $dbItems[$it]->setTitle("Other examples");
         $dbItems[$it]->setArchived(false);
-        $dbItems[$it]->setPages('[{"ShowTitle":true,"Slug":"background-example","Html":"<p style=\"color:#000000;\">You can change the background<\/p>","Background":"/bundles/jeroenedportfolio/images/brushed.png"},{"ShowTitle":true,"Slug":"html-example","Html":"<p>You can use <strong>all<\/strong> HTML <em>you<\/em> like.<\/p> <ul><li>Even bullets,<ol><li>Nested lists<\/li><li>and numbers<\/li>/<ol><\/li><\/p>"},{"ShowTitle":true,"Slug":"notitle-example","Html":"<p>Check this out! No title!<\/p>"}]');      
+        $dbItems[$it]->setPages('[{"ShowTitle":false,"Slug":"background-example","Html":"<h1 style=\"color:#000000\">Other examples<\/h1><p style=\"color:#000000;\">You can change the background<\/p>","Background":"/bundles/jeroenedportfolio/images/brushed.png"},{"ShowTitle":true,"Slug":"html-example","Html":"<p>You can use <strong>all<\/strong> HTML <em>you<\/em> like.<\/p> <ul><li>Even bullets,<ol><li>Nested lists<\/li><li>and numbers<\/li><ol><\/li><\/p>"},{"ShowTitle":false,"Slug":"notitle-example","Html":"<p>Check this out! No title!<\/p>"}]');      
         $dbItems[$it]->setRank(3);
                 
         $it++; // Archived
         $dbItems[$it] = new PortfolioItem();
         $dbItems[$it]->setTitle("Archived example");
-        $dbItems[$it]->setArchived(false);
+        $dbItems[$it]->setArchived(true);
         $dbItems[$it]->setPages('[{"ShowTitle":true,"Slug":"archived-example","Html":"<p>By assigning the archived flag the item is not visible on the main page.<\/p>","Background":""}]');
         $dbItems[$it]->setRank(4);
         
@@ -54,7 +54,7 @@ class LoadUserData implements FixtureInterface{
         $dbItems[$it] = new Page();
         $dbItems[$it]->setTitle('Help');
         $dbItems[$it]->setSlug('help');
-        $dbItems[$it]->SetHtml('<p>Pages are displayed using a sort-of popup and are loaded through ajax.</p><p>Links to <a href="/example2">other pages</a> are subsequently loaded through ajax and displayed in a popup.</p><p>links to <a href="http://www.duckduckgo.com</a>other sites</a> are loaded in a new window or tab.<p><ul><li>Design: Jeroen De Meerleer</li><li>Development: Jeroen De Meerleer</li></ul><h2>Gebruikte libraries</h2><ul><li><a href="http://lab&#x2E;hakim&#x2E;se/reveal&#x2D;js/" target="&#x5F;blank">Reveal&#x2E;js</a></li><li><a href="http://jquery&#x2E;com/" target="&#x5F;blank">jQuery</a></li><li><a href="http://www&#x2E;google&#x2E;com/analytics/" target="&#x5F;blank">Google Analytics</a></li><li><a href="https://github&#x2E;com/malihu/malihu&#x2D;custom&#x2D;scrollbar&#x2D;plugin" target="&#x5F;blank">jQuery custom content scroller</a></li><li><a href="http://symfony&#x2E;com" target="&#x5F;blank">Symfony Framework</a></li></ul><h2>Credits</h2><ul><li>Standaard achtergrond: <a href="http://subtlepatterns&#x2E;com/" target="&#x5F;blank">Subtle Patterns</a></li><li>Iconen: <a href="http://iconmonstr&#x2E;com/" target="&#x5F;blank">Iconmonstr</a></li><li>Lettertype: <a href="https://www&#x2E;google&#x2E;com/fonts/specimen/Source+Sans+Pro" target="&#x5F;blank">Source Sans Pro</a></li></ul><p><a href="http://status&#x2E;jeroened&#x2E;be/">Check de server&#x2D;status</a></p><p><a href="/archive">Gearchiveerde items</a></p>');
+        $dbItems[$it]->SetHtml('<p>Pages are displayed using a sort-of popup and are loaded through ajax.</p><p>Links to <a href="/example2">other pages</a> are subsequently loaded through ajax and displayed in a popup.</p><p>links to <a href="http://www.duckduckgo.com">other sites</a> are loaded in a new window or tab.<p><ul><li>Design: Jeroen De Meerleer</li><li>Development: Jeroen De Meerleer</li></ul><h2>Gebruikte libraries</h2><ul><li><a href="http://lab&#x2E;hakim&#x2E;se/reveal&#x2D;js/" target="&#x5F;blank">Reveal&#x2E;js</a></li><li><a href="http://jquery&#x2E;com/" target="&#x5F;blank">jQuery</a></li><li><a href="http://www&#x2E;google&#x2E;com/analytics/" target="&#x5F;blank">Google Analytics</a></li><li><a href="https://github&#x2E;com/malihu/malihu&#x2D;custom&#x2D;scrollbar&#x2D;plugin" target="&#x5F;blank">jQuery custom content scroller</a></li><li><a href="http://symfony&#x2E;com" target="&#x5F;blank">Symfony Framework</a></li></ul><h2>Credits</h2><ul><li>Standaard achtergrond: <a href="http://subtlepatterns&#x2E;com/" target="&#x5F;blank">Subtle Patterns</a></li><li>Iconen: <a href="http://iconmonstr&#x2E;com/" target="&#x5F;blank">Iconmonstr</a></li><li>Lettertype: <a href="https://www&#x2E;google&#x2E;com/fonts/specimen/Source+Sans+Pro" target="&#x5F;blank">Source Sans Pro</a></li></ul><p><a href="http://status&#x2E;jeroened&#x2E;be/">Check de server&#x2D;status</a></p><p><a href="/archive">Gearchiveerde items</a></p>');
         
         $it++; // Help menu
         $dbItems[$it] = new MenuItem();
