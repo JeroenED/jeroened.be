@@ -92,8 +92,13 @@ function OpenPage(page, popState) {
         $('#' + page).css("max-height", $(window).innerHeight() - 100 + "px");
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");
         if (!$('#' + page).hasClass("mCustomScrollbar")) {
-            $('#' + page).append('<img src="/bundles/jeroenedportfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
             $('#' + page).mCustomScrollbar();
+            $.ajax({
+                url: '/' + page + '/download'
+            }).done(function() {
+                $('#' + page).append('<a href="/'+ page + '/download" target="_blank"><img src="/bundles/jeroenedportfolio/images/download.png" alt="download" class="downbtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 26px;"></a>')
+            });
+            $('#' + page).append('<img src="/bundles/jeroenedportfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
             var closebutton = $(".closebtn");
         }
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
