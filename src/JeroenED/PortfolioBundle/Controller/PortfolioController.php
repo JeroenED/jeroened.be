@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PortfolioController extends Controller
 {
@@ -78,5 +79,19 @@ class PortfolioController extends Controller
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
         return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu));
+    }
+    
+    
+    /**
+     * @Route("/{slug}/download")
+     */
+    public function pageDownloadAction($slug) {
+        if($slug == 'none') throw new NotFoundHttpException('Page not found');
+                
+        $page = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:Page')->findOneBy(array("slug" => $slug), array());
+        /*var_dump($page);
+        exit;*/
+        if ($page == null || $page->getDownload() == null) throw new NotFoundHttpException('Page not found');
+        return $this->redirect($page->getDownload());
     }
 }

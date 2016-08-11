@@ -18,6 +18,7 @@ class PageType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('title', TextType::Class, array('label' => 'Title'));
+        $builder->add('download', TextType::Class, array('label' => 'Download','attr' => array('class' => 'openkcfinder')));
         $builder->add('html', TextareaType::Class, array('label' => 'Html'));
         $builder->add('slug', TextType::Class, array('label' => 'Slug'));
     }

@@ -10,6 +10,7 @@
 {% endif %}
 
 <p>{{ form_label(form.title) }}{{form_widget(form.title)}}</p>
+<p>{{ form_label(form.download) }}{{form_widget(form.download)}}</p>
 <p>{{form_widget(form.html)}}</p>
 <p>{{ form_label(form.slug) }}{{form_widget(form.slug)}}</p>
 <p>{{ form_widget(form.register)}}</p>
@@ -21,6 +22,20 @@
     <script type="text/javascript">
         $(document).ready(function () {
             loadCKeditor('page[html]', 'page');
+            
+            $('#page_download').click(function() {
+                openKCFinder_singleFile();
+            });
         } );
+        
+        function openKCFinder_singleFile() {
+            window.KCFinder = {};
+            window.KCFinder.callBack = function(url) {
+                $('.openkcfinder').val(url);
+                window.KCFinder = null;
+                url = $('#page_download').val();
+            };
+            window.open('/admin/kcfinder/browse.php?type=files&opener=custom', 'kcfinder_single', "width=1280, height=720");
+        }
     </script>
 {% endblock %}
