@@ -90,7 +90,7 @@ class Page {
      */
     public function setDownload($download)
     {
-        $this->Download = $download;
+        $this->download = $download;
 
         return $this;
     }
