@@ -146,6 +146,24 @@ $(document).ready(function() {
         }
     });
     
+    $("body").on("click", "#portfolio_register", function (e) {
+        if ($('form[name=portfolio_page]').css('display') == "block") {
+            $('#dialog').html('The open page is not saved. Are you sure you want to submit this item anyway?');
+            e.preventDefault();
+            $("#dialog").dialog({
+                buttons: {
+                    "Save anyway": function() {
+                        document.forms["portfolio"].submit();
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#dialog").dialog("open");
+        }
+    });
     $(document).ready(function() {
         var fixHelperModified = function(e, tr) {
             var $originals = tr.children();
