@@ -14,4 +14,4 @@ lib_kcfinder:
 
 elfinder:
     resource: "@FMElfinderBundle/Resources/config/routing.yml"
-    prefix: /
+    prefix: /admin

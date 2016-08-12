@@ -1,10 +1,11 @@
 CKEDITOR.editorConfig = function(config) {
-   config.filebrowserBrowseUrl = '/admin/kcfinder/browse.php?opener=ckeditor&type=files';
-   config.filebrowserImageBrowseUrl = '/admin/kcfinder/browse.php?opener=ckeditor&type=images';
-   config.filebrowserFlashBrowseUrl = '/admin/kcfinder/browse.php?opener=ckeditor&type=flash';
-   config.filebrowserUploadUrl = '/admin/kcfinder/upload.php?opener=ckeditor&type=files';
-   config.filebrowserImageUploadUrl = '/admin/kcfinder/upload.php?opener=ckeditor&type=images';
-   config.filebrowserFlashUploadUrl = '/admin/kcfinder/upload.php?opener=ckeditor&type=flash';
+   config.filebrowserBrowseUrl = '/admin/elfinder?mode=files';
+   config.filebrowserImageBrowseUrl = '/admin/elfinder?mode=image';
+   config.filebrowserFlashBrowseUrl = '/admin/elfinder?mode=flash';
+   config.filebrowserImageWindowWidth = '950',
+   config.filebrowserImageWindowHeight ='520',
+   config.filebrowserWindowWidth = '950',
+   config.filebrowserWindowHeight = '520',
    config.allowedContent = true;
    config.contentsCss = [ '/css/app.css', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' ];
 };
