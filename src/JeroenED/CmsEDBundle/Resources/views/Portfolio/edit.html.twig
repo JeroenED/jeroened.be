@@ -72,6 +72,7 @@ $(document).ready(function() {
     });
     $('.addPage').click(function() {
         $('form[name=portfolio_page]').css('display', 'block');
+        $("#portfolio_page_register").html("Add page");
         $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
         CKEDITOR.instances.portfolio_page_html.destroy();
         url = "/bundles/jeroenedportfolio/images/background.png";
@@ -116,6 +117,7 @@ $(document).ready(function() {
                 $("#portfolio_page_slug").val(pages[index].Slug);
                 $("#portfolio_page_background").val(pages[index].Background);
                 $("#portfolio_page_html").val(pages[index].Html);
+                $("#portfolio_page_register").html("Update page");
                 CKEDITOR.instances.portfolio_page_html.setData(pages[index].Html);
                 $("#portfolio_page_showtitle")[0].checked = pages[index].ShowTitle;
                 $("#portfolio_page_index").val(index);
