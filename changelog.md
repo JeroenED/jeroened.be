@@ -16,6 +16,7 @@ Op code-vlak is er een belangrijke wijziging gebeurt waarbij het nu mogelijk is 
 ### Verbeteringen
 * #16: Confirming a portfolio edit while a page is open should give a warning
 * #18: Button for updating a portfoliopage should be modified according to situation
+* #19: Drop html5shiv from base code 
 
 ### Off-code wijzigingen
 * Gitlab meer betrokken bij ontwikkelingsproces
