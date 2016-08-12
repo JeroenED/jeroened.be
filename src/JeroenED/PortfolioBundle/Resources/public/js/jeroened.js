@@ -1,4 +1,4 @@
-var pages = new Array("/", "/archive", "/changelog");
+var pages = new Array("/", "/archive", "/changelog", "/download");
 var currentPage = getCurrentPage();
 $(document).ready(function() {
     $("nav").click(function() {
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
     $('body').on('click', "a[href^='/']", function(e) {
 		var page = $(this).attr('href');
-		if(pages.indexOf(page) == -1)
+		if(pages.indexOf(page) == -1 && page.indexOf("/download") == -1)
 		{  
 			e.preventDefault();
 			OpenPage(page.replace(/^\/|\/$/g, ''));
