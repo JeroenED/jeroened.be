@@ -11,3 +11,7 @@ jeroen_ed_portfolio:
 lib_kcfinder: 
     resource: "@libKCFinderBundle/Resources/config/routing.yml" 
     prefix: /
+
+elfinder:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    prefix: /

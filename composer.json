@@ -30,7 +30,8 @@
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "symfony/assetic-bundle": "^2.7",
         "leafo/scssphp": "^0.6.3",
-        "patchwork/jsqueeze": "~1.0"
+        "patchwork/jsqueeze": "~1.0",
+        "helios-ag/fm-elfinder-bundle": "~6"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -57,7 +58,8 @@
     "config": {
         "platform": {
             "php": "5.5.9"
-        }
+        },
+        "component-dir": "web/assets"
     },
     "extra": {
         "symfony-app-dir": "app",
