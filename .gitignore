@@ -18,6 +18,7 @@ src/JeroenED/PortfolioBundle/Resources/public/.thumbs/
 /web/bundles/*
 /web/css
 /web/js
+/web/assets/*
 
 ## Symfony shizzle
 /var/bootstrap.php.cache
