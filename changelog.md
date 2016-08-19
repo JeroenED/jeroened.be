@@ -1,11 +1,14 @@
 # Changelog JeroenED.be
 
-## Changelog 2016-09
-Door mijn vakantie in Augustus was er geen update in Augustus. Daarom vliegen we direct naar de update voor September.
+## Changelog 2016-08
+
+Nieuwe maand, nieuwe update.
 
 Er zijn wat wijzigingen gebeurt buiten de code om. Zo zal nu elke wijziging als een issue worden vermeld in de Issue-tracker in Gitlab en zijn de nodige tags hiervoor gecreëerd. Ook ben ik terug beginnen gebruik te maken van milestones.
 
 Op code-vlak is er een belangrijke wijziging gebeurt waarbij het nu mogelijk is om een relevante download mee te geven. Op een contact-pagina kan dit bijvoorbeeld een PGP-key zijn, of op de resume-pagina een PDF-versie van de resume.
+
+Daarnaast is een opvallende wijziging dat kcfinder eruit geknikkerd is en vervangen is door het beheerbaardere ElFinder.
 
 ### Bugs
 * (none)
@@ -17,6 +20,7 @@ Op code-vlak is er een belangrijke wijziging gebeurt waarbij het nu mogelijk is 
 * #16: Confirming a portfolio edit while a page is open should give a warning
 * #18: Button for updating a portfoliopage should be modified according to situation
 * #19: Drop html5shiv from base code 
+* #20: Replacing KcFinder 
 
 ### Off-code wijzigingen
 * Gitlab meer betrokken bij ontwikkelingsproces
