@@ -77,11 +77,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-
-lib_kc_finder:
-    upload_url: "/bundles/jeroenedportfolio"
-    upload_dir: "%kernel.root_dir%/../web/bundles/jeroenedportfolio"
-
 fm_elfinder:
     #assets_path: / # default is /assets, this is where css/js elfinder files are
     instances:

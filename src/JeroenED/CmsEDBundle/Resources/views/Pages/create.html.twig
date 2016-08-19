@@ -24,18 +24,29 @@
             loadCKeditor('page[html]', 'page');
             
             $('#page_download').click(function() {
-                openKCFinder_singleFile();
+
+                $('body').append('<div id="elfinder"></div>');
+                $("#elfinder").css("position", "fixed");
+                var height = ($(window).innerHeight() - 520) / 2;
+                var width = ($(window).innerWidth() - 1280) / 2;
+                $("#elfinder").css("top", height + "px");
+                $("#elfinder").css("left", width + "px");
+                $("#elfinder").css("z-index", 10);
+                $("body").append('<div id="overlay"></div>');
+
+                var f = $('#elfinder').elfinder({
+                    url : '{{ path('ef_connect') }}',
+                    height: 520,
+                    width: 1280,
+                    closeOnEditorCallback: true,
+                    getFileCallback: function(url) {
+                        $('#page_download').val('/bundles/jeroenedportfolio/' + url.path);
+                        $('#elfinder').remove();  //remove Elfinder
+                        $('#overlay').remove();
+                    }
+                }).elfinder('instance');
             });
         } );
         
-        function openKCFinder_singleFile() {
-            window.KCFinder = {};
-            window.KCFinder.callBack = function(url) {
-                $('.openkcfinder').val(url);
-                window.KCFinder = null;
-                url = $('#page_download').val();
-            };
-            window.open('/admin/kcfinder/browse.php?type=files&opener=custom', 'kcfinder_single', "width=1280, height=720");
-        }
     </script>
 {% endblock %}
