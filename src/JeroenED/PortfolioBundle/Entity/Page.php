@@ -28,6 +28,12 @@ class Page {
      * @ORM\Column(type="string", length=50)
      */
     protected $title;
+
+    /**
+     *
+     * @ORM\Column(type="string", length=250, nullable=true)
+     */
+    protected $download;
     
     /**
      *
@@ -74,6 +80,29 @@ class Page {
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set download
+     *
+     * @param string $download
+     * @return Page
+     */
+    public function setDownload($download)
+    {
+        $this->download = $download;
+
+        return $this;
+    }
+
+    /**
+     * Get download
+     *
+     * @return string 
+     */
+    public function getDownload()
+    {
+        return $this->download;
     }
 
     /**

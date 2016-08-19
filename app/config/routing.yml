@@ -8,6 +8,6 @@ jeroen_ed_portfolio:
     type:     annotation
     prefix:   /
 
-lib_kcfinder: 
-    resource: "@libKCFinderBundle/Resources/config/routing.yml" 
-    prefix: /
+elfinder:
+    resource: "@FMElfinderBundle/Resources/config/routing.yml"
+    prefix: /admin
