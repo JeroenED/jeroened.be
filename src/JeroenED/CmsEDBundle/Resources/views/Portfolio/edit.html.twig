@@ -48,20 +48,6 @@
 
 {% block javascript %}
     <script type="text/javascript">
-function openKCFinder_singleFile() {
-    window.KCFinder = {};
-    window.KCFinder.callBack = function(url) {
-        $('.openkcfinder').val(url);
-        window.KCFinder = null;
-        url = $('#portfolio_page_background').val();
-        CKEDITOR.instances.portfolio_page_html.destroy();
-        if(!UrlExists(url)) { url = "/bundles/jeroenedportfolio/images/background.png"; }
-        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
-        loadCKeditor('portfolio_page[html]');
-
-    };
-    window.open('/admin/kcfinder/browse.php?type=images&opener=custom', 'kcfinder_single', "width=1280, height=720");
-}
 $(document).ready(function() {
     $('body').on('focusout', '#portfolio_page_background', function() {
         url = $('#portfolio_page_background').val();
@@ -72,6 +58,7 @@ $(document).ready(function() {
     });
     $('.addPage').click(function() {
         $('form[name=portfolio_page]').css('display', 'block');
+        $("#portfolio_page_register").html("Add page");
         $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
         CKEDITOR.instances.portfolio_page_html.destroy();
         url = "/bundles/jeroenedportfolio/images/background.png";
@@ -79,7 +66,31 @@ $(document).ready(function() {
         loadCKeditor('portfolio_page[html]', 'reveal');
     });
     $('#portfolio_page_background').click(function() {
-        openKCFinder_singleFile();
+        $('body').append('<div id="elfinder"></div>');
+        $("#elfinder").css("position", "fixed");
+        var height = ($(window).innerHeight() - 520) / 2;
+        var width = ($(window).innerWidth() - 1280) / 2;
+        $("#elfinder").css("top", height + "px");
+        $("#elfinder").css("left", width + "px");
+        $("#elfinder").css("z-index", 10);
+        $("body").append('<div id="overlay"></div>');
+
+        var f = $('#elfinder').elfinder({
+            url : '{{ path('ef_connect') }}',
+            height: 520,
+            width: 1280,
+            closeOnEditorCallback: true,
+            getFileCallback: function(url) {
+                $('#portfolio_page_background').val('/bundles/' + url.path);
+                $('#elfinder').remove();  //remove Elfinder    
+                var urlpath = $('#portfolio_page_background').val();
+                CKEDITOR.instances.portfolio_page_html.destroy();
+                if(!UrlExists(urlpath)) { urlpath = "/bundles/jeroenedportfolio/images/background.png"; }
+                CKEDITOR.addCss('.cke_editable{ background-image: url("' + urlpath + '"); background-position: center top; }');
+                loadCKeditor('portfolio_page[html]');
+                $('#overlay').remove();
+            }
+        }).elfinder('instance');
     });
     $('#portfolio_page_register').click(function() {
         var newObject = {
@@ -116,6 +127,7 @@ $(document).ready(function() {
                 $("#portfolio_page_slug").val(pages[index].Slug);
                 $("#portfolio_page_background").val(pages[index].Background);
                 $("#portfolio_page_html").val(pages[index].Html);
+                $("#portfolio_page_register").html("Update page");
                 CKEDITOR.instances.portfolio_page_html.setData(pages[index].Html);
                 $("#portfolio_page_showtitle")[0].checked = pages[index].ShowTitle;
                 $("#portfolio_page_index").val(index);
@@ -157,6 +169,24 @@ $(document).ready(function() {
        }
     });
     
+    $("body").on("click", "#portfolio_register", function (e) {
+        if ($('form[name=portfolio_page]').css('display') == "block") {
+            $('#dialog').html('The open page is not saved. Are you sure you want to submit this item anyway?');
+            e.preventDefault();
+            $("#dialog").dialog({
+                buttons: {
+                    "Save anyway": function() {
+                        document.forms["portfolio"].submit();
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#dialog").dialog("open");
+        }
+    });
     var fixHelperModified = function(e, tr) {
         var $originals = tr.children();
         var $helper = tr.clone();

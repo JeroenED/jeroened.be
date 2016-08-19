@@ -10,6 +10,7 @@
 {% endif %}
 
 <p>{{ form_label(form.title) }}{{form_widget(form.title)}}</p>
+<p>{{ form_label(form.download) }}{{form_widget(form.download)}}</p>
 <p>{{form_widget(form.html)}}</p>
 <p>{{ form_label(form.slug) }}{{form_widget(form.slug)}}</p>
 <p>{{ form_widget(form.register)}}</p>
@@ -21,6 +22,31 @@
     <script type="text/javascript">
         $(document).ready(function () {
             loadCKeditor('page[html]', 'page');
+            
+            $('#page_download').click(function() {
+
+                $('body').append('<div id="elfinder"></div>');
+                $("#elfinder").css("position", "fixed");
+                var height = ($(window).innerHeight() - 520) / 2;
+                var width = ($(window).innerWidth() - 1280) / 2;
+                $("#elfinder").css("top", height + "px");
+                $("#elfinder").css("left", width + "px");
+                $("#elfinder").css("z-index", 10);
+                $("body").append('<div id="overlay"></div>');
+
+                var f = $('#elfinder').elfinder({
+                    url : '{{ path('ef_connect') }}',
+                    height: 520,
+                    width: 1280,
+                    closeOnEditorCallback: true,
+                    getFileCallback: function(url) {
+                        $('#page_download').val('/bundles/' + url.path);
+                        $('#elfinder').remove();  //remove Elfinder
+                        $('#overlay').remove();
+                    }
+                }).elfinder('instance');
+            });
         } );
+        
     </script>
 {% endblock %}
