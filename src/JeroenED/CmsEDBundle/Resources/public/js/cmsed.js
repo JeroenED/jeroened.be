@@ -19,9 +19,12 @@ $(document).ready(function() {
 		});
 		$("#dialog").dialog("open");
 	});
-	$("nav").height($(document).height() - 150);
-});
 
+
+	setInterval(function() {
+		$("nav").height($(document).height() - 150);
+	}, 500)
+});
 
 function loadCKeditor(instance, style) {
     CKEDITOR.replace( instance, {
