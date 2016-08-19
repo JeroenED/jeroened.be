@@ -45,19 +45,6 @@
 
 {% block javascript %}
     <script type="text/javascript">
-function openKCFinder_singleFile() {
-    window.KCFinder = {};
-    window.KCFinder.callBack = function(url) {
-        $('.openkcfinder').val(url);
-        window.KCFinder = null;
-        url = $('#portfolio_page_background').val();
-        CKEDITOR.instances.portfolio_page_html.destroy();
-        if(!UrlExists(url)) { url = "/bundles/jeroenedportfolio/images/background.png"; }
-        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
-        loadCKeditor('portfolio_page[html]',  'reveal');
-    };
-    window.open('/admin/kcfinder/browse.php?type=images&opener=custom', 'kcfinder_single', "width=1280, height=720");
-}
 $(document).ready(function() {
     $('.addPage').click(function() {
         $('form[name=portfolio_page]').css('display', 'block');
@@ -69,7 +56,31 @@ $(document).ready(function() {
         loadCKeditor('portfolio_page[html]',  'reveal');
     });
     $('#portfolio_page_background').click(function() {
-        openKCFinder_singleFile();
+        $('body').append('<div id="elfinder"></div>');
+        $("#elfinder").css("position", "fixed");
+        var height = ($(window).innerHeight() - 520) / 2;
+        var width = ($(window).innerWidth() - 1280) / 2;
+        $("#elfinder").css("top", height + "px");
+        $("#elfinder").css("left", width + "px");
+        $("#elfinder").css("z-index", 10);
+        $("body").append('<div id="overlay"></div>');
+
+        var f = $('#elfinder').elfinder({
+            url : '{{ path('ef_connect') }}',
+            height: 520,
+            width: 1280,
+            closeOnEditorCallback: true,
+            getFileCallback: function(url) {
+                $('#portfolio_page_background').val('/bundles/' + url.path);
+                $('#elfinder').remove();  //remove Elfinder    
+                var urlpath = $('#portfolio_page_background').val();
+                CKEDITOR.instances.portfolio_page_html.destroy();
+                if(!UrlExists(urlpath)) { urlpath = "/bundles/jeroenedportfolio/images/background.png"; }
+                CKEDITOR.addCss('.cke_editable{ background-image: url("' + urlpath + '"); background-position: center top; }');
+                loadCKeditor('portfolio_page[html]');
+                $('#overlay').remove();
+            }
+        }).elfinder('instance');
     });
     $('#portfolio_page_register').click(function() {
         var newObject = {
