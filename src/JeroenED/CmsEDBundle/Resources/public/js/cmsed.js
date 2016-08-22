@@ -20,10 +20,11 @@ $(document).ready(function() {
 		$("#dialog").dialog("open");
 	});
 
+   	$('nav').height($(document).height() - 150);
 
-	setInterval(function() {
-		$("nav").height($(document).height() - 150);
-	}, 500)
+    CKEDITOR.on('instanceReady', function(e) {
+    	$('nav').height($(document).height() - 150);
+    });
 });
 
 function loadCKeditor(instance, style) {
