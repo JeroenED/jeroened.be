@@ -170,7 +170,7 @@ nav {
 		background-color: #dcdcdc;
 		color: #1d1d1d;
 		box-sizing: border-box;
-			border-radius: 2px;
+		border-radius: 2px;
 	   }
 
 	   input[type=submit], button {
@@ -187,6 +187,9 @@ nav {
 			border-radius: 2px;
 	   }
 
+	   .openfilebrowser {
+	   	margin: 0 5px;
+	   }
 	   .col-label {
 		   width: 300px;
 	   }

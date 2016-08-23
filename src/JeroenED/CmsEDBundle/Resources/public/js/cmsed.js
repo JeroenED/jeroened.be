@@ -20,6 +20,7 @@ $(document).ready(function() {
 		$("#dialog").dialog("open");
 	});
 
+	$('.typefile').parent().append('<button type="button" class="openfilebrowser">Browse...</button>');
    	$('nav').height($(document).height() - 150);
 
     CKEDITOR.on('instanceReady', function(e) {

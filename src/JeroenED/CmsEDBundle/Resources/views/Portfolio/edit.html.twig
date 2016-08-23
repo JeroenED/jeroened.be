@@ -65,7 +65,7 @@ $(document).ready(function() {
         CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
         loadCKeditor('portfolio_page[html]', 'reveal');
     });
-    $('#portfolio_page_background').click(function() {
+    $('body').on('click', '.openfilebrowser', function() {
         $('body').append('<div id="elfinder"></div>');
         $("#elfinder").css("position", "fixed");
         var height = ($(window).innerHeight() - 520) / 2;
@@ -92,6 +92,15 @@ $(document).ready(function() {
             }
         }).elfinder('instance');
     });
+
+    $("body").on("focusout", "#portfolio_page_background", function() {
+    	var urlpath = $('#portfolio_page_background').val();
+        CKEDITOR.instances.portfolio_page_html.destroy();
+        if(!UrlExists(urlpath)) { urlpath = "/bundles/jeroenedportfolio/images/background.png"; }
+        CKEDITOR.addCss('.cke_editable{ background-image: url("' + urlpath + '"); background-position: center top; }');
+        loadCKeditor('portfolio_page[html]');
+    });
+    
     $('#portfolio_page_register').click(function() {
         var newObject = {
             Slug: $("#portfolio_page_slug").val(),
