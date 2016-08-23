@@ -87,7 +87,7 @@ $(document).ready(function() {
                 CKEDITOR.instances.portfolio_page_html.destroy();
                 if(!UrlExists(urlpath)) { urlpath = "/bundles/jeroenedportfolio/images/background.png"; }
                 CKEDITOR.addCss('.cke_editable{ background-image: url("' + urlpath + '"); background-position: center top; }');
-                loadCKeditor('portfolio_page[html]');
+                loadCKeditor('portfolio_page[html]', 'reveal');
                 $('#overlay').remove();
             }
         }).elfinder('instance');
@@ -98,7 +98,7 @@ $(document).ready(function() {
         CKEDITOR.instances.portfolio_page_html.destroy();
         if(!UrlExists(urlpath)) { urlpath = "/bundles/jeroenedportfolio/images/background.png"; }
         CKEDITOR.addCss('.cke_editable{ background-image: url("' + urlpath + '"); background-position: center top; }');
-        loadCKeditor('portfolio_page[html]');
+        loadCKeditor('portfolio_page[html]', 'reveal');
     });
     
     $('#portfolio_page_register').click(function() {
