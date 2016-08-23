@@ -49,13 +49,6 @@
 {% block javascript %}
     <script type="text/javascript">
 $(document).ready(function() {
-    $('body').on('focusout', '#portfolio_page_background', function() {
-        url = $('#portfolio_page_background').val();
-        CKEDITOR.instances.portfolio_page_html.destroy();
-        if(!UrlExists(url)) { url = "/bundles/jeroenedportfolio/images/background.png"; }
-        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
-        loadCKeditor('portfolio_page[html]', 'reveal');
-    });
     $('.addPage').click(function() {
         $('form[name=portfolio_page]').css('display', 'block');
         $("#portfolio_page_register").html("Add page");
@@ -65,6 +58,12 @@ $(document).ready(function() {
         CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
         loadCKeditor('portfolio_page[html]', 'reveal');
     });
+
+    $('body').on('click', '#overlay', function() {
+        $('#elfinder').remove();  //remove Elfinder
+        $('#overlay').remove();
+    });
+            
     $('body').on('click', '.openfilebrowser', function() {
         $('body').append('<div id="elfinder"></div>');
         $("#elfinder").css("position", "fixed");

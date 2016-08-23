@@ -56,6 +56,13 @@ $(document).ready(function() {
         CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
         loadCKeditor('portfolio_page[html]',  'reveal');
     });
+
+    
+    $('body').on('click', '#overlay', function() {
+        $('#elfinder').remove();  //remove Elfinder
+        $('#overlay').remove();
+    });
+            
     $('body').on('click', '.openfilebrowser', function() {
         $('body').append('<div id="elfinder"></div>');
         $("#elfinder").css("position", "fixed");

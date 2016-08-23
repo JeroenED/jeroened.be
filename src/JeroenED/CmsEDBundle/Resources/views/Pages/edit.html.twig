@@ -21,6 +21,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             loadCKeditor('page[html]', 'page');
+
+            $('body').on('click', '#overlay', function() {
+            	$('#elfinder').remove();  //remove Elfinder
+			    $('#overlay').remove();
+            });
             
             $('.openfilebrowser').click(function() {
 
