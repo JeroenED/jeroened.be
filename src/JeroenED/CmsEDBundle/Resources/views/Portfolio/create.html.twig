@@ -47,16 +47,26 @@
 {% block javascript %}
     <script type="text/javascript">
 $(document).ready(function() {
-    $('.addPage').click(function() {
-        $('form[name=portfolio_page]').css('display', 'block');
-        $("#portfolio_page_register").html("Add page");
-        $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
-        url = "/bundles/jeroenedportfolio/images/background.png";
-        CKEDITOR.instances.portfolio_page_html.destroy();
-        CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
-        loadCKeditor('portfolio_page[html]',  'reveal');
+    $('body').on('click', '.addPage', function() {
+        if($('form[name=portfolio_page]').css('display') == "block") {
+            $('#dialog').html('The open page is not saved yet. Are you sure you want to proceed?');
+            $("#dialog").dialog({
+                buttons: {
+                    "Confirm": function() {
+                        clearPage();
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+            $("#dialog").dialog("open");
+        } else {
+            clearPage();
+        }
+        
     });
-
     
     $('body').on('click', '#overlay', function() {
         $('#elfinder').remove();  //remove Elfinder
@@ -221,5 +231,21 @@ $(document).ready(function() {
     
     loadCKeditor('portfolio_page[html]', 'reveal');
 });
+
+function clearPage() {
+    $("#portfolio_page_slug").val('');
+    $("#portfolio_page_background").val('');
+    $("#portfolio_page_html").val('');
+    CKEDITOR.instances.portfolio_page_html.setData('');
+    $("#portfolio_page_showtitle")[0].checked = false;
+    $("#portfolio_page_index").val('');
+    $('form[name=portfolio_page]').css('display', 'block');
+    $("#portfolio_page_register").html("Add page");
+    $('nav').css("height", ($(document).innerHeight() - 150 + "px"));
+    url = "/bundles/jeroenedportfolio/images/background.png";
+    CKEDITOR.instances.portfolio_page_html.destroy();
+    CKEDITOR.addCss('.cke_editable{ background-image: url("' + url + '"); background-position: center top; }');
+    loadCKeditor('portfolio_page[html]',  'reveal');
+}
 </script>
 {% endblock %}
