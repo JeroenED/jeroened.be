@@ -70,7 +70,7 @@ class PortfolioController extends Controller  {
             return $this->redirectToRoute($returnurl, array('message' => 'Portfolioitem ' . $item->getTitle() . ' has been modified'));
             
         } else {
-            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'user' => $user, 'menus' => $menus, 'returnurl' => $returnurl));
+            return $this->render('JeroenEDCmsEDBundle:Portfolio:edit.html.twig', array('form' => $form->createView(), 'pageform' => $pageform->createView(), 'pages' => $pages, 'errors' => $form_errors,  'title' => 'Portfolio :: Modify ' . $item->getTitle(), 'user' => $user, 'menus' => $menus));
         }
     }
     
