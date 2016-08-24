@@ -4,7 +4,7 @@
 
 Omwille van de vele bugs die de voorbije dagen zijn ontdekt heb ik beslist om een tussentijdse release te doen met als naam "Bugs Bunny".
 
-Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs geplet, 1 verbetering aangebracht, en dan is er nog een project afgewerkt
+Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs geplet, 1 verbetering aangebracht, en dan zijn er nog 2 projecten afgewerkt
 
 ### Bugs
 * #21: Download field should not be required
@@ -16,7 +16,7 @@ Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs g
 * #28: Jquery-UI Broken
 
 ### Nieuwe functies
-* (none)
+* #30: Extend deploy.sh script with more options 
 
 ### Verbeteringen
 * #22: Add browse button to fields pointing to files (project)
