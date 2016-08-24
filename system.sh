@@ -40,9 +40,11 @@ case "${command}" in
 		git commit -m "Version Bump"
 		git checkout release
 		git merge master -m"${version} release"
+		git tag "${version}"
 		git push --force
 		git checkout master
 		git push --force
+		git push --tags
 
 		echo -e "\e[42m                                                 \e[49m"
 		echo -e "\e[42m   \e[1m[OK]\e[0m\e[42m                                          \e[49m"
