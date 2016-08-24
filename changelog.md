@@ -1,5 +1,29 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-08 (Bugs Bunny)
+
+Omwille van de vele bugs die de voorbije dagen zijn ontdekt heb ik beslist om een tussentijdse release te doen met als naam "Bugs Bunny".
+
+Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs geplet, 1 verbetering aangebracht, en dan zijn er nog 2 projecten afgewerkt
+
+### Bugs
+* #21: Download field should not be required
+* #23: Height of vertical navigation does not equal the document height 
+* #24: Design bug when moving a portfolio item 
+* #25: style not applied anymore when changing background of portfolioitem
+* #26: ElFinder not closable
+* #27: Add a page link when page is open does not clear current page
+* #28: Jquery-UI Broken
+
+### Nieuwe functies
+* #30: Extend deploy.sh script with more options 
+
+### Verbeteringen
+* #22: Add browse button to fields pointing to files (project)
+* #29: Updating order of menu is not intuitive
+
+### Off-code wijzigingen
+* (none)
 ## Changelog 2016-08
 
 Nieuwe maand, nieuwe update.

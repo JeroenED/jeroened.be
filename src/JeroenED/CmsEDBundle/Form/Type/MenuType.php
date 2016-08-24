@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 /**
  * Description of MenuType
@@ -19,7 +20,7 @@ class MenuType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('label', TextType::class, array('label' => 'Label'));
         $builder->add('destination', TextType::class, array('label' => 'Destination'));
-        $builder->add('rank', IntegerType::class, array('label' => 'Rank'));
+        $builder->add('rank', HiddenType::class);
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

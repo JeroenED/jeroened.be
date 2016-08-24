@@ -22,7 +22,7 @@ class PortfolioPageType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('slug', TextType::class, array('label' => 'Slug'));
         $builder->add('showtitle', CheckboxType::class, array('label' => 'Show title', 'required' => false));
-        $builder->add('background', TextType::class, array('label' => 'Background image', 'required' => false, 'attr' => array('class' => 'openkcfinder')));
+        $builder->add('background', TextType::class, array('label' => 'Background image', 'required' => false, 'attr' => array('class' => 'typefile')));
         $builder->add('html', TextareaType::class, array('label' => 'Html'));
         $builder->add('index', HiddenType::class);
     }

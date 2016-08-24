@@ -19,9 +19,14 @@ $(document).ready(function() {
 		});
 		$("#dialog").dialog("open");
 	});
-	$("nav").height($(document).height() - 150);
-});
 
+	$('.typefile').parent().append('<button type="button" class="openfilebrowser">Browse...</button>');
+   	$('nav').height($(document).height() - 150);
+
+    CKEDITOR.on('instanceReady', function(e) {
+    	$('nav').height($(document).height() - 150);
+    });
+});
 
 function loadCKeditor(instance, style) {
     CKEDITOR.replace( instance, {
