@@ -9,7 +9,7 @@
         <tr>
             <th>id</th>
             <th>title</th>
-            <th>action</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,10 +17,10 @@
             <tr>
                 <td class="col-id">{{ item.id }}</td>
                 <td class="col-label">{{ item.title }}</td>
-                <td>
+                <td class="col-actions">
                     <a href="{{ path('portfolio_edit', { 'id': item.id }) }}">edit</a> |
                     <a href="{{ path('portfolio_details', { 'id': item.id }) }}">details</a> |
-                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ item.title }}?" data-link="{{ path('portfolio_delete', { 'id': item.id }) }}???returnurl=portfolio_index">delete</a>
+                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ item.title }}?" data-link="{{ path('portfolio_delete', { 'id': item.id }) }}?returnurl=portfolio_index">delete</a>
                 </td>
             </tr>
         {% endfor %}

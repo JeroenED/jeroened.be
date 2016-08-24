@@ -9,7 +9,7 @@
         <tr>
             <th>id</th>
             <th>Label</th>
-            <th>action</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,4 +26,38 @@
         {% endfor %}
     </tbody>
 </table>
+<form action="{{ path('menu_ranks') }}" method="post">
+    <input type="hidden" name="ranks" id="ranks">
+    <input type="submit" id="ranks_submit" name="submit" value="Update order" style="display: none;">
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        var fixHelperModified = function(e, tr) {
+            var $originals = tr.children();
+            var $helper = tr.clone();
+            $helper.children().each(function(index) {
+                $(this).width($originals.eq(index).width())
+            });
+            return $helper;
+        },
+        updateIndex = function(e, ui) {
+            var ranks = {};
+            $('td.col-id', ui.item.parent()).each(function (i) {
+                i++;
+                ranks[$(this).html()] = i;
+            });
+            $('#ranks').val(JSON.stringify(ranks));
+            $("#ranks_submit").css('display', 'block');
+                };
+
+        $("table tbody").sortable({
+            helper: fixHelperModified,
+            stop: updateIndex
+        }).disableSelection();
+    });
+
+</script>
 {% endblock %}

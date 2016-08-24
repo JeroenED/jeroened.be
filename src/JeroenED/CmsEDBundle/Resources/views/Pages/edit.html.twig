@@ -21,8 +21,13 @@
     <script type="text/javascript">
         $(document).ready(function () {
             loadCKeditor('page[html]', 'page');
+
+            $('body').on('click', '#overlay', function() {
+            	$('#elfinder').remove();  //remove Elfinder
+			    $('#overlay').remove();
+            });
             
-            $('#page_download').click(function() {
+            $('.openfilebrowser').click(function() {
 
 			    $('body').append('<div id="elfinder"></div>');
 				$("#elfinder").css("position", "fixed");

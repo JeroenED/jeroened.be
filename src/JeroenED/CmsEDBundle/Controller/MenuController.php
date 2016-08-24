@@ -27,7 +27,7 @@ class MenuController extends Controller  {
         $menus = $initializer->getMenus($request);
         $message = $request->query->get('message') ? $request->query->get('message') : '';
         $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:MenuItem');
-        $menuitems = $repository->findAll();
+        $menuitems = $repository->findBy(array(), array('rank' => 'asc'));
         return $this->render("JeroenEDCmsEDBundle:Menu:index.html.twig", array('menuitems' => $menuitems, 'message' => $message, 'title' => 'Menus', 'user' => $user, 'menus' => $menus));
     }
     
@@ -92,6 +92,9 @@ class MenuController extends Controller  {
         
         $form_errors = $this->get('form_errors')->getArray($form, true);
         if($form->isValid()) {
+            $repository = $this->getDoctrine()->getRepository('JeroenEDPortfolioBundle:PortfolioItem');
+            $rank = count($repository->findAll())+1;
+            $menu->setRank($rank);
             $db->persist($menu);
             $db->flush();
             
@@ -100,5 +103,19 @@ class MenuController extends Controller  {
         } else {
             return $this->render('JeroenEDCmsEDBundle:Menu:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Menus :: Create new menu', 'user' => $user, 'menus' => $menus));
         }
+    }
+
+    /**
+     * @Route("/admin/menu/rankupdate", name="menu_ranks", defaults={ "id" = "-1"})
+     */
+    public function rankAction(Request $request) {
+        $ranks = json_decode($request->request->get('ranks'), true);
+        $db = $this->getDoctrine()->getManager();
+        foreach($ranks as $key=>$value) {
+            $item = $db->getRepository('JeroenEDPortfolioBundle:MenuItem')->find($key);
+            $item->setRank($value);
+        }
+        $db->flush();
+        return $this->redirectToRoute('menu_index', array('message' => 'The order has been updated'));
     }
 }
