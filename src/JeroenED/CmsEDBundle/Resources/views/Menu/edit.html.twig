@@ -11,8 +11,7 @@
 
 <p>{{ form_label(form.label) }}{{form_widget(form.label)}}</p>
 <p>{{ form_label(form.destination) }}{{form_widget(form.destination)}}</p>
-<p>{{ form_label(form.rank) }}{{form_widget(form.rank)}}</p>
-<p>{{ form_widget(form.register)}}</p>
+<p>{{ form_widget(form.register)}}{{form_widget(form.rank)}}</p>
 
 {{ form_end(form) }}
 {% endblock %}
