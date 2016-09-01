@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new JeroenED\CmsEDBundle\JeroenEDCmsEDBundle(),
             new FM\ElfinderBundle\FMElfinderBundle(),
+            new Scheb\TwoFactorBundle\SchebTwoFactorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
