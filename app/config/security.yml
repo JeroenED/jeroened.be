@@ -32,6 +32,7 @@ security:
             logout:
                 path:   /logout
                 target: /
+            user_checker: JeroenED.CmsED.user_checker
     
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
