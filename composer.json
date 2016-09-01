@@ -31,7 +31,8 @@
         "symfony/assetic-bundle": "^2.7",
         "leafo/scssphp": "^0.6.3",
         "patchwork/jsqueeze": "~1.0",
-        "helios-ag/fm-elfinder-bundle": "~6"
+        "helios-ag/fm-elfinder-bundle": "~6",
+        "scheb/two-factor-bundle": "~2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
