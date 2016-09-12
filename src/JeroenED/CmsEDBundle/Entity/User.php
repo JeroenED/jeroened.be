@@ -4,6 +4,7 @@ namespace JeroenED\CmsEDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 
 /**
  * Description of User
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="JeroenED\CmsEDBundle\Entity\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface, \Serializable, TwoFactorInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -44,6 +45,12 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var string $googleAuthenticatorSecret Stores the secret code
+     * @ORM\Column(type="string", length=16, nullable=true)
+     */
+    private $googleAuthenticatorSecret;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -71,6 +78,11 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         return array('ROLE_ADMIN');
+    }
+
+    public function getGoogleAuthenticatorSecret()
+    {
+        return $this->googleAuthenticatorSecret;
     }
 
     public function eraseCredentials()
@@ -124,6 +136,18 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     * Set googleAuthenticatorSecret
+     *
+     * @param string $googleAuthenticatorSecret
+     * @return User
+     */
+    public function setGoogleAuthenticatorSecret($googleAuthenticatorSecret)
+    {
+        $this->googleAuthenticatorSecret = $googleAuthenticatorSecret;
+
+        return $this;
+    }
     /**
      * Set password
      *

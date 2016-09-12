@@ -12,3 +12,5 @@ services:
         arguments: ["@security.token_storage"]
         tags:
             -  { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+    JeroenED.CmsED.user_checker:
+        class: JeroenED\CmsEDBundle\Security\UserChecker

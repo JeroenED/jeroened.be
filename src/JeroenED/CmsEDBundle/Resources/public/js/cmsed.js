@@ -21,6 +21,7 @@ $(document).ready(function() {
 	});
 
 	$('.typefile').parent().append('<button type="button" class="openfilebrowser">Browse...</button>');
+	$('.2factor').parent().append('<button type="button" class="factorrequest">New key</button>');
    	$('nav').height($(document).height() - 150);
 
     CKEDITOR.on('instanceReady', function(e) {

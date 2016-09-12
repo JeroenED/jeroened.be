@@ -3,6 +3,7 @@ namespace JeroenED\CmsEDBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use JeroenED\CmsEDBundle\Form\Type\UserType;
@@ -10,6 +11,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use JeroenED\CmsEDBundle\Initialize\Initializer;
 use JeroenED\CmsEDBundle\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use JeroenED\CmsEDBundle\Security\TwoFactor\Google\Helper;
 
 /**
  * Description of UserController
@@ -70,12 +72,12 @@ class UserController extends Controller{
      */
     public function detailsAction($id, Request $request) {
 		$initializer = new Initializer;
-        $user = $this->getUser()->getUsername();
-        $menus = $initializer->getMenus($request);
+        $cur_user = $this->getUser()->getUsername();
         $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
         $user = $db->getRepository('JeroenEDCmsEDBundle:User')->find($id);
-        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('userdetails' => $user,  'title' => 'Users :: Details of ' . $user->getUsername(), 'user' => $cur_user, 'menus' => $menus));
+        $url = $this->get("scheb_two_factor.security.google_authenticator")->getUrl($user);
+        return $this->render('JeroenEDCmsEDBundle:Users:details.html.twig', array('userdetails' => $user, 'google_url' => $url, 'title' => 'Users :: Details of ' . $user->getUsername(), 'user' => $cur_user, 'menus' => $menus));
     }
     
     /**
@@ -94,7 +96,7 @@ class UserController extends Controller{
      */
     public function createAction(Request $request) {
 		$initializer = new Initializer;
-        $user = $this->getUser()->getUsername();
+        $cur_user = $this->getUser()->getUsername();
         $menus = $initializer->getMenus($request);
         $user = new User();
         $db = $this->getDoctrine()->getManager();
@@ -118,5 +120,13 @@ class UserController extends Controller{
         } else {
             return $this->render('JeroenEDCmsEDBundle:Users:create.html.twig', array('form' => $form->createView(), 'errors' => $form_errors,  'title' => 'Users :: Create new user', 'user' => $cur_user, 'menus' => $menus));
         }
+    }
+
+    /**
+     * @Route("/admin/users/2fa", name="users_request_2fa")
+     */
+    public function twoFactorAction(Request $request) {
+        $newkey = $this->get("scheb_two_factor.security.google_authenticator")->generateSecret();
+        return new Response($newkey);
     }
 }

@@ -11,9 +11,23 @@
 
 <p>{{ form_label(form.userName) }}{{form_widget(form.userName)}}</p>
 <p>{{ form_label(form.email) }}{{form_widget(form.email)}}</p>
+<p>{{ form_label(form.isActive) }}{{form_widget(form.isActive)}}</p>
 <p>{{ form_label(form.password.first) }}{{form_widget(form.password.first)}}</p>
 <p>{{ form_label(form.password.second) }}{{form_widget(form.password.second)}}</p>
+<p>{{ form_label(form.googleAuthenticatorSecret) }}{{form_widget(form.googleAuthenticatorSecret)}}</p>
 <p>{{ form_widget(form.register)}}</p>
 
 {{ form_end(form) }}
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('body').on('click', '.factorrequest', function(e) {
+            $.ajax({url: "{{ path('users_request_2fa') }}"}).done(function(data)  {
+                $('.2factor').val(data);
+            });
+        });
+    });
+</script>
 {% endblock %}
