@@ -1,5 +1,22 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-09
+
+Deze maand stond in het teken van één feature die geïmplementeerd werd. Een feature request die hoog op het verlanglijstje stond: 2-factor authenticatie. Bij deze is dit geïmplementeerd :)
+
+### Bugs
+* (none)
+
+### Nieuwe functies
+* #15: Two-Factor authentication (project)
+* #31: Deactivate accounts (project) 
+
+### Verbeteringen
+* (none)
+
+### Off-code wijzigingen
+* (none)
+
 ## Changelog 2016-08 (Bugs Bunny)
 
 Omwille van de vele bugs die de voorbije dagen zijn ontdekt heb ik beslist om een tussentijdse release te doen met als naam "Bugs Bunny".
@@ -24,6 +41,7 @@ Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs g
 
 ### Off-code wijzigingen
 * (none)
+
 ## Changelog 2016-08
 
 Nieuwe maand, nieuwe update.

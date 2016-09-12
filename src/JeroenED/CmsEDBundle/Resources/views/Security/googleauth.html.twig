@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JeroenED.be :: Admin panel :: Login</title>
+        
+        <meta charset="UTF-8">
+        
+        <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+        {% stylesheets filter="scssphp" output="css/login.css"
+            "bundles/jeroenedcmsed/scss/cmsedloginpage.scss"
+        %}
+		<link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+        {% endstylesheets %}
+    </head>
+    <body>
+        <header>
+            <img src="{{ asset('bundles/jeroenedcmsed/images/logo.png')}}" alt="CmsED" class="logo">
+        </header>
+
+
+		<form class="form" action="" method="post">
+
+			<p class="label">
+				<label for="_auth_code">Authentication Code:</label>
+				<input id="_auth_code" type="text" autocomplete="off" name="_auth_code" />
+			</p>
+			
+			<p class="submit"><input type="submit" value="Login" />			
+				{% for flashMessage in app.session.flashbag.get("error") %}
+				<span class="error">{{ flashMessage }}</span>
+				{% endfor %}
+			</p>
+		</form>
+    </body>
+</html>
