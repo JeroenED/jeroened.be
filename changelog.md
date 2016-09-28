@@ -1,5 +1,19 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-10
+
+### Bugs
+* (none)
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* #34: Upgrade to php-5.6
+
+### Off-code wijzigingen
+* #32: Create issue templates
+
 ## Changelog 2016-09
 
 Deze maand stond in het teken van één feature die geïmplementeerd werd. Een feature request die hoog op het verlanglijstje stond: 2-factor authenticatie. Bij deze is dit geïmplementeerd :)
