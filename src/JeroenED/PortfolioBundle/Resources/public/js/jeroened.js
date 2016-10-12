@@ -1,5 +1,6 @@
 var pages = new Array("/", "/archive", "/changelog", "/download");
 var currentPage = getCurrentPage();
+var hastags = false
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
@@ -52,15 +53,21 @@ $(document).ready(function() {
 });
 
 window.onpopstate = function(e) {
-	var page = location.pathname;
-	if(pages.indexOf(page) > -1)
-	{  
-		ClosePage(currentPage, false);
-		e.preventDefault();
-	} else {
-		page = page.replace(/^\/|\/$/g, '');
-		if($('#' + page).length == 0) OpenPage(page, false);
-	}
+    if (hastags) {
+    	var page = location.pathname;
+    	if(pages.indexOf(page) > -1)
+    	{  
+    		ClosePage(currentPage, false);
+    		e.preventDefault();
+    	} else {
+    		page = page.replace(/^\/|\/$/g, '');
+    		pagenum = $('#' + page).length;
+    		loadingnum = $('.loading').length;
+    		if( pagenum == 0 &&  pagenum == 0 ) OpenPage(page, false);
+    		//if($('#' + page).length == 0 && $('.loading').length == 0 ) OpenPage(page, false);
+    	}
+    }
+    hashtags = false;
 }
 
 function stripTrailingSlash(str) {
@@ -131,7 +138,8 @@ function OpenPage(page, popState) {
     }).always(function() {
 		var pageTitle = $(".page h1").html();
 		document.title = pageTitle + " :: " + document.title;
-		if (popState) {
+        if (popState) {
+            hastags = true;
 			history.pushState(null, "", page + hash);
 			_paq.push(['setDocumentTitle', document.title]);
 			_paq.push(['trackPageView', window.location.href]);
