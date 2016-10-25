@@ -2,8 +2,14 @@
 
 ## Changelog 2016-10
 
+Deze maand geen extreme wijzigingen in de website buiten 1 bug die rindelijk gefixt is.
+
+Daarnaast is er omwille van EOL status van PHP 5.5, PHP geüpgrade naar 5.6.
+
+De belangrijkste wijzigingen zijn off-code, namelijk de komst van issue-templates en de ingebruikname van "The Beast", mijn nieuwe computer.
+
 ### Bugs
-* (none)
+* Scrollbar fails to load(#33)
 
 ### Nieuwe functies
 * (none)
@@ -13,6 +19,7 @@
 
 ### Off-code wijzigingen
 * #32: Create issue templates
+* Ingebruikname "The Beast"
 
 ## Changelog 2016-09
 
