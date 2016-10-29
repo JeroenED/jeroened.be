@@ -5,6 +5,7 @@ namespace JeroenED\CmsEDBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
+use Scheb\TwoFactorBundle\Model\TrustedComputerInterface;
 
 /**
  * Description of User
@@ -16,7 +17,7 @@ use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
  * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="JeroenED\CmsEDBundle\Entity\UserRepository")
  */
-class User implements UserInterface, \Serializable, TwoFactorInterface
+class User implements UserInterface, \Serializable, TwoFactorInterface, TrustedComputerInterface
 {
     /**
      * @ORM\Column(type="integer")
@@ -50,6 +51,12 @@ class User implements UserInterface, \Serializable, TwoFactorInterface
      * @ORM\Column(type="string", length=16, nullable=true)
      */
     private $googleAuthenticatorSecret;
+
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $trusted;
 
     public function __construct()
     {
@@ -89,6 +96,21 @@ class User implements UserInterface, \Serializable, TwoFactorInterface
     {
     }
 
+
+    public function addTrustedComputer($token, \DateTime $validUntil)
+    {
+        $this->trusted[$token] = $validUntil->format("r");
+    }
+
+    public function isTrustedComputer($token)
+    {
+        if (isset($this->trusted[$token])) {
+            $now = new \DateTime();
+            $validUntil = new \DateTime($this->trusted[$token]);
+            return $now < $validUntil;
+        }
+        return false;
+    }
     /** @see \Serializable::serialize() */
     public function serialize()
     {
