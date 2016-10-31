@@ -30,11 +30,17 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/lib/js/head.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/reveal.js/3.3.0/js/reveal.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+        {% if analytics == true %}
+            {% javascripts filter="?jsqueeze" output="js/analytics.js"
+            "bundles/jeroenedportfolio/js/analytics.js"
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% endif %}
         {% javascripts filter="?jsqueeze" output="js/app.js"
             "bundles/jeroenedportfolio/js/reveal.js"
             "bundles/jeroenedportfolio/js/jeroened.js"
             "bundles/jeroenedportfolio/js/stacktable.js"
-            "bundles/jeroenedportfolio/js/analytics.js"
         %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
