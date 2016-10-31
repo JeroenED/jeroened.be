@@ -40,11 +40,12 @@ class PortfolioController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu));
+        $analytics = !($request->cookies->getBoolean('no_analytics'));
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics));
 
     }
 
@@ -52,11 +53,12 @@ class PortfolioController extends Controller
     /**
      * @Route("/archive")
      */
-    public function archiveAction()
+    public function archiveAction(Request $request)
     {
         $portfolio = $this->getPortfolio(true);
         $menu = $this->getMenu();
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu));
+        $analytics = !($request->cookies->getBoolean('no_analytics'));
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics)));
 
     }
     
@@ -75,10 +77,11 @@ class PortfolioController extends Controller
     /**
      * @Route("/{slug}")
      */
-    public function pageAction($slug) {
+    public function pageAction($slug, Request $request) {
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu));
+        $analytics = !($request->cookies->getBoolean('no_analytics'));
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics)));
     }
     
     
