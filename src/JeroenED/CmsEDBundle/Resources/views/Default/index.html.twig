@@ -3,3 +3,26 @@
     <h1>Admin pages!</h1>
     <p>Welcome to the admin pages of your website. You can change everything you want here. Please click in left column on the links.</p>
 {% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function() {
+    if(Cookies.get('no_analytics') != "true") {
+        $('body').append('<div id="tracking-dialog" title="Visitor tracking">Visitor tracking for logged in users is enabled on this computer. Do you want to disable this?</div>');
+        $("#tracking-dialog").dialog({
+            buttons: {
+                "Yes": function() {
+                    Cookies.set('no_analytics', "true", { expires: 30 })
+                    $(this).dialog("close");
+                },
+                "No": function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#tracking-dialog").dialog("open");
+    }
+});
+</script>
+        
+{% endblock %}
