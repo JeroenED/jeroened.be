@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PortfolioController extends Controller
@@ -36,6 +37,18 @@ class PortfolioController extends Controller
         }
         return $menu;
     }
+    
+    protected function getSettings(Request $request) {
+        $settings = array();
+        $settings['analytics'] = !($request->cookies->getBoolean('no_analytics'));
+        if ($request->query->get('no_analytics')) {
+            $response = new Response();
+            $response->headers->setCookie(new Cookie('no_analytics', true, time() + (60 * 60 * 24 * 30), '/', null, false, false));
+            $response->send();
+            $settings['analytics'] = false;
+        }
+        return $settings;
+    }
 
     /**
      * @Route("/")
@@ -44,8 +57,8 @@ class PortfolioController extends Controller
     {
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
-        $analytics = !($request->cookies->getBoolean('no_analytics'));
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics));
+        $settings = $this->getSettings($request);
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
 
     }
 
@@ -57,8 +70,8 @@ class PortfolioController extends Controller
     {
         $portfolio = $this->getPortfolio(true);
         $menu = $this->getMenu();
-        $analytics = !($request->cookies->getBoolean('no_analytics'));
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics)));
+        $settings = $this->getSettings($request);
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
 
     }
     
@@ -80,8 +93,8 @@ class PortfolioController extends Controller
     public function pageAction($slug, Request $request) {
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
-        $analytics = !($request->cookies->getBoolean('no_analytics'));
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $analytics)));
+        $settings = $this->getSettings($request);
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
     }
     
     
