@@ -1,6 +1,7 @@
 var pages = new Array("/", "/archive", "/changelog", "/download");
 var currentPage = getCurrentPage();
-var hastags = false
+var hastags = false;
+var no_analytics = Cookies.get("no_analytics");
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
@@ -64,7 +65,6 @@ window.onpopstate = function(e) {
     		pagenum = $('#' + page).length;
     		loadingnum = $('.loading').length;
     		if( pagenum == 0 &&  pagenum == 0 ) OpenPage(page, false);
-    		//if($('#' + page).length == 0 && $('.loading').length == 0 ) OpenPage(page, false);
     	}
     }
     hashtags = false;
@@ -141,8 +141,10 @@ function OpenPage(page, popState) {
         if (popState) {
             hastags = true;
 			history.pushState(null, "", page + hash);
-			_paq.push(['setDocumentTitle', document.title]);
-			_paq.push(['trackPageView', window.location.href]);
+                        if (!no_analytics) {
+                            _paq.push(['setDocumentTitle', document.title]);
+                            _paq.push(['trackPageView', window.location.href]);
+                        }
 		}
 	});
 }
@@ -156,8 +158,10 @@ function ClosePage(previousPage, popState) {
     $(".printable").remove();
     if (popState) {
 		history.pushState(null, "", previousPage + hash);
-		_paq.push(['setDocumentTitle', document.title]);
-		_paq.push(['trackPageView', window.location.href]);
+                if (!no_analytics) {
+                    _paq.push(['setDocumentTitle', document.title]);
+                    _paq.push(['trackPageView', window.location.href]);
+                }
 	}
 }
 
