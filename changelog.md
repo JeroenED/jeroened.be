@@ -9,7 +9,7 @@ Deze opt-out kan gebeurt via een url-parameter (no_analytics=true), of door in t
 Daarnaast is de trusted computer module voor 2-factor authenticatie ook geactiveerd waardoor je uw code niet iedere keer opnieuw moet ingeven.
 
 ### Bugs
-* (none)
+* #39= Scrollbar on pages always appears 
 
 ### Nieuwe functies
 * (none)
@@ -17,6 +17,8 @@ Daarnaast is de trusted computer module voor 2-factor authenticatie ook geactive
 ### Verbeteringen
 * #35: 2FA code overload
 * #36: Don't track internal users
+* #40: Upgrade jsqueeze to latest version
+* #41: Update symfony to version 3.1
 
 ## Changelog 2016-10
 
