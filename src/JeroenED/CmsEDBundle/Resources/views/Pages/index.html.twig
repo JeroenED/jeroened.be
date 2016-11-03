@@ -5,22 +5,16 @@
     <div class="message">{{ message }}</div>
 {% endif %}
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>title</th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         {% for page in pages %}
             <tr>
-                <td class="col-id">{{ page.id }}</td>
-                <td class="col-label">{{ page.title }} ({{ page.slug }})</td>
-                <td class="col-actions">
-                    <a href="{{ path('page_edit', { 'id': page.id }) }}">edit</a> |
-                    <a href="{{ path('page_details', { 'id': page.id }) }}">details</a> |
-                    <a href="javascript: void(0);" class="confirmLink" data-text="Are you sure you want to delete {{ page.title }}?" data-link="{{ path('page_delete', { 'id': page.id }) }}">delete</a>
+                <td class="col-label">
+                    <p>{{ page.title }} - <span class="col-slug">{{ page.slug }}</span></p>
+                    <p class="col-actions">
+                        <a href="{{ path('page_edit', { 'id': page.id }) }}">edit</a> |
+                        <a href="{{ path('page_details', { 'id': page.id }) }}">details</a> |
+                        <a href="javascript: void(0);" class="confirmLink act-delete" data-text="Are you sure you want to delete {{ page.title }}?" data-link="{{ path('page_delete', { 'id': page.id }) }}">delete</a>
+                    </p>
                 </td>
             </tr>
         {% endfor %}
