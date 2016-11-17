@@ -5,22 +5,16 @@
     <div class="message">{{ message }}</div>
 {% endif %}
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Name (e-mail)</th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         {% for user in users %}
             <tr>
-                <td class="col-id">{{ user.id }}</td>
-                <td class="col-label">{{ user.username }} ({{ user.email }})</td>
-                <td class="col-actions">
-                    <a href="{{ path('users_edit', { 'id': user.id }) }}">edit</a> |
-                    <a href="{{ path('users_details', { 'id': user.id }) }}">details</a> |
-                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ user.username }}?" data-link="{{ path('users_delete', { 'id': user.id }) }}">delete</a>
+                <td class="col-label">
+                    <p>{{ user.username }} - <span class="col-slug">{{ user.email }}</span></p>
+                    <p class="col-actions">
+                        <a href="{{ path('users_edit', { 'id': user.id }) }}">edit</a> |
+                        <a href="{{ path('users_details', { 'id': user.id }) }}">details</a> |
+                        <a href="javascript: void(0);" class="confirmLink act-delete"  data-text="Are you sure you want to delete {{ user.username }}?" data-link="{{ path('users_delete', { 'id': user.id }) }}">delete</a>
+                    </p>
                 </td>
             </tr>
         {% endfor %}

@@ -21,9 +21,12 @@
 		<form class="form" action="" method="post">
 
 			<p class="label">
-				<label for="_auth_code">Authentication Code:</label>
-				<input id="_auth_code" type="text" autocomplete="off" name="_auth_code" />
-			</p>
+                <label for="_auth_code">Authentication Code:</label>
+                <input id="_auth_code" type="text" autocomplete="off" name="_auth_code" />
+            </p><p class="label">
+                <label for="_trusted">Trusted?</label>
+                <input id="_trusted" type="checkbox" autocomplete="off" name="_trusted" />
+            </p>
 			
 			<p class="submit"><input type="submit" value="Login" />			
 				{% for flashMessage in app.session.flashbag.get("error") %}

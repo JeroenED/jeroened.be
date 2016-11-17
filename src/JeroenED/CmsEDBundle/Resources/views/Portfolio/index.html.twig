@@ -5,22 +5,16 @@
     <div class="message">{{ message }}</div>
 {% endif %}
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>title</th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         {% for item in portfolio %}
             <tr>
-                <td class="col-id">{{ item.id }}</td>
-                <td class="col-label">{{ item.title }}</td>
-                <td class="col-actions">
-                    <a href="{{ path('portfolio_edit', { 'id': item.id }) }}">edit</a> |
-                    <a href="{{ path('portfolio_details', { 'id': item.id }) }}">details</a> |
-                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ item.title }}?" data-link="{{ path('portfolio_delete', { 'id': item.id }) }}?returnurl=portfolio_index">delete</a>
+                <td class="col-label" data-id="{{ item.id }}">
+                    <p>{{ item.title }}</p>
+                    <p class="col-actions">
+                        <a href="{{ path('portfolio_edit', { 'id': item.id }) }}">edit</a> |
+                        <a href="{{ path('portfolio_details', { 'id': item.id }) }}">details</a> |
+                        <a href="javascript: void(0);" class="confirmLink act-delete"  data-text="Are you sure you want to delete {{ item.title }}?" data-link="{{ path('portfolio_delete', { 'id': item.id }) }}?returnurl=portfolio_index">delete</a>
+                    </p>
                 </td>
             </tr>
         {% endfor %}
@@ -46,9 +40,9 @@
         },
         updateIndex = function(e, ui) {
             var ranks = {};
-            $('td.col-id', ui.item.parent()).each(function (i) {
+            $('td.col-label', ui.item.parent()).each(function (i) {
                 i++;
-                ranks[$(this).html()] = i;
+                ranks[$(this).data("id")] = i;
             });
             $('#ranks').val(JSON.stringify(ranks));
             $("#ranks_submit").css('display', 'block');

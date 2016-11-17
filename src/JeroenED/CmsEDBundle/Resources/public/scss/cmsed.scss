@@ -188,14 +188,44 @@ nav {
 	   }
 
 	   .openfilebrowser, .factorrequest {
-	   	margin: 0 5px;
+	        margin: 0 5px;
 	   }
+	   
 	   .col-label {
-		   width: 300px;
-	   }
-
-	   .col-actions {
-		   width: 150px;
+		   width: 100%;
+		   height: 50px;
+		   vertical-align: top;
+		   cursor: pointer;
+		   
+		   &:hover {
+		       span.col-slug {
+		           display: inline;
+		       }
+		       
+		       p.col-actions {
+		           display: block;
+		       }
+		   }
+		   
+		   span.col-slug {
+		       font-size: 12px;
+		       font-style: italic;
+		       display: none;
+		   }
+		   
+		   p.col-actions {
+		       
+		       display: none;
+		       font-size: 12px;
+		       
+		       .act-delete {
+		            color: $error-color;
+		       }
+		   }
+		   
+		   p {
+		       margin: 5px 0;
+		   }
 	   }
 	   
 	   select {

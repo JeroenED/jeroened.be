@@ -17,16 +17,9 @@
 
 {{ form_end(form) }}
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Slug</th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody class="pages">
         <tr class="nopages">
-            <td colspan="3">No pages, yet</td>
+            <td class="col-label nopages">No pages, yet</td>
         </tr>
     </tbody>
 </table>
@@ -121,10 +114,10 @@ $(document).ready(function() {
         if ($('#portfolio_page_index').val() !== '') {
             var index =$('#portfolio_page_index').val()
             oldObjects[index] = newObject;
-            $('.pages tr td.col-id:contains('+ index +')').closest('tr').html('<td class="col-id">' + index + '</td><td class="col-label">' + $("#portfolio_page_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td>');
+            $('.pages tr[data-id='+ index +']').html('<td class="col-label"><p>' + $("#portfolio_page_slug").val() + '</p><p class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove" class="act-delete">remove</a></p></td>');
         }else { 
             var index = oldObjects.push(newObject) - 1; 
-            $('.pages').append('<tr><td class="col-id">' + index + '</td><td class="col-label">' + $("#portfolio_page_slug").val() + '</td><td class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove">remove</a></td></tr>');
+            $('.pages').append('<tr data-id="' + index + '"><td class="col-label"><p>' + $("#portfolio_page_slug").val() + '</p><p class="col-actions"><a href="javascript:void(0);" data-action="edit">edit</a> | <a href="javascript:void(0);" data-action="remove" class="act-delete">remove</a></p></td></tr>');
         }
         $('#portfolio_pages').val(JSON.stringify(oldObjects));
         $('.nopages').css('display', 'none');
@@ -136,8 +129,8 @@ $(document).ready(function() {
         $("#portfolio_page_showtitle")[0].checked = false;
         $("#portfolio_page_index").val('');
     });
-    $('table').on('click', 'a[data-action]', function() {
-        var index = $(this).closest('td').siblings(".col-id").html(); 
+    $('table').on('click', 'a[data-action]', function(e) {
+        var index = $(this).closest('tr').data("id"); 
         var pages = $.parseJSON($('#portfolio_pages').val());
         switch ($(this).data('action')) {
             case 'edit':
@@ -163,14 +156,14 @@ $(document).ready(function() {
                         "Confirm": function() {
                             pages.splice(index, 1);
                             $('#portfolio_pages').val(JSON.stringify(pages));
-                            $('.pages tr td.col-id:contains('+ index +')').closest('tr').remove();
+                            $('.pages tr[data-id="'+ index +'"]').remove();
                             if (pages.length == 0){
                                 $('.nopages').css('display', '');
                             }
                             else { 
                                 var i = 0;
-                                $('.pages tr td.col-id').each( function () {
-                                    $(this).html(i);
+                                $('.pages tr[data-id]').each( function () {
+                                    $(this).data("id", i);
                                     i++;
                                 });
                             }
@@ -216,9 +209,9 @@ $(document).ready(function() {
         updateIndex = function(e, ui) {
             var oldOrder = $.parseJSON($('#portfolio_pages').val());
             var newOrder = [];
-            $('td.col-id', ui.item.parent()).each(function (i) {
-                newOrder[i] = oldOrder[$(this).html()];
-                $(this).html(i);
+            $('tr[data-id]', ui.item.parent()).each(function (i) {
+                newOrder[i] = oldOrder[$(this).data("id")];
+                $(this).data("id", i);
             });
             $('#portfolio_pages').val(JSON.stringify(newOrder));
         };

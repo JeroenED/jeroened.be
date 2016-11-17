@@ -1,6 +1,7 @@
 var pages = new Array("/", "/archive", "/changelog", "/download");
 var currentPage = getCurrentPage();
-var hastags = false
+var hastags = false;
+var no_analytics = Cookies.get("no_analytics");
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
@@ -63,8 +64,7 @@ window.onpopstate = function(e) {
     		page = page.replace(/^\/|\/$/g, '');
     		pagenum = $('#' + page).length;
     		loadingnum = $('.loading').length;
-    		if( pagenum == 0 &&  pagenum == 0 ) OpenPage(page, false);
-    		//if($('#' + page).length == 0 && $('.loading').length == 0 ) OpenPage(page, false);
+    		if( pagenum === 0 &&  pagenum === 0 ) OpenPage(page, false);
     	}
     }
     hashtags = false;
@@ -99,13 +99,13 @@ function OpenPage(page, popState) {
         $('#' + page).css("max-height", $(window).innerHeight() - 100 + "px");
         $('#' + page).css("max-width", $(window).innerWidth() - 100 + "px");
         if (!$('#' + page).hasClass("mCustomScrollbar")) {
-            $('#' + page).mCustomScrollbar();
+            $('#' + page).mCustomScrollbar({ autoHideScrollbar: true});
             $.ajax({
                 url: '/' + page + '/download'
             }).done(function() {
-                $('#' + page).append('<a href="/'+ page + '/download" target="_blank"><img src="/bundles/jeroenedportfolio/images/download.png" alt="download" class="downbtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 26px;"></a>')
+                $('#' + page).append('<a href="/'+ page + '/download" target="_blank"><img src="/bundles/jeroenedportfolio/images/download.png" alt="download" class="downbtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 36px; right: 6px;"></a>')
             });
-            $('#' + page).append('<img src="/bundles/jeroenedportfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 1px; right: 1px;">');
+            $('#' + page).append('<img src="/bundles/jeroenedportfolio/images/closeicon.png" alt="sluiten" class="closebtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 5px; right: 6px;">');
             var closebutton = $(".closebtn");
         }
         $('#' + page).css("top", ($(window).innerHeight() - $('#' + page).innerHeight()) / 2 + $(window).scrollTop() + "px");
@@ -141,8 +141,10 @@ function OpenPage(page, popState) {
         if (popState) {
             hastags = true;
 			history.pushState(null, "", page + hash);
-			_paq.push(['setDocumentTitle', document.title]);
-			_paq.push(['trackPageView', window.location.href]);
+                        if (!no_analytics) {
+                            _paq.push(['setDocumentTitle', document.title]);
+                            _paq.push(['trackPageView', window.location.href]);
+                        }
 		}
 	});
 }
@@ -156,8 +158,10 @@ function ClosePage(previousPage, popState) {
     $(".printable").remove();
     if (popState) {
 		history.pushState(null, "", previousPage + hash);
-		_paq.push(['setDocumentTitle', document.title]);
-		_paq.push(['trackPageView', window.location.href]);
+                if (!no_analytics) {
+                    _paq.push(['setDocumentTitle', document.title]);
+                    _paq.push(['trackPageView', window.location.href]);
+                }
 	}
 }
 
