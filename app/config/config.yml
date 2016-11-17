@@ -30,7 +30,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        version:       "1.0.1610"
+        version:       "1.0.1611"
 
 # Assetic Configuration
 assetic:
@@ -106,9 +106,9 @@ scheb_two_factor:
 
     # Trusted computer feature
     trusted_computer:
-        enabled: false                 # If the trusted computer feature should be enabled
+        enabled: true                  # If the trusted computer feature should be enabled
         cookie_name: trusted_computer  # Name of the trusted computer cookie
-        cookie_lifetime: 5184000       # Lifetime of the trusted computer cookie
+        cookie_lifetime: 5184000       # 60d # Lifetime of the trusted computer cookie
         cookie_secure: false           # Set the 'Secure' (HTTPS Only) flag on the trusted_computer cookie
 
     # Regex pattern of paths you want to exclude from two-factor authentication.

@@ -1,5 +1,28 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-11
+
+Weer de 20ste, weer een update. Deze maand heb ik een belangrijke verbetering toevoegd, namelijk een opt-out van de analytics.
+
+Deze opt-out kan gebeurt via een url-parameter (no_analytics=true), of door in te loggen op het administratiepaneel waarna de optie voor opt-out word aangeboden.
+
+Daarnaast is de trusted computer module voor 2-factor authenticatie ook geactiveerd waardoor je uw code niet iedere keer opnieuw moet ingeven.
+
+### Bugs
+* #39: Scrollbar on pages always appears 
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* #35: 2FA code overload
+* #36: Don't track internal users
+* #38: Upgrade jsqueeze to latest version
+* #40: Redesign lists in control panel
+* #41: Update symfony to version 3.1
+* #42: Improve design of viewing pages
+* #43: Improve error-pages
+
 ## Changelog 2016-10
 
 Deze maand geen extreme wijzigingen in de website buiten 1 bug die rindelijk gefixt is.
@@ -9,7 +32,7 @@ Daarnaast is er omwille van EOL status van PHP 5.5, PHP geüpgrade naar 5.6.
 De belangrijkste wijzigingen zijn off-code, namelijk de komst van issue-templates en de ingebruikname van "The Beast", mijn nieuwe computer.
 
 ### Bugs
-* Scrollbar fails to load(#33)
+* #33: Scrollbar fails to load
 
 ### Nieuwe functies
 * (none)

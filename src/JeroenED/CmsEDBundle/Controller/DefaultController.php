@@ -16,7 +16,7 @@ class DefaultController extends Controller
      */
     public function adminAction(Request $request)
     {
-		$initializer = new Initializer;
+        $initializer = new Initializer;
         $user = $this->getUser()->getUsername();
         $menus = $initializer->getMenus($request);
         return $this->render('JeroenEDCmsEDBundle:Default:index.html.twig', array('title' => 'Home', 'user' => $user, 'menus' => $menus));

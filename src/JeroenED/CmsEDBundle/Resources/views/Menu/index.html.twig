@@ -5,22 +5,16 @@
     <div class="message">{{ message }}</div>
 {% endif %}
 <table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Label</th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         {% for menu in menuitems %}
             <tr>
-                <td class="col-id">{{ menu.id }}</td>
-                <td class="col-label">{{ menu.label }}</td>
-                <td class="col-actions">
-                    <a href="{{ path('menu_edit', { 'id': menu.id }) }}">edit</a> |
-                    <a href="{{ path('menu_details', { 'id': menu.id }) }}">details</a> |
-                    <a href="javascript: void(0);" class="confirmLink"  data-text="Are you sure you want to delete {{ menu.label }}?" data-link="{{ path('menu_delete', { 'id': menu.id }) }}">delete</a>
+                <td data-id="{{ menu.id }}" class="col-label">
+                    <p>{{ menu.label }}</p>
+                    <p class="col-actions">
+                        <a href="{{ path('menu_edit', { 'id': menu.id }) }}">edit</a> |
+                        <a href="{{ path('menu_details', { 'id': menu.id }) }}">details</a> |
+                        <a href="javascript: void(0);" class="confirmLink act-delete"  data-text="Are you sure you want to delete {{ menu.label }}?" data-link="{{ path('menu_delete', { 'id': menu.id }) }}">delete</a>
+                    </p>
                 </td>
             </tr>
         {% endfor %}
@@ -45,9 +39,9 @@
         },
         updateIndex = function(e, ui) {
             var ranks = {};
-            $('td.col-id', ui.item.parent()).each(function (i) {
+            $('td.col-label', ui.item.parent()).each(function (i) {
                 i++;
-                ranks[$(this).html()] = i;
+                ranks[$(this).data("id")] = i;
             });
             $('#ranks').val(JSON.stringify(ranks));
             $("#ranks_submit").css('display', 'block');
