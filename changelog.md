@@ -21,6 +21,7 @@ Daarnaast is de trusted computer module voor 2-factor authenticatie ook geactive
 * #40: Redesign lists in control panel
 * #41: Update symfony to version 3.1
 * #42: Improve design of viewing pages
+* #43: Improve error-pages
 
 ## Changelog 2016-10
 

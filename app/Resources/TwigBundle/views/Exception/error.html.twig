@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>An Error Occurred: {{ status_text }}</title>
+	<title>An Error Occurred: {{ status_code }} {{ status_text }}</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<meta charset="UTF-8">
 	<meta content="width=device-width" name="viewport">
@@ -46,10 +46,9 @@
 	<div id="container">
 		<div id="padding">
 			<div id="notice">
-				<h1>Oops! An error occured</h1>
-				<h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
-
-				<p>Something is broken. Please let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</p>
+                            <p><img src="/cops.png" alt="{{ status_code }} {{ status_text }}"></p>
+                            <h2>Too late, you're caught</h2>
+                            <h1>Growing {{ status_code }}s is illegal!</h1>
 			</div>
 		</div>
 	</div>
