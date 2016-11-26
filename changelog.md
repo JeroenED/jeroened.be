@@ -1,5 +1,17 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-12
+
+### Bugs
+* #44: Admin panel keeps asking for disabling tracking 
+* #45: Command to create user does not work 
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
+
 ## Changelog 2016-11
 
 Weer de 20ste, weer een update. Deze maand heb ik een belangrijke verbetering toevoegd, namelijk een opt-out van de analytics.
