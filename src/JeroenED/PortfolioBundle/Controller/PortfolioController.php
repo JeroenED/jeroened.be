@@ -5,7 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -61,8 +60,7 @@ class PortfolioController extends Controller
         return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
 
     }
-
-
+    
     /**
      * @Route("/archive")
      */
@@ -75,8 +73,6 @@ class PortfolioController extends Controller
 
     }
     
-
-
     /**
      * @Route("/changelog")
      */
@@ -96,7 +92,6 @@ class PortfolioController extends Controller
         $settings = $this->getSettings($request);
         return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
     }
-    
     
     /**
      * @Route("/{slug}/download")
