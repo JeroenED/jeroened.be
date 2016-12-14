@@ -5,6 +5,13 @@
         table caption { font-size:16px; }
         h1 { font-size: 20px; }
         h2 { font-size: 16px; }
+        
+        form {
+            input[type="text"],
+            input[type="submit"],
+            textarea
+            { width: 175px; }
+        }
     }
     .mobile { display: block; }
     .nomobile { display: none; }
