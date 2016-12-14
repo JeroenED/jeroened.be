@@ -28,8 +28,16 @@ class FormsController extends Controller {
         $subject = $postValues['subject'];
         $email = $postValues['email'];
         $recipient = $this->container->getParameter('forms_to');
+        
+        $error = '';
+        if (!empty($postValues)) {
+            $error = "1100111000110110011001001010111001100";
+        }
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $response = new Response(json_encode(array('error' => "E-mailadres niet geldig")));
+            $error = "E-mailadres niet geldig";
+        }
+        if (!empty($error)) {
+            $response = new Response(json_encode(array('error' => $error)));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
