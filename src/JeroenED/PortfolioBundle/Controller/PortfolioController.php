@@ -42,7 +42,7 @@ class PortfolioController extends Controller
         $settings['analytics'] = !($request->cookies->getBoolean('no_analytics'));
         if ($request->query->get('no_analytics')) {
             $response = new Response();
-            $response->headers->setCookie(new Cookie('no_analytics', true, time() + (60 * 60 * 24 * 30), '/', null, false, false));
+            $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
             $response->send();
             $settings['analytics'] = false;
         }
