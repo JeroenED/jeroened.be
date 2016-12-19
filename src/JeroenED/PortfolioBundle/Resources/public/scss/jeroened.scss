@@ -120,14 +120,14 @@ nav {
     }
 
     form {
-        input[type="text"],.page form textarea {
+        input[type="text"], textarea {
             display: block;
             margin: 0;
             font-size: 18px;
             box-shadow: none;
             border: 2px solid #4a4a4a;
             border-radius: 2px;
-            width: 175px;
+            width: 480px;
             background-color: $default-color;
             color: #1d1d1d;
             font-family: $font;
@@ -142,7 +142,7 @@ nav {
             box-shadow: none;
             border: 0;
             border-radius: 2px;
-            width: 175px;
+            width: 480px;
             background-color: #4a4a4a;
             color: #a4a4a4;
             font-family: $font;
@@ -150,26 +150,12 @@ nav {
             height: 50px;
             box-sizing: border-box;
         }
-        
-        input[type="submit"] {
-            display: block;
-            margin: 0;
-            font-size: 18px;
-            box-shadow: none;
-            border: 0;
-            border-radius: 2px;
-            width: 175px;
-            background-color: #4a4a4a;
-            color: #a4a4a4;
-            font-family: $font;
-            appearance: none;
-            height: 50px;
-            box-sizing: border-box;
-        }
-        
+                
         textarea {
             height: 150px;
         }
+        
+        #submitresult .error { color: #ff0000; }
     }
     
  }

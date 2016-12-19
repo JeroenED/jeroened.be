@@ -1,5 +1,23 @@
 # Changelog JeroenED.be
 
+## Changelog 2016-12
+
+De December 2016 had een specialleke in petto. Misschien zul je in de goeie ouwe tijd een contactformulier gezien hebben op de website. Dit contactformulier was echter nooit actief. Dit formulier is vanaf deze maand volledig actief.
+In het contactformulier heb ik overigens een probeersel aangebracht. Iemand die ik ken(de) had op zijn blog een experimentele [spam-filter](http://www.blacksnipe.be/blog/simple-spam-filter-theory) uit de doeken gedaan. Ik heb deze theorie in praktijk gebracht op het contactformulier.
+
+Naast deze uitbreiding een paar kleine bugs gefixt. Zo vraagt het admin panel niet om de haverklap naar het afzetten van de piwik-tracking en is het commando voor een user aan te maken via ssh terug actief.
+
+### Bugs
+* #44: Admin panel keeps asking for disabling tracking 
+* #45: Command to create user does not work
+* #47: Disable reveal.js help text  
+
+### Nieuwe functies
+* #46: Create contact form
+
+### Verbeteringen
+* (none)
+
 ## Changelog 2016-11
 
 Weer de 20ste, weer een update. Deze maand heb ik een belangrijke verbetering toevoegd, namelijk een opt-out van de analytics.
@@ -259,4 +277,5 @@ De eerste sprint is afgelopen. Alle bug reports die zijn gemeld zijn opgelost.
 
 ### Vooruitzicht naar volgende sprint
 Op dit moment is er slechts 1 bug gemeld. Daarnaast zal er worden gewerkt aan stylesheet voor afdrukken van pagina's
+
 
