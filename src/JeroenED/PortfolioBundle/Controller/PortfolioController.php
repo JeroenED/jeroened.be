@@ -5,7 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -43,7 +42,7 @@ class PortfolioController extends Controller
         $settings['analytics'] = !($request->cookies->getBoolean('no_analytics'));
         if ($request->query->get('no_analytics')) {
             $response = new Response();
-            $response->headers->setCookie(new Cookie('no_analytics', true, time() + (60 * 60 * 24 * 30), '/', null, false, false));
+            $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
             $response->send();
             $settings['analytics'] = false;
         }
@@ -61,8 +60,7 @@ class PortfolioController extends Controller
         return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
 
     }
-
-
+    
     /**
      * @Route("/archive")
      */
@@ -75,8 +73,6 @@ class PortfolioController extends Controller
 
     }
     
-
-
     /**
      * @Route("/changelog")
      */
@@ -96,7 +92,6 @@ class PortfolioController extends Controller
         $settings = $this->getSettings($request);
         return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
     }
-    
     
     /**
      * @Route("/{slug}/download")

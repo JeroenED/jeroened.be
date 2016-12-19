@@ -6,5 +6,6 @@ $(document).ready(function() {
         center: true,
         overview: false,
         transition: 'linear',
+        help: false,
     });
 });

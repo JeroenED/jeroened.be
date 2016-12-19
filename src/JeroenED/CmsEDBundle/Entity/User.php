@@ -54,7 +54,7 @@ class User implements UserInterface, \Serializable, TwoFactorInterface, TrustedC
 
 
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $trusted;
 
