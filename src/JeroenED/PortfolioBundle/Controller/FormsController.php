@@ -30,8 +30,11 @@ class FormsController extends Controller {
         $recipient = $this->container->getParameter('forms_to');
         
         $error = '';
-        if (!empty($postValues)) {
+        if (!empty($postValues['blank-check'])) {
             $error = "1100111000110110011001001010111001100";
+        }
+        if (empty($name) || empty($message) || empty($subject)) {
+            $error = "Gelieve alle velden in te vullen";
         }
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "E-mailadres niet geldig";
