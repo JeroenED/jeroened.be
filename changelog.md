@@ -9,7 +9,8 @@ Naast deze uitbreiding een paar kleine bugs gefixt. Zo vraagt het admin panel ni
 
 ### Bugs
 * #44: Admin panel keeps asking for disabling tracking 
-* #45: Command to create user does not work 
+* #45: Command to create user does not work
+* #47: Disable reveal.js help text  
 
 ### Nieuwe functies
 * #46: Create contact form
