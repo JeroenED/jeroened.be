@@ -24,6 +24,8 @@ $(document).ready(function() {
         }).done(function(dat) {
             if (dat.error !== undefined) { $("#submitresult").html("<p class='error'>" + dat.error + "</p>"); }
             else { $("#submitresult").html("<p>" + dat.message + "</p>"); }
+        }).fail(function() {
+            $("#submitresult").html("<p class='error'>Hey, growing server errors is still considered illegal</p>");
         });
     });
     
