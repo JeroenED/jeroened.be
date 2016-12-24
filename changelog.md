@@ -1,5 +1,18 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-01
+
+Versie 1.0.1701: Een gelukkig nieuwjaar gewenst.
+
+### Bugs
+* #48: Reordering archive items doesn't work
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
+
 ## Changelog 2016-12
 
 De December 2016 had een specialleke in petto. Misschien zul je in de goeie ouwe tijd een contactformulier gezien hebben op de website. Dit contactformulier was echter nooit actief. Dit formulier is vanaf deze maand volledig actief.
@@ -10,7 +23,7 @@ Naast deze uitbreiding een paar kleine bugs gefixt. Zo vraagt het admin panel ni
 ### Bugs
 * #44: Admin panel keeps asking for disabling tracking 
 * #45: Command to create user does not work
-* #47: Disable reveal.js help text  
+* #47: Disable reveal.js help text
 
 ### Nieuwe functies
 * #46: Create contact form
