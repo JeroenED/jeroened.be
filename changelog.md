@@ -11,7 +11,7 @@ Versie 1.0.1701: Een gelukkig nieuwjaar gewenst.
 * (none)
 
 ### Verbeteringen
-* (none)
+* #49: Faster check for downloads
 
 ## Changelog 2016-12
 

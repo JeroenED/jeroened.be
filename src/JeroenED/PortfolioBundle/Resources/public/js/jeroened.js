@@ -117,6 +117,8 @@ function OpenPage(page, popState) {
         if (!$('#' + page).hasClass("mCustomScrollbar")) {
             $('#' + page).mCustomScrollbar({ autoHideScrollbar: true});
             $.ajax({
+                type: 'HEAD',
+                crossDomain: true,
                 url: '/' + page + '/download'
             }).done(function() {
                 $('#' + page).append('<a href="/'+ page + '/download" target="_blank"><img src="/bundles/jeroenedportfolio/images/download.png" alt="download" class="downbtn" style="display: block; width: 24px; height: 24px; position: absolute; top: 36px; right: 6px;"></a>')
