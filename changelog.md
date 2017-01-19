@@ -1,5 +1,23 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-01
+
+Versie 1.0.1701: Een gelukkig nieuwjaar gewenst. Deze maand heb ik, tussen alle bokspartijen en braspartijen door, toch wat tijd gevonden om een paar zaken te verbeteren. Zo is het herordenen van archief items terug geactiveerd en is een CVE opgelost.
+Daarnaast zal de website in geval van downloads sneller het download icoon tonen.
+
+### Bugs
+* #48: Reordering archive items doesn't work
+* #50: Fix CVE-2016-10074
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* #49: Faster check for downloads
+
+### Off-code wijzigingen
+* #51: Create gitlab template for library issues
+
 ## Changelog 2016-12
 
 De December 2016 had een specialleke in petto. Misschien zul je in de goeie ouwe tijd een contactformulier gezien hebben op de website. Dit contactformulier was echter nooit actief. Dit formulier is vanaf deze maand volledig actief.
@@ -10,7 +28,7 @@ Naast deze uitbreiding een paar kleine bugs gefixt. Zo vraagt het admin panel ni
 ### Bugs
 * #44: Admin panel keeps asking for disabling tracking 
 * #45: Command to create user does not work
-* #47: Disable reveal.js help text  
+* #47: Disable reveal.js help text
 
 ### Nieuwe functies
 * #46: Create contact form
