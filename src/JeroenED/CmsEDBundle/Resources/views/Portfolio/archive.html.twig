@@ -40,7 +40,7 @@
         },
         updateIndex = function(e, ui) {
             var ranks = {};
-            $('td.col-id', ui.item.parent()).each(function (i) {
+            $('td.col-label', ui.item.parent()).each(function (i) {
                 i++;
                 ranks[$(this).data("id")] = i;
             });
