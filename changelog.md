@@ -2,16 +2,21 @@
 
 ## Changelog 2017-01
 
-Versie 1.0.1701: Een gelukkig nieuwjaar gewenst.
+Versie 1.0.1701: Een gelukkig nieuwjaar gewenst. Deze maand heb ik, tussen alle bokspartijen en braspartijen door, toch wat tijd gevonden om een paar zaken te verbeteren. Zo is het herordenen van archief items terug geactiveerd en is een CVE opgelost.
+Daarnaast zal de website in geval van downloads sneller het download icoon tonen.
 
 ### Bugs
 * #48: Reordering archive items doesn't work
+* #50: Fix CVE-2016-10074
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
 * #49: Faster check for downloads
+
+### Off-code wijzigingen
+* #51: Create gitlab template for library issues
 
 ## Changelog 2016-12
 
