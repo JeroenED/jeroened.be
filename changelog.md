@@ -1,5 +1,24 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-02
+
+Deze maand zijn wat voorbereidingen gestart om de website over te zetten naar een herinstalleerde server. Dit geeft dan ook een mogelijkheid tot het verwijderen van onnozele zaken zoals de Gopher server die ooit geïnstalleerd was.
+
+Daarnaast is de broncode van de website nu ook te vinden op Github. Dit voornamelijk omdat de community van Github veel groter is waardoor de barriere om iets aan te passen veel kleiner is.
+
+### Bugs
+* (none)
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
+
+### Off-code wijzigingen
+* Infrastructure as code (Voorbereiding)
+* Github Mirror
+
 ## Changelog 2017-01
 
 Versie 1.0.1701: Een gelukkig nieuwjaar gewenst. Deze maand heb ik, tussen alle bokspartijen en braspartijen door, toch wat tijd gevonden om een paar zaken te verbeteren. Zo is het herordenen van archief items terug geactiveerd en is een CVE opgelost.
