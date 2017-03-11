@@ -1,4 +1,16 @@
 # Changelog JeroenED.be
+## Changelog 2017-03
+OK, ik geef het toe. Ontwikkeling ligt een beetje stil. Maar dit belet mij niet om bugs op te lossen.
+Naast de obligatoire updates van de Javascript en Composer libraries heb ik deze maand een fout opgelost ervoor zorgde dat het contact formulier niet meer verzonden werd na een update van de website. Bij deze is  bug nummer 52 opgelost.
+
+### Bugs
+* #52: Forms cannot be send after deploy 
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
 
 ## Changelog 2017-02
 
