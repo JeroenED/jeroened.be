@@ -3,7 +3,7 @@ desktop.ini
 thumbs.db
 
 ## Delete netbeans Shizzle
-/nbproject/
+/nbproject/private
 
 ## Delete SyncCrap
 sync.*
