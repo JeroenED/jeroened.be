@@ -3,9 +3,11 @@
 <h2>Pages</h2>
 {% for page in pages %}
     <h3>{{ page.Slug | default('/') }}</h3>
-    <p>ShowTitle: {{ page.ShowTitle | default('1') }}</p>
-    <p>Slug: {{ page.Slug | default('/') }}</p>
-    <p>Background: {{ page.Background | default('none')}}</p>
-    <p>{{ page.Html }}</p>
+    <div style="width: 800px; height: 600px; background-image: url('{{ page.Background | default('/bundles/jeroenedportfolio/images/background.png')}}'); background-position: center top; display: table;">
+        <div style="text-align: center; color: #d1d1d1; vertical-align: middle; display: table-cell;">
+            {% if page.ShowTitle %}<h1>{{ portfolio.title}}</h1>{%endif%}
+            {{ page.Html | raw }}
+        </div>
+    </div>
 {% endfor %}
 {% endblock %}
