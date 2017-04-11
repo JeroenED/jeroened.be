@@ -3,8 +3,8 @@
 <h2>Pages</h2>
 {% for page in pages %}
     <h3>{{ page.Slug | default('/') }}</h3>
-    <div style="width: 800px; height: 600px; background-image: url('{{ page.Background | default('/bundles/jeroenedportfolio/images/background.png')}}'); background-position: center top; display: table;">
-        <div style="text-align: center; color: #d1d1d1; vertical-align: middle; display: table-cell;">
+    <div class="portfolio-item-preview" style="background-image: url('{{ page.Background | default('/bundles/jeroenedportfolio/images/background.png')}}');">
+        <div>
             {% if page.ShowTitle %}<h1>{{ portfolio.title}}</h1>{%endif%}
             {{ page.Html | raw }}
         </div>
