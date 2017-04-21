@@ -35,7 +35,7 @@ class PageController extends Controller {
      * @Route("/admin/pages/edit/{id}", name="page_edit", defaults={ "id" = "-1"})
      */
     public function editAction($id, Request $request) {
-		$initializer = new Initializer;
+        $initializer = new Initializer;
         $user = $this->getUser()->getUsername();
         $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();
@@ -59,7 +59,7 @@ class PageController extends Controller {
      * @Route("/admin/pages/details/{id}", name="page_details", defaults={ "id" = "-1"})
      */
     public function detailsAction($id, Request $request) {
-		$initializer = new Initializer;
+        $initializer = new Initializer;
         $user = $this->getUser()->getUsername();
         $menus = $initializer->getMenus($request);
         $db = $this->getDoctrine()->getManager();

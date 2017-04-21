@@ -30,7 +30,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        version:       "1.0.1703"
+        version:       "1.0.1704"
 
 # Assetic Configuration
 assetic:
