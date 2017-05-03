@@ -5,8 +5,11 @@ Update mei 2017. 2 belangrijke off-code wijzigingen: php-7.0 en het eindelijk er
 
 Om de issues uit GitLab te aan te duiden worden deze vooraf gegaan door "GL". Hetzelfde gebeurt voor Github (GH) en Gogs heeft de prefix "GS" meegekregen.
 
+Andere wijzigingen deze maand zijn de upgrade naar jQuery 3.x en een andere methode om e-mailadressen te valideren.
+
 ### Bugs
 * GS-1: Update jQuery to 3.x
+* GS-2: Make check e-mail more performant
 
 ### Nieuwe functies
 * (none)
