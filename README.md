@@ -1,5 +1,5 @@
 # JeroenED.be
-Copyright (c) 2015 Jeroen De Meerleer <me@jeroened.be>
+Copyright (c) 2015-2017 Jeroen De Meerleer <me@jeroened.be>
 
 This is the source code of my own website that can be found on http://www.jeroened.be 
 
@@ -26,6 +26,11 @@ First create a new user by running following command:
 Afterwards you can login into the admin panel by pointing your browser to `{{ websiteaddress }}/admin`
 
 Here you can create even more users or create even more pages or even more whatever.
+
+## System.sh
+I'm currently writing a script to automate as much of this installation as possible. This will include `composer install`, dumping assets and (trough an extra parameter) create a new user.
+
+An preview of this script can be found already in the repository.
 
 ## Licence
 
