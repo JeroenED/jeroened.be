@@ -5,17 +5,21 @@ Update mei 2017. 2 belangrijke off-code wijzigingen: php-7.0 en het eindelijk er
 
 Om de issues uit GitLab te aan te duiden worden deze vooraf gegaan door "GL". Hetzelfde gebeurt voor Github (GH) en Gogs heeft de prefix "GS" meegekregen.
 
+Daarnaast zijn alle externe dependencies verwijderd uit de repository waardoor de updates hiervan gemakkelijker te overschaduwen zijn.
+
 Andere wijzigingen deze maand zijn de upgrade naar jQuery 3.x en een andere methode om e-mailadressen te valideren.
 
 ### Bugs
-* GS-1: Update jQuery to 3.x
-* GS-2: Make check e-mail more performant
+* (none)
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
-* (none)
+* GS-1: Update jQuery to 3.x
+* GS-2: Make check e-mail more performant
+* GS-3: remove all dependencies to external repositories
+* GS-4: Update system.sh script
 
 ### Off-code wijzigingen
 * Upgrade naar php-7.0
@@ -25,13 +29,13 @@ Andere wijzigingen deze maand zijn de upgrade naar jQuery 3.x en een andere meth
 Deze maand een kleine broodnodige functie geïmplementeerd. De detail weergave van portfolio items is aangepast naar een veel leesbaardere weergave.
 
 ### Bugs
-* GL-53: Improve design of portfolio item details page 
+* (none)
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
-* (none)
+* GL-53: Improve design of portfolio item details page 
 
 ## Changelog 2017-03
 OK, ik geef het toe. Ontwikkeling ligt een beetje stil. Maar dit belet mij niet om bugs op te lossen.

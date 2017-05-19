@@ -3,26 +3,28 @@ command=${1}
 
 case "${command}" in
 	install)
-		if [[ ${CI_BUILD_REF_NAME} == "release" ]]; then
-			deployto=${release}	
-			cp -r ./* ${release}
-		else
-			deployto=${master}
-			cp -r ./* ${master}
+		firsttime=${2}
+		git submodule update --init --recursive
+		composer install --no-dev --optimize-autoloader
+
+		if [[ ${firsttime} == "--firsttime" ]]; then
+			php bin/console doctrine:database:create
+			php bin/console doctrine:schema:update --force
+			php bin/console doctrine:fixtures:load
+			php bin/console CmsED:Users:Create
 		fi
 
-		cd ${deployto}
-		composer install --no-dev --optimize-autoloader
 		php bin/console assetic:dump
 		php bin/console doctrine:schema:update --force
-		rm -rf ${deployto}\var\cache\{prod,dev}
+		rm -rf var/cache/{prod,dev}
 		;;
 
 	update)
-		composer update
+		composer update		
+		git submodule update --init --recursive
 		php bin/console assetic:dump
 		php bin/console doctrine:schema:update --force
-		rm -rf ${deployto}\var\cache\{prod,dev}
+		rm -rf var/cache/{prod,dev}
 		;;
 
 	release)

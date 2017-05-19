@@ -27,10 +27,19 @@ Afterwards you can login into the admin panel by pointing your browser to `{{ we
 
 Here you can create even more users or create even more pages or even more whatever.
 
-## System.sh
-I'm currently writing a script to automate as much of this installation as possible. This will include `composer install`, dumping assets and (trough an extra parameter) create a new user.
+## *Black as the night* set-up (system.sh)
+If you don't feel like entering all commands yourself you can opt for the *Black as the night* setup. This command automates a lot of commands and giving you time to get another programmer's fuel.
 
-An preview of this script can be found already in the repository.
+### Install
+You can easily install the website by running `bash system.sh install` This will install all dependencies needed (eg. git-submodules, composer, ...).
+
+If it's the first time you're running the installation you need to add parameter `--firsttime`. This will setup the database and users as well.
+
+### Update
+Updates composer dependecies and submodules
+
+## Server
+Start or stop php's built in webserver. This is just a port the symfony server:start and and symfony server:stop commands.
 
 ## Licence
 
