@@ -1,0 +1,3 @@
+[submodule "CKEditor-Codemirror"]
+	path = src/JeroenED/CmsEDBundle/Resources/public/ckeditor-plugins/codemirror
+	url = https://github.com/w8tcha/CKEditor-CodeMirror-Plugin.git

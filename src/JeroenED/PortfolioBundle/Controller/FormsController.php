@@ -30,15 +30,11 @@ class FormsController extends Controller {
         $recipient = $this->container->getParameter('forms_to');
         
         $error = '';
-        if (!empty($postValues['blank-check'])) {
-            $error = "1100111000110110011001001010111001100";
-        }
-        if (empty($name) || empty($message) || empty($subject)) {
-            $error = "Gelieve alle velden in te vullen";
-        }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "E-mailadres niet geldig";
-        }
+        if (!empty($postValues['blank-check'])) $error = "1100111000110110011001001010111001100";
+
+        if (empty($name) || empty($message) || empty($subject)) $error = "Gelieve alle velden in te vullen";
+        if (!$this->validateEmail($email)) $error = "E-mailadres niet geldig";
+
         if (!empty($error)) {
             $response = new Response(json_encode(array('error' => $error)));
             $response->headers->set('Content-Type', 'application/json');
@@ -55,5 +51,11 @@ class FormsController extends Controller {
         $response->headers->set('Content-Type', 'application/json');
         return $response;
 
+    }
+
+    private function validateEmail($email) {
+        $email_array = explode("@", $email);
+        if (isset($email_array[1])) return checkdnsrr($email_array[1]);
+        return false;
     }
 }

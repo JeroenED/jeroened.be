@@ -1,23 +1,48 @@
 # Changelog JeroenED.be
 
-## Changelog 2017-04
-Deze maand een kleine broodnodige functie geïmplementeerd. De detail weergave van portfolio items is aangepast naar een veel leesbaardere weergave.
+## Changelog 2017-05
+Update mei 2017. 2 belangrijke off-code wijzigingen: php-7.0 en het eindelijk eruit zwieren van GitLab. Waarom ik Gitlab er heb uitgesmeten: Memory-Leaks. Meer en meer issues met memory leaks waardoor verschillende andere services zonder geheugen kwamen te zitten en uiteindelijk crashten.
+
+Om de issues uit GitLab te aan te duiden worden deze vooraf gegaan door "GL". Hetzelfde gebeurt voor Github (GH) en Gogs heeft de prefix "GS" meegekregen.
+
+Daarnaast zijn alle externe dependencies verwijderd uit de repository waardoor de updates hiervan gemakkelijker te overschaduwen zijn.
+
+Andere wijzigingen deze maand zijn de upgrade naar jQuery 3.x en een andere methode om e-mailadressen te valideren.
 
 ### Bugs
-* #53: Improve design of portfolio item details page 
+* (none)
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
+* GS-1: Update jQuery to 3.x
+* GS-2: Make check e-mail more performant
+* GS-3: remove all dependencies to external repositories
+* GS-4: Update system.sh script
+
+### Off-code wijzigingen
+* Upgrade naar php-7.0
+* Gitlab vervangen door Gogs
+
+## Changelog 2017-04
+Deze maand een kleine broodnodige functie geïmplementeerd. De detail weergave van portfolio items is aangepast naar een veel leesbaardere weergave.
+
+### Bugs
 * (none)
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* GL-53: Improve design of portfolio item details page 
 
 ## Changelog 2017-03
 OK, ik geef het toe. Ontwikkeling ligt een beetje stil. Maar dit belet mij niet om bugs op te lossen.
 Naast de obligatoire updates van de Javascript en Composer libraries heb ik deze maand een fout opgelost ervoor zorgde dat het contact formulier niet meer verzonden werd na een update van de website. Bij deze is  bug nummer 52 opgelost.
 
 ### Bugs
-* #52: Forms cannot be send after deploy 
+* GL-52: Forms cannot be send after deploy 
 
 ### Nieuwe functies
 * (none)
@@ -50,17 +75,17 @@ Versie 1.0.1701: Een gelukkig nieuwjaar gewenst. Deze maand heb ik, tussen alle 
 Daarnaast zal de website in geval van downloads sneller het download icoon tonen.
 
 ### Bugs
-* #48: Reordering archive items doesn't work
-* #50: Fix CVE-2016-10074
+* GL-48: Reordering archive items doesn't work
+* GL-50: Fix CVE-2016-10074
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
-* #49: Faster check for downloads
+* GL-49: Faster check for downloads
 
 ### Off-code wijzigingen
-* #51: Create gitlab template for library issues
+* GL-51: Create gitlab template for library issues
 
 ## Changelog 2016-12
 
@@ -70,12 +95,12 @@ In het contactformulier heb ik overigens een probeersel aangebracht. Iemand die 
 Naast deze uitbreiding een paar kleine bugs gefixt. Zo vraagt het admin panel niet om de haverklap naar het afzetten van de piwik-tracking en is het commando voor een user aan te maken via ssh terug actief.
 
 ### Bugs
-* #44: Admin panel keeps asking for disabling tracking 
-* #45: Command to create user does not work
-* #47: Disable reveal.js help text
+* GL-44: Admin panel keeps asking for disabling tracking 
+* GL-45: Command to create user does not work
+* GL-47: Disable reveal.js help text
 
 ### Nieuwe functies
-* #46: Create contact form
+* GL-46: Create contact form
 
 ### Verbeteringen
 * (none)
@@ -89,19 +114,19 @@ Deze opt-out kan gebeurt via een url-parameter (no_analytics=true), of door in t
 Daarnaast is de trusted computer module voor 2-factor authenticatie ook geactiveerd waardoor je uw code niet iedere keer opnieuw moet ingeven.
 
 ### Bugs
-* #39: Scrollbar on pages always appears 
+* GL-39: Scrollbar on pages always appears 
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
-* #35: 2FA code overload
-* #36: Don't track internal users
-* #38: Upgrade jsqueeze to latest version
-* #40: Redesign lists in control panel
-* #41: Update symfony to version 3.1
-* #42: Improve design of viewing pages
-* #43: Improve error-pages
+* GL-35: 2FA code overload
+* GL-36: Don't track internal users
+* GL-38: Upgrade jsqueeze to latest version
+* GL-40: Redesign lists in control panel
+* GL-41: Update symfony to version 3.1
+* GL-42: Improve design of viewing pages
+* GL-43: Improve error-pages
 
 ## Changelog 2016-10
 
@@ -112,16 +137,16 @@ Daarnaast is er omwille van EOL status van PHP 5.5, PHP geüpgrade naar 5.6.
 De belangrijkste wijzigingen zijn off-code, namelijk de komst van issue-templates en de ingebruikname van "The Beast", mijn nieuwe computer.
 
 ### Bugs
-* #33: Scrollbar fails to load
+* GL-33: Scrollbar fails to load
 
 ### Nieuwe functies
 * (none)
 
 ### Verbeteringen
-* #34: Upgrade to php-5.6
+* GL-34: Upgrade to php-5.6
 
 ### Off-code wijzigingen
-* #32: Create issue templates
+* GL-32: Create issue templates
 * Ingebruikname "The Beast"
 
 ## Changelog 2016-09
@@ -132,8 +157,8 @@ Deze maand stond in het teken van één feature die geïmplementeerd werd. Een f
 * (none)
 
 ### Nieuwe functies
-* #15: Two-Factor authentication (project)
-* #31: Deactivate accounts (project) 
+* GL-15: Two-Factor authentication (project)
+* GL-31: Deactivate accounts (project) 
 
 ### Verbeteringen
 * (none)
@@ -148,20 +173,20 @@ Omwille van de vele bugs die de voorbije dagen zijn ontdekt heb ik beslist om ee
 Dus, een kat is geen mus en werden bugs geplet. Er zijn niet minder dan 7 bugs geplet, 1 verbetering aangebracht, en dan zijn er nog 2 projecten afgewerkt
 
 ### Bugs
-* #21: Download field should not be required
-* #23: Height of vertical navigation does not equal the document height 
-* #24: Design bug when moving a portfolio item 
-* #25: style not applied anymore when changing background of portfolioitem
-* #26: ElFinder not closable
-* #27: Add a page link when page is open does not clear current page
-* #28: Jquery-UI Broken
+* GL-21: Download field should not be required
+* GL-23: Height of vertical navigation does not equal the document height 
+* GL-24: Design bug when moving a portfolio item 
+* GL-25: style not applied anymore when changing background of portfolioitem
+* GL-26: ElFinder not closable
+* GL-27: Add a page link when page is open does not clear current page
+* GL-28: Jquery-UI Broken
 
 ### Nieuwe functies
-* #30: Extend deploy.sh script with more options 
+* GL-30: Extend deploy.sh script with more options 
 
 ### Verbeteringen
-* #22: Add browse button to fields pointing to files (project)
-* #29: Updating order of menu is not intuitive
+* GL-22: Add browse button to fields pointing to files (project)
+* GL-29: Updating order of menu is not intuitive
 
 ### Off-code wijzigingen
 * (none)
@@ -180,13 +205,13 @@ Daarnaast is een opvallende wijziging dat kcfinder eruit geknikkerd is en vervan
 * (none)
 
 ### Nieuwe functies
-* #17: Add link to page to download relevant extra's 
+* GL-17: Add link to page to download relevant extra's 
 
 ### Verbeteringen
-* #16: Confirming a portfolio edit while a page is open should give a warning
-* #18: Button for updating a portfoliopage should be modified according to situation
-* #19: Drop html5shiv from base code 
-* #20: Replacing KcFinder 
+* GL-16: Confirming a portfolio edit while a page is open should give a warning
+* GL-18: Button for updating a portfoliopage should be modified according to situation
+* GL-19: Drop html5shiv from base code 
+* GL-20: Replacing KcFinder 
 
 ### Off-code wijzigingen
 * Gitlab meer betrokken bij ontwikkelingsproces
@@ -195,7 +220,7 @@ Daarnaast is een opvallende wijziging dat kcfinder eruit geknikkerd is en vervan
 Een kleine update deze maand. Het belangrijkste deze maand is dat gitlab-ci is geïntegreerd en volledig actief. Deze release is dan ook via CI gedeployed.
 
 ### Issues
-* #??: Could not update order of portfolio.
+* GL-??: Could not update order of portfolio.
 
 ### Nieuwe functies
 * CI
@@ -207,7 +232,7 @@ Een kleine update deze maand. Het belangrijkste deze maand is dat gitlab-ci is g
 Deze maand is de laatste commit gedaan voor het afwerken van het archief. Meer bepaald het toevoegen van het archief aan het administratiepaneel. Dan is er ook een aanpassing op de mainpage waarbij de paginatitel van een pagina op de titelbalk verschijnt bij het openen. Daarnaast is er ook een probleem opgelost waarbij pagina's heropent werden na het sliden door de presentatie.
 
 ### Issues
-* #14: Page is loaded over and over again when sliding through presentation
+* GL-14: Page is loaded over and over again when sliding through presentation
 
 ### Nieuwe functies
 * Archief-weergave in administratiepaneel
@@ -275,7 +300,7 @@ Eindelijk een grafische update. Voor de eerste keer sinds het online komen van d
 * (none)
 
 ### Nieuwe functies
-* #13 Add slug to duplicate page-names
+* GL-13 Add slug to duplicate page-names
 
 ### Belangrijke wijzigingen
 * Git flow system
@@ -314,7 +339,7 @@ Voor de sprint van augustus had wat extra zaken in gedachten. Zo is er ondersteu
 Daarnaast is symfony geüpdate naar de laatste versie (2.7) en is ervoor gezorgd dat er geen wijzigingen in composer.json moeten worden doorgevoerd om de laatste versie te kunnen installeren.
 
 ### Issues
-* #11: Media query for touch-devices is not reliable for tablets (Thanks to Marie-Jeanne Thys)
+* GL-11: Media query for touch-devices is not reliable for tablets (Thanks to Marie-Jeanne Thys)
 
 ### Nieuwe functies
 * Ondersteuning voor scss
@@ -330,9 +355,9 @@ Daarnaast is symfony geüpdate naar de laatste versie (2.7) en is ervoor gezorgd
 De eerste sprint is afgelopen. Alle bug reports die zijn gemeld zijn opgelost.
 
 ### Issues
-* #8: Encrypt email-addresses to prevent e-mail harvesting
-* #9: Connect CKEditor to KCFinder
-* #10: Fugly border around embedded images
+* GL-8: Encrypt email-addresses to prevent e-mail harvesting
+* GL-9: Connect CKEditor to KCFinder
+* GL-10: Fugly border around embedded images
 
 ### Nieuwe functies
 (geen)

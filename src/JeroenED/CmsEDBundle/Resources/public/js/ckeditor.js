@@ -9,4 +9,4 @@ CKEDITOR.editorConfig = function(config) {
    config.allowedContent = true;
    config.contentsCss = [ '/css/app.css', 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' ];
 };
-CKEDITOR.plugins.addExternal( 'codemirror', '/bundles/jeroenedcmsed/ckeditor-plugins/codemirror/', 'plugin.js' );
+CKEDITOR.plugins.addExternal( 'codemirror', '/bundles/jeroenedcmsed/ckeditor-plugins/codemirror/codemirror/', 'plugin.js' );
