@@ -1,5 +1,24 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-07
+Update Juli 2017. Update van Juni overgeslagen omwille van examens en reis.
+
+Ook omwille van de drukke periode slechts 1 wijziging: legacy links worden aangegeven met het lettertype Comic Sans MS (+ tooltip).
+
+Off-code wijzigingen: nieuwe mailserver. Hoofdserver wordt binnenkort ook gedecommisioned.
+
+### Bugs
+* (none)
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* GS-5:  Create css classes for links to legacy environment
+
+### Off-code wijzigingen
+* Nieuwe mailserver
+
 ## Changelog 2017-05
 Update mei 2017. 2 belangrijke off-code wijzigingen: php-7.0 en het eindelijk eruit zwieren van GitLab. Waarom ik Gitlab er heb uitgesmeten: Memory-Leaks. Meer en meer issues met memory leaks waardoor verschillende andere services zonder geheugen kwamen te zitten en uiteindelijk crashten.
 

@@ -67,6 +67,11 @@ $(document).ready(function() {
     $("a[href*='http://']:not([href*='"+location.hostname+"']),[href*='https://']:not([href*='"+location.hostname+"'])")
     .addClass("external")
     .attr("target","_blank");
+
+    $("a[href*='http://labs.jeroened.be'],a[href*='https://labs.jeroened.be']")
+    .addClass("legacy")
+    .attr("target","_blank")
+    .attr("title","legacy environment");
 });
 
 window.onpopstate = function(e) {
