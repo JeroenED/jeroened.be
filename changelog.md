@@ -15,8 +15,8 @@ Voor de rest zijn er quasi geen wijzigingen aan de website zelf gebeurt. De enig
 * GS-5:  Create css classes for links to legacy environment (Updated)
 
 ### Off-code wijzigingen
-* Nieuwe mailserver
-
+* Server is nu ansible provisioned
+* CI is terug actief op test-environment.
 
 ## Changelog 2017-07
 Update Juli 2017. Update van Juni overgeslagen omwille van examens en reis.
