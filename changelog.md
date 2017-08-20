@@ -1,5 +1,23 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-08
+Augustus stond in het teken van de grote infrastructuur upgrade waarbij de oude server werd vervangen door een Ansible-Provisioned server. De configuratie (of toch de open delen hiervan) kunnen bekeken worden op de [Git-Repository](https://git.jeroened.be/JeroenED/Ansible-Playbook-JeroenED.be).
+
+Voor de rest zijn er quasi geen wijzigingen aan de website zelf gebeurt. De enige wijziging is het gebruik van het Chalkboard font op Mac voor legacy links.
+
+### Bugs
+* (none)
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* GS-5:  Create css classes for links to legacy environment (Updated)
+
+### Off-code wijzigingen
+* Server is nu ansible provisioned
+* CI is terug actief op test-environment.
+
 ## Changelog 2017-07
 Update Juli 2017. Update van Juni overgeslagen omwille van examens en reis.
 
