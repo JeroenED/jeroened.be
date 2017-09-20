@@ -1,7 +1,7 @@
 var pages = new Array("/", "/archive", "/changelog", "/download");
 var currentPage = getCurrentPage();
 var hastags = false;
-var no_analytics = Cookies.get("no_analytics");
+var no_analytics = (typeof _paq === 'undefined') ? true : false;
 $(document).ready(function() {
     $("nav").click(function() {
         var cur = $("nav ul li").css("margin-left");
