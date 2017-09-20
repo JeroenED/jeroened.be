@@ -1,5 +1,19 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-09
+In september werd een lang openstaand issue eindelijk opgelost. Namelijk wanneer adblock geactiveerd is kan oa. het menu niet geopend worden.
+
+Daarnaast zijn de gewoonlijke dependecy updates ook uitgevoerd.
+
+### Bugs
+* GS-7:  Adblock breaks website
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
+
 ## Changelog 2017-08
 Augustus stond in het teken van de grote infrastructuur upgrade waarbij de oude server werd vervangen door een Ansible-Provisioned server. De configuratie (of toch de open delen hiervan) kunnen bekeken worden op de [Git-Repository](https://git.jeroened.be/JeroenED/Ansible-Playbook-JeroenED.be).
 
