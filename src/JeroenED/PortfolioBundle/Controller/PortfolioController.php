@@ -40,12 +40,6 @@ class PortfolioController extends Controller
     protected function getSettings(Request $request) {
         $settings = array();
         $settings['analytics'] = !($request->cookies->getBoolean('no_analytics'));
-        if ($request->query->get('no_analytics')) {
-            $response = new Response();
-            $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
-            $response->send();
-            $settings['analytics'] = false;
-        }
         return $settings;
     }
 
@@ -57,8 +51,12 @@ class PortfolioController extends Controller
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
         $settings = $this->getSettings($request);
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
-
+        $response = $this->render('JeroenEDPortfolioBundle:Portfolio:portfolio.html.twig', array('portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
+        if ($request->query->get('no_analytics')) {
+            $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
+            $settings['analytics'] = false;
+        }
+        return $response;
     }
     
     /**
@@ -90,7 +88,11 @@ class PortfolioController extends Controller
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
         $settings = $this->getSettings($request);
-        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics']));
+        if ($request->query->get('no_analytics')) {
+            $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
+            $settings['analytics'] = false;
+        }
+        return $response;
     }
     
     /**
