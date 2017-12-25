@@ -1,5 +1,20 @@
 # Changelog JeroenED.be
 
+## Changelog 2017-12
+Wegens het werk geen tijd gehad om de laatste updates te pushen. Shame on me.
+
+De voorbije 3 maanden zijn er ook nauwelijks wijzigingen gebeurt. Enkel de gewoonlijke composer updates en Javascript updates.
+
+### Bugs
+* GS-8:  URL-parameter no_analytics doesn't open website
+
+### Nieuwe functies
+* (none)
+
+### Verbeteringen
+* (none)
+
+
 ## Changelog 2017-09
 In september werd een lang openstaand issue eindelijk opgelost. Namelijk wanneer adblock geactiveerd is kan oa. het menu niet geopend worden.
 
