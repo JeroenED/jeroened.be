@@ -88,6 +88,7 @@ class PortfolioController extends Controller
         $portfolio = $this->getPortfolio();
         $menu = $this->getMenu();
         $settings = $this->getSettings($request);
+        return $this->render('JeroenEDPortfolioBundle:Portfolio:page.html.twig', array('slug' => $slug, 'portfolio' => $portfolio, 'menu' => $menu, 'analytics' => $settings['analytics'])); 
         if ($request->query->get('no_analytics')) {
             $response->headers->setCookie(new Cookie('no_analytics', 'true', time() + (60 * 60 * 24 * 30), '/', null, false, false));
             $settings['analytics'] = false;
